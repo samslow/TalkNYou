@@ -9,7 +9,8 @@
 **개발 언어 및 툴**
 
 1. Ruby on Rails (Ruby언어 기반의 FrameWork) 
-2. 2. C++ 보조
+
+2. C++ 보조
 
 3. Github 협업
 
