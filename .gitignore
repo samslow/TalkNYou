@@ -5,3 +5,5 @@
 /.vs/config/applicationhost.config
 *.suo
 *.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/ProjectSettings.json

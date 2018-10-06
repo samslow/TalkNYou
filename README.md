@@ -1,6 +1,6 @@
 **팀 이름:** Talk And You
 
-**주제:** 카카오톡 플러스친구를 활용한 ID/PW 메모서비스이며, 서비스 이름은 '테이' 이다.
+**주제:** 카카오톡 플러스친구를 활용한 ID/PW 메모서비스이며, 서비스 이름은 '테이 (Talk And You의 앞글자)' 이다.
 
 **진행 방법**
 
@@ -13,9 +13,9 @@
 
 **개발 언어 및 툴**
 
-1. Ruby on Rails (Ruby언어 기반의 FrameWork) 
+1. 메인 : Ruby on Rails (Ruby언어 기반의 FrameWork) 
 
-2. C++ 보조
+2. 그 외에 가용한 언어 : C/C++ 및 Java, HTML/CSS, JavaScript, PHP 
 
 3. Github 협업 (https://github.com/samslow/TalkNYou).
 
