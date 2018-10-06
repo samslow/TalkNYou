@@ -12,7 +12,7 @@
 
 2. C++ 보조
 
-3. Github 협업 (https://github.com/samslow/TalkNYou)
+3. Github 협업 (https://github.com/samslow/TalkNYou).
 
 4. C9 Cloud 가상서버
 
