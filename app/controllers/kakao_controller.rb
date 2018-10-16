@@ -2,7 +2,7 @@ class KakaoController < ApplicationController
   def keyboard
     @keyboard = {
       type: "buttons",
-      :buttons => ["오늘까지몇일?","로또", "기념일", "앞으로의 약속", "메뉴선택","오늘고양이","유리's blog","aljsdklj"]
+      :buttons => ["버튼 선택","오늘고양이"]
     }
     render json: @keyboard
   end
@@ -40,28 +40,16 @@ class KakaoController < ApplicationController
         :height => 630
       }
     }
-    @return_msg_addlink = {
-      :text => "율로그로 가기",
-      :message_button	 => {
-        :label => "*끄적끄적 : 네이버 블로그",
-        :url => "https://blog.naver.com/hellowing_"
-      }
-    }
     @return_keyboard = {
        type: "buttons",
-      :buttons => ["오늘까지몇일?", "로또","기념일", "앞으로의 약속", "메뉴선택", "오늘고양이","유리's blog"]
-    }
+       :buttons => ["버튼 선택","오늘고양이"]
+      }
     
     if @user_msg == "오늘고양이"
         @result = {
         :message => @return_msg_addphoto,
         :keyboard => @return_keyboard
       }
-    elsif @user_msg == "유리's blog"
-        @result = {
-        :message => @return_msg_addlink,
-        :keyboard => @return_keyboard
-        }
     else
         @result = {
         :message => @return_msg,
