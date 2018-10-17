@@ -949,3 +949,957 @@ Processing by KakaoController#message as */*
 Completed 200 OK in 1166ms (Views: 0.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-16 11:01:50 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 6ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-16 11:01:50 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-16 11:01:59 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-16 11:02:02 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택"}}
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-16 11:02:05 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 1169ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-16 11:02:08 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 879ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-16 11:02:11 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 849ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-16 11:02:15 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택"}}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 05:16:08 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:16:12 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"버튼 선택"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:16:13 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 31ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 05:23:57 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/chat_room/cj51EJa3xat1" for 110.76.143.234 at 2018-10-17 05:24:07 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/cj51EJa3xat1"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (6.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (20.9ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (87.5ms)
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:24:15 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:24:18 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:24:20 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:24:23 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 05:24:25 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:24:26 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 05:24:32 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 1041ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:24:37 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:24:39 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 05:30:55 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:32:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"계정 관리", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"계정 관리"}}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:34:15 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 05:34:20 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 05:34:24 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:34:28 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"계정 관리", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"계정 관리"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:34:32 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:35:09 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 993ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:35:15 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:35:16 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 05:35:22 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 05:35:23 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.234 at 2018-10-17 05:41:50 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 06:06:46 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:06:52 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 1127ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 06:07:03 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 841ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:08:51 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 06:08:57 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 06:09:18 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:12:39 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+SyntaxError (/home/ubuntu/workspace/app/controllers/kakao_controller.rb:82: syntax error, unexpected keyword_else, expecting '}'):
+  
+app/controllers/kakao_controller.rb:82: syntax error, unexpected keyword_else, expecting '}'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.6ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.3ms)
+Started GET "/keyboard" for 110.76.143.235 at 2018-10-17 06:12:40 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+SyntaxError (/home/ubuntu/workspace/app/controllers/kakao_controller.rb:82: syntax error, unexpected keyword_else, expecting '}'):
+  
+app/controllers/kakao_controller.rb:82: syntax error, unexpected keyword_else, expecting '}'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.8ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.4ms)
+Started DELETE "/chat_room/cj51EJa3xat1" for 110.76.143.234 at 2018-10-17 06:13:25 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/cj51EJa3xat1"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (18.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (58.2ms)
+Started DELETE "/friend/test" for 110.76.143.236 at 2018-10-17 06:15:33 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/friend/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (2.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (57.4ms)
+Started POST "/friend" for 110.76.143.236 at 2018-10-17 06:15:34 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [POST] "/friend"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (31.9ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (66.4ms)
+Started DELETE "/chat_room/test" for 110.76.143.236 at 2018-10-17 06:15:35 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (5.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (40.6ms)
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 06:15:35 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/friend/test" for 110.76.143.236 at 2018-10-17 06:16:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/friend/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (41.7ms)
+Started POST "/friend" for 110.76.143.236 at 2018-10-17 06:16:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [POST] "/friend"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (36.1ms)
+Started DELETE "/chat_room/test" for 110.76.143.236 at 2018-10-17 06:16:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (41.3ms)
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 06:16:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/friend/test" for 110.76.143.235 at 2018-10-17 06:17:44 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/friend/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (2.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (44.1ms)
+Started POST "/friend" for 110.76.143.235 at 2018-10-17 06:17:44 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [POST] "/friend"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (43.4ms)
+Started DELETE "/chat_room/test" for 110.76.143.235 at 2018-10-17 06:17:44 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (43.4ms)
+Started GET "/keyboard" for 110.76.143.235 at 2018-10-17 06:17:45 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/friend/test" for 110.76.143.234 at 2018-10-17 06:17:47 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/friend/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (35.9ms)
+Started POST "/friend" for 110.76.143.234 at 2018-10-17 06:17:47 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [POST] "/friend"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (37.4ms)
+Started DELETE "/chat_room/test" for 110.76.143.234 at 2018-10-17 06:17:48 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/test"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [2 times] (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (36.1ms)
+Started GET "/keyboard" for 110.76.143.234 at 2018-10-17 06:17:48 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 06:17:58 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-17 06:30:56 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:30:57 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 06:30:59 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 06:31:01 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:31:02 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"비밀번호 관리", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"비밀번호 관리"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 06:31:03 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 06:31:04 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"PW/리듬 설정"}}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:31:05 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-10-17 06:31:08 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"오늘고양이"}}
+Completed 200 OK in 1019ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-17 06:31:15 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"환경설정"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-17 06:31:17 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"홈으로"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
