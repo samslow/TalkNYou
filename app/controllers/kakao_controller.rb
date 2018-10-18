@@ -1,15 +1,20 @@
 class KakaoController < ApplicationController
   def keyboard
+    
     @keyboard = {
       type: "buttons",
       :buttons => ["사이트 리스트","환경설정", "오늘고양이"]
     }
+    
     render json: @keyboard
   end
 
   def message
     @user_msg = params[:content] #사용자의 입력값
-    
+    p "검토합니다"
+    p params[:user_key]
+    p "검토 끝"
+    User.create(key: params[:user_key])
     if @user_msg == "환경설정"
       @text = "환경설정 세션이라능"
     elsif @user_msg == "오늘고양이"
