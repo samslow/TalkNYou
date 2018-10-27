@@ -13,17 +13,20 @@
 ActiveRecord::Schema.define(version: 20181026173027) do
 
   create_table "sites", force: :cascade do |t|
-    t.string   "sname"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "sname"
+    t.string   "sid",        default: "아디 없음"
+    t.string   "spw",        default: "비번 없음"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["user_id"], name: "index_sites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "flag",       default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
