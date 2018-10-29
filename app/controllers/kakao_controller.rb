@@ -33,6 +33,7 @@ class KakaoController < ApplicationController
       @text = "[" + @user_msg + "]\n"
       @text << "[ID] " + Site.find_by(sname: @user_msg).sid + "\n"
       @text << "[PW] " + Site.find_by(sname: @user_msg).spw + "\n"
+      @text << "[Updated at] " + Site.find_by(sname: @user_msg).updated_at.to_s
     
     elsif @user_msg == "[직접입력]"
       @text = "사이트 이름을 입력 해 주세요"

@@ -15122,3 +15122,117 @@ Processing by KakaoController#message as */*
 Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.6ms)
 
 
+  [1m[36mSite Load (0.7ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "Daum"], ["LIMIT", 1]]
+Started POST "/message" for 110.76.143.234 at 2018-10-29 09:37:30 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 72ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-10-29 09:37:31 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"네이버", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"네이버"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.7ms)
+
+
+  
+TypeError (no implicit conversion of ActiveSupport::TimeWithZone into String):
+  
+app/controllers/kakao_controller.rb:36:in `+'
+app/controllers/kakao_controller.rb:36:in `message'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.2ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.7ms)
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "Daum"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "Daum"], ["LIMIT", 1]]
+Started DELETE "/chat_room/cj51EJa3xat1" for 110.76.143.234 at 2018-10-29 09:38:25 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/cj51EJa3xat1"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [3 times] (19.2ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [20 times] (7.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (77.8ms)
+Started GET "/keyboard" for 110.76.143.235 at 2018-10-29 09:38:29 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-10-29 09:38:29 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-29 09:38:29 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 37ms (Views: 0.4ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-10-29 09:38:30 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"네이버", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"네이버"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.1ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."sname" = ? LIMIT ?[0m  [["sname", "네이버"], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
