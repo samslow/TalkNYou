@@ -29,7 +29,7 @@ class KakaoController < ApplicationController
     if @user_msg == "홈으로"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
-    elsif @usite.include?(@user_msg)
+    elsif @usite.include?(@user_msg) && @cuser.flag != -1
       @text = "[" + @user_msg + "]\n"
       @text << "[ID] " + Site.find_by(sname: @user_msg).sid + "\n"
       @text << "[PW] " + Site.find_by(sname: @user_msg).spw + "\n"
@@ -52,6 +52,7 @@ class KakaoController < ApplicationController
         @cuser.update(flag: 1) 
       elsif @user_msg == "[삭제하기]"
         @text = "삭제 할 사이트를 선택 해 주세요"
+        @cuser.update(flag: -1)
       else
         @text = "잘못된 입력이라능!"
       end
@@ -110,7 +111,7 @@ class KakaoController < ApplicationController
           buttons: @usite
         }
       }
-      @cuser.update(flag: -1)
+      # @cuser.update(flag: -1)
     elsif @user_msg == "[직접입력]"
       @cuser.update(flag: 1) # 사이트 이름 직접 입력 플래그 
       @result = {
