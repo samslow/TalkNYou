@@ -33,14 +33,14 @@ class KakaoController < ApplicationController
       @text = "[" + @user_msg + "]\n"
       @text << "[ID] " + Site.find_by(sname: @user_msg).sid + "\n"
       @text << "[PW] " + Site.find_by(sname: @user_msg).spw + "\n"
-      @text << "[Updated at] " + Site.find_by(sname: @user_msg).updated_at.to_s
+      @text << "[Updated at] " + Site.find_by(sname: @user_msg).updated_at.strftime('%Y-%m-%d %H:%M')
     
     elsif @user_msg == "[직접입력]"
       @text = "사이트 이름을 입력 해 주세요"
       @cuser.update(flag: 1)
     elsif @cuser.flag == 0
       if @user_msg == "사이트 리스트"
-        @text = "[Site list]\n"
+        @text = "[Site list]"
         
         @usite.push("[추가하기]")
         
@@ -52,9 +52,6 @@ class KakaoController < ApplicationController
         @cuser.update(flag: 1) 
       elsif @user_msg == "[삭제하기]"
         @text = "삭제 할 사이트를 선택 해 주세요"
-        @cuser.sites.each do |s|
-          @usite.push(s.sname)
-        end
       else
         @text = "잘못된 입력이라능!"
       end
