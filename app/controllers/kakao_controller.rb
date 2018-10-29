@@ -21,17 +21,18 @@ class KakaoController < ApplicationController
     @user_msg = params[:content] #사용자의 입력값
     @cuser = User.find_by(key: params[:user_key])
     @usite =  []
+    
     @cuser.sites.each do |s|
       @usite.push(s.sname)
     end
     
-      
-    
     if @user_msg == "홈으로"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
-    elsif @hsite.include?(@user_msg)
-      
+    elsif @usite.include?(@user_msg)
+      @text = "[" + @user_msg + "]\n"
+      @text << "[ID] " + Site.find_by(sname: @user_msg).sid + "\n"
+      @text << "[PW] " + Site.find_by(sname: @user_msg).spw + "\n"
     
     elsif @user_msg == "[직접입력]"
       @text = "사이트 이름을 입력 해 주세요"
