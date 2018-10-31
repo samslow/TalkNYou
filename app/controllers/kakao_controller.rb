@@ -29,11 +29,11 @@ class KakaoController < ApplicationController
     if @user_msg == "홈으로"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
-    elsif @usite.include?(@user_msg) && @cuser.flag != -1
+    elsif @usite.include?(@user_msg) && @cuser.flag != -1 && @cuser.flag != 1
       @text = "[" + @user_msg + "]\n"
-      @text << "[ID] " + Site.find_by(sname: @user_msg).sid + "\n"
-      @text << "[PW] " + Site.find_by(sname: @user_msg).spw + "\n"
-      @text << "[Updated at] " + Site.find_by(sname: @user_msg).updated_at.strftime('%Y-%m-%d %H:%M')
+      @text << "[ID] " + Site.find_by(user: @cuser, sname: @user_msg).sid + "\n"
+      @text << "[PW] " + Site.find_by(user: @cuser, sname: @user_msg).spw + "\n"
+      @text << "[Updated] " + Site.find_by(user: @cuser, sname: @user_msg).updated_at.strftime('%Y년 %m월 %d일 %H:%M')
     
     elsif @user_msg == "[직접입력]"
       @text = "사이트 이름을 입력 해 주세요"
@@ -111,14 +111,11 @@ class KakaoController < ApplicationController
           buttons: @usite
         }
       }
-      # @cuser.update(flag: -1)
     elsif @user_msg == "[직접입력]"
       @cuser.update(flag: 1) # 사이트 이름 직접 입력 플래그 
       @result = {
         message: @return_msg
       }
-    elsif @cuser.flag == 4
-      #TODO
     elsif @cuser.flag? && @user_msg != "홈으로"
       @result = {
         message: @return_msg
