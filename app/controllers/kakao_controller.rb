@@ -42,6 +42,7 @@ class KakaoController < ApplicationController
       if @user_msg == "사이트 리스트"
         @text = "[Site list]"
         
+        @usite.push("--------------------------------------------")
         @usite.push("[추가하기]")
         
         if @cuser.sites.first
