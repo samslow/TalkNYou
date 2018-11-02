@@ -26,7 +26,7 @@ class KakaoController < ApplicationController
       @usite.push(s.sname)
     end
     
-    if @user_msg == "홈으로"
+    if @user_msg == "[홈으로]"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
     elsif @usite.include?(@user_msg) && @cuser.flag != -1 && @cuser.flag != 1
@@ -53,6 +53,12 @@ class KakaoController < ApplicationController
         @cuser.update(flag: 1) 
       elsif @user_msg == "[삭제하기]"
         @text = "삭제 할 사이트를 선택 해 주세요"
+        @usite =  []
+        
+        @cuser.sites.each do |s|
+          @usite.push(s.sname + " --")
+        end
+        
         @cuser.update(flag: -1)
       else
         @text = "잘못된 입력이라능!"
@@ -104,7 +110,7 @@ class KakaoController < ApplicationController
         }
       }
     elsif @user_msg == "[삭제하기]"
-      @usite << "홈으로"
+      @usite << "[홈으로]"
       @result = {
         message: @return_msg,
         keyboard: {
@@ -117,7 +123,7 @@ class KakaoController < ApplicationController
       @result = {
         message: @return_msg
       }
-    elsif @cuser.flag? && @user_msg != "홈으로"
+    elsif @cuser.flag? && @user_msg != "[홈으로]"
       @result = {
         message: @return_msg
       }

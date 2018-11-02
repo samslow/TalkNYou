@@ -11,7 +11,7 @@ module Tnu
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.i18n.default_locale = :ko
+    config.i18n.default_locale = :en
     config.time_zone = 'Seoul'
   end
 end
