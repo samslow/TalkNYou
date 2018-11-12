@@ -20,27 +20,31 @@ class KakaoController < ApplicationController
     
     @user_msg = params[:content] #사용자의 입력값
     @cuser = User.find_by(key: params[:user_key])
-    @usite =  []
+    @usite = []
     
     @cuser.sites.each do |s|
-      @usite.push(s.sname)
+      if not @usite.include?(s.sname)
+        @usite.push(s.sname)
+      end
     end
     
     if @user_msg == "[홈으로]"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
     elsif @usite.include?(@user_msg) && @cuser.flag != -1 && @cuser.flag != 1
-      @text = "[" + @user_msg + "]\n"
-      @text << "[ID] " + Site.find_by(user: @cuser, sname: @user_msg).sid + "\n"
-      @text << "[PW] " + Site.find_by(user: @cuser, sname: @user_msg).spw + "\n"
-      @text << "[Updated] " + Site.find_by(user: @cuser, sname: @user_msg).updated_at.strftime('%Y년 %m월 %d일 %H:%M')
+      @text = "[" + @user_msg + "]\n\n"
+      Site.where(user: @cuser, sname: @user_msg).each do |s|
+        @text << "[ID] " + s.sid + "\n"
+        @text << "[PW] " + s.spw + "\n"
+        @text << "[Updated] " + s.updated_at.strftime('%Y년 %m월 %d일 %H:%M') + "\n\n"
+      end
     
     elsif @user_msg == "[직접입력]"
-      @text = "사이트 이름을 입력 해 주세요"
+      @text = "사이트 이름을 입력 해 주세요\n되돌아 가려면 [홈으로]를 입력하세요"
       @cuser.update(flag: 1)
     elsif @cuser.flag == 0
       if @user_msg == "사이트 리스트"
-        @text = "[Site list]"
+        @text = "저장되는 정보는 관리자도 열람 할 수 없습니다.\n안심하고 이용하세요."
         
         @usite.push("--------------------------------------------")
         @usite.push("[추가하기]")
@@ -50,7 +54,8 @@ class KakaoController < ApplicationController
         end
       elsif @user_msg == "[추가하기]"
         @text = "아래에서 추가할 사이트를 선택하거나\n 직접 입력하세요"
-        @cuser.update(flag: 1) 
+        @cuser.update(flag: 1)
+
       elsif @user_msg == "[삭제하기]"
         @text = "삭제 할 사이트를 선택 해 주세요"
         @usite =  []
@@ -65,7 +70,7 @@ class KakaoController < ApplicationController
       end
     elsif @cuser.flag == 1
       Site.create(sname: @user_msg, user: @cuser)
-      @text = "["+ @user_msg + "]\n"+"거의 다 왔습니다.\n이젠 아이디를 입력 해 볼까요?"
+      @text = "["+ @user_msg + "]\n"+"이젠 아이디를 입력 해 볼까요?"
       @cuser.update(flag: 2)# 아이디 입력 모드
       @cuser.sites.each do |s|
         @usite.push(s.sname)
@@ -106,7 +111,7 @@ class KakaoController < ApplicationController
         message: @return_msg,
         keyboard: {
           type: "buttons",
-          buttons: ["Naver", "Daum", "Gmail", "Facebook", "[직접입력]"]
+          buttons: ["Naver", "Daum", "Gmail", "Facebook", "[직접입력]","--------------------------------------------","[홈으로]"]
         }
       }
     elsif @user_msg == "[삭제하기]"

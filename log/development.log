@@ -38618,3 +38618,747 @@ Processing by KakaoController#message as */*
 Completed 200 OK in 33ms (Views: 0.4ms | ActiveRecord: 23.9ms)
 
 
+Started GET "/keyboard" for 110.76.143.235 at 2018-11-06 09:05:16 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.234 at 2018-11-06 09:05:16 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.235 at 2018-11-06 09:05:16 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/chat_room/cj51EJa3xat1" for 110.76.143.236 at 2018-11-06 09:05:20 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActionController::RoutingError (No route matches [DELETE] "/chat_room/cj51EJa3xat1"):
+  
+actionpack (5.0.7) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.7) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [3 times] (32.9ms)
+  Rendered collection of /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_route.html.erb [20 times] (5.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/routes/_table.html.erb (8.9ms)
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (110.5ms)
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:05:28 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.6ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 100ms (Views: 0.6ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:05:32 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Gmail", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Gmail"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Gmail"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Gmail"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Gmail"], ["LIMIT", 1]]
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:05:34 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:05:35 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:05:36 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-06 09:05:38 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"롯데멤버십", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"롯데멤버십"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "롯데멤버십"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "롯데멤버십"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "롯데멤버십"], ["LIMIT", 1]]
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:05:40 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-06 09:05:41 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[추가하기]", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[추가하기]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 1], ["updated_at", "2018-11-06 09:05:41.460714"], ["id", 1]]
+  [1m[35m (23.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 36ms (Views: 0.4ms | ActiveRecord: 24.2ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-06 09:07:04 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "sites" ("user_id", "sname", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["sname", "Facebook"], ["created_at", "2018-11-06 09:07:04.852911"], ["updated_at", "2018-11-06 09:07:04.852911"]]
+  [1m[35m (58.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 2], ["updated_at", "2018-11-06 09:07:04.917673"], ["id", 1]]
+  [1m[35m (18.8ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 121ms (Views: 0.5ms | ActiveRecord: 81.4ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:07:09 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Test1", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Test1"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 ORDER BY "sites"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "sites" SET "sid" = ?, "updated_at" = ? WHERE "sites"."id" = ?[0m  [["sid", "Test1"], ["updated_at", "2018-11-06 09:07:09.680398"], ["id", 27]]
+  [1m[35m (22.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 3], ["updated_at", "2018-11-06 09:07:09.709428"], ["id", 1]]
+  [1m[35m (21.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 64ms (Views: 0.4ms | ActiveRecord: 45.2ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:07:11 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"123456", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"123456"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 ORDER BY "sites"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "sites" SET "spw" = ?, "updated_at" = ? WHERE "sites"."id" = ?[0m  [["spw", "123456"], ["updated_at", "2018-11-06 09:07:11.854507"], ["id", 27]]
+  [1m[35m (24.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 0], ["updated_at", "2018-11-06 09:07:11.886468"], ["id", 1]]
+  [1m[35m (24.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 70ms (Views: 0.6ms | ActiveRecord: 51.1ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:07:14 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-06 09:07:17 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:07:19 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:07:20 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-06 09:07:22 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-06 09:07:27 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ? LIMIT ?[0m  [["sname", "Facebook"], ["LIMIT", 1]]
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/keyboard" for 110.76.143.234 at 2018-11-12 07:12:10 +0000
+Started GET "/keyboard" for 110.76.143.235 at 2018-11-12 07:12:10 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by KakaoController#keyboard as */*
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/keyboard" for 110.76.143.236 at 2018-11-12 07:12:10 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:12:20 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 97ms (Views: 0.5ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for 58.140.210.250 at 2018-11-12 07:13:42 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/railties-5.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/railties-5.0.7/lib/rails/templates/rails/welcome/index.html.erb (5.9ms)
+Completed 200 OK in 23ms (Views: 15.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 58.140.210.250 at 2018-11-12 07:13:44 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/railties-5.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/railties-5.0.7/lib/rails/templates/rails/welcome/index.html.erb (3.3ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rails/db" for 58.140.210.250 at 2018-11-12 07:13:49 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (414.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_header.html.erb (7.6ms)
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_sidebar.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_gems.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_footer.html.erb (7.1ms)
+Completed 200 OK in 611ms (Views: 606.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/rails/db/tables/sites/data" for 58.140.210.250 at 2018-11-12 07:13:54 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by RailsDb::TablesController#data as JS
+  Parameters: {"table_id"=>"sites"}
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "sites"[0m
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.js.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_exp_col.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (161.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (31.2ms)
+  [1m[36m Load (0.4ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" LIMIT ? OFFSET ?[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (6.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (4.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (4.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (5.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_sql.html.erb (0.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_data.html.erb (376.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.js.erb (384.5ms)
+Completed 200 OK in 432ms (Views: 373.2ms | ActiveRecord: 20.8ms)
+
+
+Started GET "/rails/db/tables/sites/data?utf8=%E2%9C%93&per_page=20" for 58.140.210.250 at 2018-11-12 07:14:04 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by RailsDb::TablesController#data as HTML
+  Parameters: {"utf8"=>"✓", "per_page"=>"20", "table_id"=>"sites"}
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "sites"[0m
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_exp_col.html.erb (0.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (10.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (8.9ms)
+  [1m[36m Load (0.5ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (4.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_sql.html.erb (0.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_data.html.erb (153.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.html.erb within layouts/rails_db/application (155.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_header.html.erb (3.3ms)
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_sidebar.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_gems.html.erb (0.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_footer.html.erb (3.5ms)
+Completed 200 OK in 265ms (Views: 212.2ms | ActiveRecord: 19.9ms)
+
+
+Started GET "/rails/db/" for 58.140.210.250 at 2018-11-12 07:14:12 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by RailsDb::DashboardController#index as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/dashboard/index.html.erb within layouts/rails_db/application (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_header.html.erb (3.5ms)
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_sidebar.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_gems.html.erb (0.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_footer.html.erb (3.8ms)
+Completed 200 OK in 75ms (Views: 72.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/rails/db/tables/sites/data" for 58.140.210.250 at 2018-11-12 07:14:15 +0000
+Cannot render console from 58.140.210.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by RailsDb::TablesController#data as JS
+  Parameters: {"table_id"=>"sites"}
+DEPRECATION WARNING: #tables currently returns both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only return tables. Use #data_sources instead. (called from tables at /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/lib/rails_db/database.rb:18)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "sites"[0m
+  Rendering /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.js.erb
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/shared/_exp_col.html.erb (0.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (10.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_condition_fields.html.erb (8.3ms)
+  [1m[36m Load (0.4ms)[0m  [1m[34mSELECT  "sites".* FROM "sites" LIMIT ? OFFSET ?[0m  [["LIMIT", 20], ["OFFSET", 0]]
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (75.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (3.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_row.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_sql.html.erb (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/_data.html.erb (219.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/rails_db-2.0.4/app/views/rails_db/tables/data.js.erb (223.6ms)
+Completed 200 OK in 260ms (Views: 212.5ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/keyboard" for 110.76.143.234 at 2018-11-12 07:21:07 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#keyboard as */*
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:21:12 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"--------------------------------------------", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"--------------------------------------------"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 32ms (Views: 0.3ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:21:13 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:23:20 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 175ms (Views: 0.6ms | ActiveRecord: 3.5ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:23:46 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 104ms (Views: 0.6ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-12 07:23:48 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:24:03 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 154ms (Views: 0.4ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:24:05 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:24:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 27ms (Views: 0.4ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:24:15 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:24:28 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.6ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 33ms (Views: 0.4ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:24:31 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:37:18 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 41ms (Views: 0.6ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:37:31 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"--------------------------------------------", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"--------------------------------------------"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 31ms (Views: 0.4ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:37:33 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-12 07:38:55 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.5ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 90ms (Views: 0.6ms | ActiveRecord: 4.5ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:39:01 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-12 07:39:55 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"카카오배그", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"카카오배그"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.7ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "카카오배그"]]
+Completed 200 OK in 39ms (Views: 0.4ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/message" for 110.76.143.234 at 2018-11-12 07:39:57 +0000
+Cannot render console from 110.76.143.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:40:00 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Gmail", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Gmail"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Gmail"]]
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:40:03 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:40:11 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"롯데멤버십", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"롯데멤버십"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "롯데멤버십"]]
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:40:13 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:40:14 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"Facebook"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.3ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mSite Load (0.8ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = 1 AND "sites"."sname" = ?[0m  [["sname", "Facebook"]]
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:43:57 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.6ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 43ms (Views: 0.4ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:44:04 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[추가하기]", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[추가하기]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 1], ["updated_at", "2018-11-12 07:44:04.339073"], ["id", 1]]
+  [1m[35m (60.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 79ms (Views: 1.6ms | ActiveRecord: 63.0ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:45:34 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[직접입력]", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[직접입력]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.4ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 132ms (Views: 0.4ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/message" for 110.76.143.235 at 2018-11-12 07:45:41 +0000
+Cannot render console from 110.76.143.235! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[홈으로]", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"[홈으로]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "flag" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["flag", 0], ["updated_at", "2018-11-12 07:45:41.449113"], ["id", 1]]
+  [1m[35m (28.0ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 41ms (Views: 0.7ms | ActiveRecord: 29.2ms)
+
+
+Started POST "/message" for 110.76.143.236 at 2018-11-12 07:45:44 +0000
+Cannot render console from 110.76.143.236! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by KakaoController#message as */*
+  Parameters: {"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트", "kakao"=>{"user_key"=>"cj51EJa3xat1", "type"=>"text", "content"=>"사이트 리스트"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."key" = ? LIMIT ?[0m  [["key", "cj51EJa3xat1"], ["LIMIT", 1]]
+  [1m[36mSite Load (0.2ms)[0m  [1m[34mSELECT "sites".* FROM "sites" WHERE "sites"."user_id" = ?[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
