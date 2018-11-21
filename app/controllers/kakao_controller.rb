@@ -58,7 +58,7 @@ class KakaoController < ApplicationController
 
       elsif @user_msg == "[삭제하기]"
         @text = "삭제 할 사이트를 선택 해 주세요"
-        @usite =  []
+        @usite = []
         
         @cuser.sites.each do |s|
           @usite.push(s.sname + " --")

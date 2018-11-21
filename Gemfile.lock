@@ -44,6 +44,7 @@ GEM
     byebug (10.0.2)
     codemirror-rails (5.16.0)
       railties (>= 3.0, < 6.0)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -55,9 +56,12 @@ GEM
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    encryptor (3.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.25)
+    figaro (1.1.1)
+      thor (~> 0.14)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
@@ -103,6 +107,11 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.7)
+      pry (>= 0.10.4)
     puma (3.12.0)
     rack (2.0.5)
     rack-test (0.6.3)
@@ -208,10 +217,13 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  encryptor
+  figaro
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   nokogiri
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.7)
   rails_db

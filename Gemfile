@@ -7,6 +7,9 @@ end
 gem 'rest-client'
 gem 'nokogiri'
 gem 'rails_db'
+gem 'encryptor'
+gem 'pry-rails'
+gem 'figaro'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
