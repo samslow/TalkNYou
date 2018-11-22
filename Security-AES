@@ -1,0 +1,55 @@
+Security 정리
+
+https://github.com/attr-encrypted/encryptor
+
+위 사이트에서 AES-256-GCM 암호화 알고리즘을 지원한다.
+
+루비 OpenSSL 라이브러리이며 최근 버전이 2.0.0에서 3.0.0으로 업그레이드 되었다.
+
+업그레이드 되면서 기존의 PKCS5 패딩 기법의 취약점을 보완하였다.
+
+cipher = OpenSSL::Cipher.new('aes-256-gcm')
+cipher.encrypt # Required before '#random_key' or '#random_iv' can be called. http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html#method-i-encrypt
+secret_key = cipher.random_key # Insures that the key is the correct length respective to the algorithm used.
+iv = cipher.random_iv # Insures that the IV is the correct length respective to the algorithm used.
+salt = SecureRandom.random_bytes(16)
+encrypted_value = Encryptor.encrypt(value: 'some string to encrypt', key: secret_key, iv: iv, salt: salt)
+decrypted_value = Encryptor.decrypt(value: encrypted_value, key: secret_key, iv: iv, salt: salt)
+
+기본적으로 권장하는 예시인데
+
+기본적으로 Secret key와 IV(Initialization Vector)는 랜덤키로써
+
+http://ruby-doc.org/stdlib-2.0.0/libdoc/openssl/rdoc/OpenSSL/Cipher.html#method-i-encrypt
+
+이 라이브러리를 참조하여 생성한다.
+
+기본적으로 AES는 블록 암호화 알고리즘이다. 암호화 알고리즘에서는 스트림 암호화도 있지만 이 문서에서는 AES를 기준으로 설명하겠다.
+
+AES는 Advanced Encryption Standard의 약자이며
+
+평문을 블록으로 나누어 각 블록을 아호화한다. 이때 사용되는 key값은 128bit, 192bit, 256bit가 사용이 가능하며 이론적으로 key의 길이는 무제한이라고 한다.
+
+해당 key값 마다 알고리즘의 라운드 횟수가 정해져 있으며 각각 9회, 11회 13회이다.
+(라운드란 암호화시 해독이 어렵게 하기위해 일련의 난독화 과정을 거친다. 비트를 Shift연산을 하거나 xor연산을 하는 등의 과정인데 이 과정을 1번 반복
+한다면 이를 1 Round라고 한다.)
+
+블럭 암호화에도 여러가지 모드가 있다. ECB,CBC 등등이 있는데 
+
+ECB(Electric CodeBook mode)는 16바이트 블럭단위가 동일키로 암호화 되는 구조이다. 평문이 같다면 암호화 블럭도 일정해지므로 보안에 취약하다.
+CBC(Cipher Block Chaining Mode)는 ECB와 달리 IV를 활용하여 처음 암호화 블럭이 다음 암호화 블럭에 영향을 준다. 따라서 평문이 같더라도
+각 암호화 블럭은 달라진다.
+
+일반적으로 AES는 대칭키 형식이며 처음은 XOR연산으로 시작된다.
+
+평문 A와 IV 벡터를 XOR 연산후 Secret Key로 암호화가 되고 그 암호문이 다음 블럭에 IV로 사용된다.
+이때 IV는 복호화시에 반드시 최초 IV 값과 동일해야한다. 따라서 복호화시에는 처음의 IV와 복호화키를 넘겨주면 복호화가 가능하다.
+
+Salt는 PKCS5 패딩기법의 취약점을 보완하기 위해 대체된 패딩 기법이다.
+
+블럭 암호화시 소스 데이터가 블럭길이와 맞지 않을 수 있다. 이때 남은 공간을 채워야하는데 이때 사용되는 것이 패딩 기법이다.
+
+
+
+
+
