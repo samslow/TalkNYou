@@ -27,10 +27,12 @@ class KakaoController < ApplicationController
         @usite.push(s.sname)
       end
     end
-    #flag 란 버튼 띄우는 상태를 나타내는 것으로 보임
-    if @user_msg == "[홈으로]"
+    #flag 란 버튼 띄우는 상태를 나타내는 것으로 보임   0이 홈으로 보임.
+    ### 1. 유저가 홈으로 버튼 눌렀을 때의 이벤트
+	if @user_msg == "[홈으로]"
       @text = "홈으로 돌아왔다능.."
-      @cuser.update(flag: 0)
+      @cuser.update(flag: 0) 
+	### 2. 계정 정보 출력
     elsif @usite.include?(@user_msg) && @cuser.flag != -1 && @cuser.flag != 1
       @text = "[" + @user_msg + "]\n\n"
       Site.where(user: @cuser, sname: @user_msg).each do |s|
@@ -38,10 +40,11 @@ class KakaoController < ApplicationController
         @text << "[PW] " + s.spw + "\n"
         @text << "[Updated] " + s.updated_at.strftime('%Y년 %m월 %d일 %H:%M') + "\n\n"
       end
-    
+    ### 3. 사이트 이름을 직접 입력받음
     elsif @user_msg == "[직접입력]"
       @text = "사이트 이름을 입력 해 주세요\n되돌아 가려면 [홈으로]를 입력하세요"
       @cuser.update(flag: 1)
+	### 4. 사이트 리스트 버튼 출력
     elsif @cuser.flag == 0
       if @user_msg == "사이트 리스트"
         @text = "저장되는 정보는 관리자도 열람 할 수 없습니다.\n안심하고 이용하세요."
@@ -68,6 +71,7 @@ class KakaoController < ApplicationController
       else
         @text = "잘못된 입력이라능!"
       end
+	  ### 5. 아이디 입력 시나리오
     elsif @cuser.flag == 1
       Site.create(sname: @user_msg, user: @cuser)
       @text = "["+ @user_msg + "]\n"+"이젠 아이디를 입력 해 볼까요?"
@@ -75,14 +79,17 @@ class KakaoController < ApplicationController
       @cuser.sites.each do |s|
         @usite.push(s.sname)
       end
+	   ### 6. PW 입력 시나리오
     elsif @cuser.flag == 2
       Site.where(user: @cuser).last.update(sid: @user_msg)
       @text = "["+ @user_msg + "]\n"+"마지막 단계입니다.\n패스워드를 입력 해 주세요"
-      @cuser.update(flag: 3) # 비번 입력 모드 
+      @cuser.update(flag: 3) 
+	   ### 7. 계정 저장 액션
     elsif @cuser.flag == 3
       Site.where(user: @cuser).last.update(spw: @user_msg)
       @text ="저장 되었습니다.\n사이트리스트로 돌아갑니다."
       @cuser.update(flag: 0)
+	    ### 8. 사이트 삭제 액션
     elsif @cuser.flag == -1 && Site.where(user: @cuser, sname: @user_msg).last
       Site.where(user: @cuser, sname: @user_msg).last.destroy
       @text = @user_msg + "\n사이트가 삭제되었습니다."
