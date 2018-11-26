@@ -27,7 +27,7 @@ class KakaoController < ApplicationController
         @usite.push(s.sname)
       end
     end
-    
+    #flag 란 버튼 띄우는 상태를 나타내는 것으로 보임
     if @user_msg == "[홈으로]"
       @text = "홈으로 돌아왔다능.."
       @cuser.update(flag: 0)
@@ -111,7 +111,7 @@ class KakaoController < ApplicationController
         message: @return_msg,
         keyboard: {
           type: "buttons",
-          buttons: ["Naver", "Daum", "Gmail", "Facebook", "[직접입력]","--------------------------------------------","[홈으로]"]
+          buttons: ["[직접입력]","--------------------------------------------","[홈으로]"]
         }
       }
     elsif @user_msg == "[삭제하기]"

@@ -22,3 +22,8 @@
 
 # Ignore application configuration
 /config/application.yml
+/.vs/config/applicationhost.config
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/.vs/TalkNYou/v15/.suo
+/.vs/VSWorkspaceState.json
