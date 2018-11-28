@@ -11,23 +11,18 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20181026173027) do
-
+#rake db:migrate:reset 을 통해 DB 초기화 & 마이그레이션 재작업
   create_table "accounts", force: :cascade do |t|
+    t.integer  "site_id"
     t.string   "ID"
-    t.string   "PW",        default: "아디 없음"
-    t.string   "Memo",        default: "비번 없음"
+    t.string   "PW"
+    t.string   "Memo"
     t.datetime "updated_at",                   null: false
-    t.index ["user_id"], name: "index_sites_on_user_id"
   end
   
   create_table "sites", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "site_name"
-    t.string   "sid",        default: "아디 없음"
-    t.string   "spw",        default: "비번 없음"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["user_id"], name: "index_sites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
