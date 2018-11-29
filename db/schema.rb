@@ -12,9 +12,8 @@
 
 ActiveRecord::Schema.define(version: 20181026173027) do
 #rake db:migrate:reset 을 통해 DB 초기화 & 마이그레이션 재작업
-  create_table "accounts", force: :cascade do |t|
     t.integer  "site_id"
-    t.string   "ID"
+    t.string   "ID_name"
     t.string   "PW"
     t.string   "Memo"
     t.datetime "updated_at",                   null: false
