@@ -36,11 +36,23 @@ class KakaoController < ApplicationController
 	   "문자열 말고 다른거 넣지 마세요."
 	  end
 	 end
+
+	 def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
+		@talking_user.update(flag: HOME_MENU)
+	 end
     #flag 란 버튼 띄우는 상태를 나타내는 것으로 보임  0이 홈으로 보임. 아니면 클라이언트가 위치한 상태를 나타내는듯
 	#text 란 서버에서 클라이언트로 보낼 문자열
 	#msg_from_user 란 클라이언트가 서버에 전달할 메세지 (주로 버튼 혹은 문자열 입력을 통해) 
-
+OPERATION_SENTENCE = #버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합
+[
+	OP_TO_HOME = "[홈으로]",
+	OP_PRINT_SITE_LIST = "[사이트 리스트 보기]",
+	OP_ADD_SITE = "[사이트 추가]",
+	OP_ADD_ACCOUNT = "[계정 추가]"
+]
 # MINE FLAG ENUM SET
+# 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
+# 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
 FLAG_ENUM =
 [ HOME_MENU = 0,					# F0 : 홈 메뉴
   PRINT_SITE_LIST = 10,			# F10 : 사이트 목록 출력
@@ -58,26 +70,31 @@ FLAG_ENUM =
   UPDATE_ACCOUNT_AT_MEMO = 28,	# F28 : 계정 정보 중 MEMO 변경
   DELETE_ACCOUNT = 29,					# F29 : 계정 삭제
 
-  IDONTKNOW = 30 ]# F30 :  계정 추가 시 에러
+  IDONTKNOW = 30 ]	# F30 :  계정 추가 시 에러
 
 ################################
 # MINE FLAG SET 에 따라 구현 ( 상태 오른쪽엔 전이될 수 있는 상태 표시 )
 case @talking_user.flag
-# F0 : 홈 메뉴 => 10
+# F0 : 홈 메뉴 => F10 : 사이트 목록 출력
 when HOME_MENU
-if @msg_from_user == "사이트 리스트"
-	@talking_user
+if @msg_from_user == OP_PRINT_SITE_LIST
     @text = "사이트 리스트입니다."
-	push_site_list
-    @button_list.push("[추가하기]")
-    
-    if @talking_user.sites.first
-      @button_list.push("[삭제하기]")
-    end
-  
+	push_site_list()
+    push_string(OP_ADD_SITE)
+	@talking_user.update(flag: PRINT_SITE_LIST)
+end
 # F10 : 사이트 목록 출력
-when 10
+when PRINT_SITE_LIST
+	case @msg_from_user
+	when OP_ADD_SITE
+		@text = "새 사이트의 이름을 입력해주세요."
 
+	when  OP_TO_HOME
+		to_home()
+	else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20으로 전이
+
+	end
+end
 # F15 : 사이트 추가
 when 10
 # F16 : 사이트 이름 변경
@@ -170,3 +187,21 @@ end
 	#결국 result 는 보낼 json? 
   end
 end
+#코딩 템플릿
+#case @talking_user.flag
+#when 
+#	[상태번호] : [상태내용]
+#	when [상태 1]
+#	├	case @msg_from_user
+#	├	when [명령어 1]
+#	├	├	...
+#	├	├	[보낼 텍스트 및 버튼 리스트 추가]
+#	├	├	[상태전이]
+#	├	when [명령어 2] ............
+#	├	else
+#	├	end
+#	when [상태 2] ............
+#	else
+#	end
+#else
+#end
