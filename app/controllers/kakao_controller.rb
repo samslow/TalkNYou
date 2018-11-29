@@ -25,10 +25,10 @@ class KakaoController < ApplicationController
     def push_site_list #button_list 에 사이트 목록을 넣는다.
 	 @talking_user.sites.each do |each_site|
 	  # if not @button_list.include?(each_site.site_name)  #이 코드는 이전 스키마의 한계점인 중복사이트 가능성 때문인 것으로 추정
-	  @button_list.push(each_site.site_name)
+		push_string(each_site.site_name)
 	  end
 	 end
-
+	 
 	 def push_string(any_string) #button_list 에 아무 문자열이나 넣는다.
 	  if(any_string.kind_of?(String))
 	   @button_list.push(any_string)
@@ -37,10 +37,15 @@ class KakaoController < ApplicationController
 	  end
 	 end
 
+	 def state_transition(now_state, to_be_state) #현재 상태와 전이될 상태를 체크하고 적절하면 전이 수행, 부적절하면 에러 띄우고 홈메뉴로.
+		#근데 우선 일단은 바로 전이만 되게 한다.
+		@talking_user.update(flag: to_be_state)
+	end
+
 	 def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 		@talking_user.update(flag: HOME_MENU)
 	 end
-    #flag 란 버튼 띄우는 상태를 나타내는 것으로 보임  0이 홈으로 보임. 아니면 클라이언트가 위치한 상태를 나타내는듯
+    #@talking_user.flag 란 대화중인 유저의 상태번호를 나타내는 정수
 	#text 란 서버에서 클라이언트로 보낼 문자열
 	#msg_from_user 란 클라이언트가 서버에 전달할 메세지 (주로 버튼 혹은 문자열 입력을 통해) 
 OPERATION_SENTENCE = #버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합
@@ -77,22 +82,29 @@ FLAG_ENUM =
 case @talking_user.flag
 # F0 : 홈 메뉴 => F10 : 사이트 목록 출력
 when HOME_MENU
-if @msg_from_user == OP_PRINT_SITE_LIST
-    @text = "사이트 리스트입니다."
-	push_site_list()
-    push_string(OP_ADD_SITE)
-	@talking_user.update(flag: PRINT_SITE_LIST)
+	case @msg_from_user
+	when OP_PRINT_SITE_LIST
+		@text = "사이트 리스트입니다."
+		push_site_list()
+		push_string(OP_ADD_SITE)
+		state_transition(@talking_user.flag, PRINT_SITE_LIST)
+	else
+	end
 end
 # F10 : 사이트 목록 출력
 when PRINT_SITE_LIST
 	case @msg_from_user
 	when OP_ADD_SITE
 		@text = "새 사이트의 이름을 입력해주세요."
+		state_transition(@talking_user.flag, ADD_SITE)
+		#이후 키보드 입력을 기다린다.
 
-	when  OP_TO_HOME
-		to_home()
-	else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20으로 전이
-
+	when OP_TO_HOME
+		state_transition(@talking_user.flag, HOME_MENU)
+	else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
+	#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
+		
+		state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 	end
 end
 # F15 : 사이트 추가
@@ -190,18 +202,23 @@ end
 #코딩 템플릿
 #case @talking_user.flag
 #when 
-#	[상태번호] : [상태내용]
-#	when [상태 1]
-#	├	case @msg_from_user
-#	├	when [명령어 1]
-#	├	├	...
-#	├	├	[보낼 텍스트 및 버튼 리스트 추가]
-#	├	├	[상태전이]
-#	├	when [명령어 2] ............
-#	├	else
-#	├	end
-#	when [상태 2] ............
-#	else
-#	end
+#l	[상태번호] : [상태내용]
+#l	when [상태 1]
+#l	├	case @msg_from_user
+#l	├	when [OP_명령어 1] #메뉴가 정확히 주어졌을 경우 (예를 들어 사이트 추가나 계정 추가를 클릭했을 경우)
+#l	├	├	...
+#l	├	├	[보낼 텍스트 및 버튼 리스트 추가] #버튼은 push_**** 함수를 통해
+#l	├	├	[상태전이]
+#l	├	when [OP_명령어 2] .....(처리, 메세지 생성, 상태전이).......
+#l	├	when [OP_명령어 3] .....(처리, 메세지 생성, 상태전이).......
+#l	├	when [OP_명령어 4] .....(처리, 메세지 생성, 상태전이).......
+#l	├	else #메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우)  .....(처리, 메세지 생성, 상태전이).......
+#l	├	end
+#l	when [상태 2] ............
+#l	when [상태 3] ............
+#l	when [상태 4] ............
+#l	when [상태 5] ............
+#l	else
+#l	end
 #else
 #end
