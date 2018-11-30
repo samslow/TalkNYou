@@ -54,7 +54,7 @@ OPERATION_SENTENCE = #버튼을 통해 클라이언트에서 서버로 입력되
 	OP_TO_HOME = "[홈으로]",
 	OP_PRINT_SITE_LIST = "[사이트 리스트 보기]",
 	OP_ADD_SITE = "[사이트 추가]",
-	OP_ADD_ACCOUNT = "[계정 추가]"
+	OP_ADD_ACCOUNT = "[계정 추가]",
 	OP_INPUT_CANCEL = "-1"
 ]
 # MINE FLAG ENUM SET
