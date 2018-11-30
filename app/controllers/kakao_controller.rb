@@ -60,7 +60,8 @@ OPERATION_SENTENCE = #버튼을 통해 클라이언트에서 서버로 입력되
 # 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
 # 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
 FLAG_ENUM =
-[ HOME_MENU = 0,					# F0 : 홈 메뉴
+[ 
+  HOME_MENU = 0,					# F00 : 홈 메뉴
   PRINT_SITE_LIST = 10,			# F10 : 사이트 목록 출력
   ADD_SITE = 15,						# F15 : 사이트 추가
   UPDATE_SITE_NAME = 16,		# F16 : 사이트 이름 변경
@@ -79,15 +80,39 @@ FLAG_ENUM =
   IDONTKNOW = 30 ]	# F30 :  계정 추가 시 에러
 
 ################################
-# MINE FLAG SET 에 따라 구현 ( 상태 오른쪽엔 전이될 수 있는 상태 표시 )
+
+##▼상태에 따른 이벤트 처리 방법 기술▼
+#코딩 템플릿 
+#주의할 점: 상태마다 유효한 명령어가 다르다.	
+#	case @talking_user.flag
+##F xx : [현재 상태내용] => F yy : [전이될 상태내용]				# 표기법 F xx => F yy 이란?  xx 번 상태에서 yy 번 상태로 전이한다.
+#	when [현재 상태 내용 1(영어)]
+#		├	case @msg_from_user
+#		├	when [OP_명령어 1] #메뉴가 정확히 주어졌을 경우 (예를 들어 사이트 추가나 계정 추가를 클릭했을 경우)
+#		├	┼	...
+#		├	┼	[보낼 텍스트 및 버튼 리스트 추가]  (버튼은 push_**** 함수를 통해 추가한다.)
+#		├	┴	state_transition(@talking_user.flag, [전이될 상태 내용(영어)])
+#		├	when [OP_명령어 2] .....(처리, 메세지 생성, 상태전이).......
+#		├	when [OP_명령어 3] .....(처리, 메세지 생성, 상태전이).......
+#		├	when [OP_명령어 4] .....(처리, 메세지 생성, 상태전이).......
+#		├	else #메뉴가 정확히 주어지지 않은 경우 (예를 들어 특정 계정이나 특정 사이트를 클릭했을 경우)  .....(처리, 메세지 생성, 상태전이).......
+#		└	end
+#	when [현재 상태 내용 2(영어)] ............
+#	when [현재 상태 내용 3(영어)] ............
+#	when [현재 상태 내용 4(영어)] ............
+#	when [현재 상태 내용 5(영어)] ............
+#	else
+#	end
+
 case @talking_user.flag
-# F0 : 홈 메뉴 => F10 : 사이트 목록 출력
+# F00 : 홈 메뉴 => F10 : 사이트 목록 출력
 when HOME_MENU
 	case @msg_from_user
 	when OP_PRINT_SITE_LIST
 		@text = "사이트 리스트입니다."
 		push_site_list()
 		push_string(OP_ADD_SITE)
+		push_string(OP_TO_HOME)
 		state_transition(@talking_user.flag, PRINT_SITE_LIST)
 	else
 	end
@@ -95,13 +120,14 @@ end
 # F10 : 사이트 목록 출력
 when PRINT_SITE_LIST
 	case @msg_from_user
+	when OP_TO_HOME
+		state_transition(@talking_user.flag, HOME_MENU)
 	when OP_ADD_SITE
 		@text = "새 사이트의 이름을 입력해주세요."
 		state_transition(@talking_user.flag, ADD_SITE)
 		#이후 키보드 입력을 기다린다.
 
-	when OP_TO_HOME
-		state_transition(@talking_user.flag, HOME_MENU)
+	
 	else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
 	#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
 		
@@ -140,6 +166,8 @@ when 10
 else 
 	@talking_user.update(flag: 0)  
 end
+
+##▲상태에 따른 이벤트 처리 방법 기술▲
 ##▼클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▼
     @return_text = {
       :text => @text
@@ -149,43 +177,19 @@ end
       buttons: @button_list
       }
 ##▲클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▲
-##▼클라이언트에 메세지 전송▼
-	  if @button_list == [] 
-			@result = { #출력할 버튼이 없이 :message만 result에 담겠다는건 문자열 직접 입력만 받겠다는 것
-			:message => @return_text
+##▼클라이언트에 전송할 메뉴 선정▼
+	  if @button_list == []  #출력할 버튼이 없이 :message만 result에 담겠다는건 다음번엔 클라이언트로부터 문자열 직접 입력만 받겠다는 것
+			@result = { 
+			:message => @return_text #TEXT
 			}
 	  else
 			@result = {
-			:message => @return_text,
-			:keyboard => @return_buttons 
+			:message => @return_text, #TEXT
+			:keyboard => @return_buttons #BUTTON
 			}
 	  end
 	  render json: @result 
-##▲클라이언트에 메세지 전송▲
+##▲클라이언트에 전송할 메뉴 선정▲
   end
 end
 #####################################코드 끝
-#코딩 템플릿 
-#	주의할 점: 상태마다 유효한 명령어가 다르다.
-#case @talking_user.flag
-#when 
-#l	[상태번호] : [상태내용]
-#l	when [상태 1]
-#l	├	case @msg_from_user
-#l	├	when [OP_명령어 1] #메뉴가 정확히 주어졌을 경우 (예를 들어 사이트 추가나 계정 추가를 클릭했을 경우)
-#l	├	├	...
-#l	├	├	[보낼 텍스트 및 버튼 리스트 추가] #버튼은 push_**** 함수를 통해
-#l	├	├	[상태전이]
-#l	├	when [OP_명령어 2] .....(처리, 메세지 생성, 상태전이).......
-#l	├	when [OP_명령어 3] .....(처리, 메세지 생성, 상태전이).......
-#l	├	when [OP_명령어 4] .....(처리, 메세지 생성, 상태전이).......
-#l	├	else #메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우)  .....(처리, 메세지 생성, 상태전이).......
-#l	├	end
-#l	when [상태 2] ............
-#l	when [상태 3] ............
-#l	when [상태 4] ............
-#l	when [상태 5] ............
-#l	else
-#l	end
-#else
-#end
