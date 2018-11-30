@@ -5,7 +5,6 @@ class CreateAccounts < ActiveRecord::Migration[5.0]
       t.string :ID_name
       t.string :PW
       t.string :memo
-      t.datetime :updated_date
 
       t.timestamps
     end
