@@ -4,9 +4,9 @@ class KakaoController < ApplicationController
       type: "buttons",
       :buttons => ["사이트 리스트"]
     }
-    
     render json: @keyboard
   end
+
   def message
     if User.find_by(key: params[:user_key])
       p "이미 DB에 존재하는 유저이다."
@@ -118,7 +118,6 @@ when HOME_MENU
 		state_transition(@talking_user.flag, PRINT_SITE_LIST)
 	else
 	end
-end
 # F10 : 사이트 목록 출력
 when PRINT_SITE_LIST
 	case @msg_from_user
@@ -137,7 +136,6 @@ when PRINT_SITE_LIST
 		state_transition(@talking_user.flag, HOME_MENU)
 		#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 	end
-end
 # F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
 when ADD_SITE
 	case @msg_from_user
@@ -298,6 +296,10 @@ end
       type: "buttons",
       buttons: @button_list
       }
+	  @button_test = {
+	  type: "buttons",
+	  buttons: ['test button']
+	  }
 ##▲클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▲
 ##▼클라이언트에 전송할 메뉴 선정▼
 	  if @button_list == []  #출력할 버튼이 없이 :message만 result에 담겠다는건 다음번엔 클라이언트로부터 문자열 직접 입력만 받겠다는 것
