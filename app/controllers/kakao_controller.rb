@@ -1,12 +1,4 @@
 class KakaoController < ApplicationController
-  def keyboard
-    @keyboard = {
-      type: "buttons",
-      :buttons => ["사이트 리스트"]
-    }
-    
-    render json: @keyboard
-  end
 
   def message
     if User.find_by(key: params[:user_key])
@@ -139,67 +131,33 @@ when 10
 else 
 	@talking_user.update(flag: 0)  
 end
-#------클라이언트로 반응할 액션 정의 ↓
-
-    @return_msg = {
-      :text => @text  #@text 란 서버에서 클라이언트로 보낼 문자열
+##▼클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▼
+    @return_text = {
+      :text => @text
       }
-    @return_keyboard = {
+	 @return_buttons = {
       type: "buttons",
-      buttons: ['사이트 리스트']
+      buttons: @button_list
       }
-    @site_keyboard = {
-      type: "buttons",
-      buttons: @button_list #여러 개의 site 목록을 버튼형식으로 제시할 수 있다.
-    }
-    # A. 클라이언트가 사이트 리스트 버튼을 클릭했으면
-    if @msg_from_user == "사이트 리스트"
-      @result = {
-        :message => @return_msg,
-        :keyboard => @site_keyboard #응답은 이렇게 된다.
-      }
-	# B. 클라이언트가 (사이트) 추가하기 버튼을 클릭했으면
-    elsif @msg_from_user == "[추가하기]"
-      @result = {
-        message: @return_msg,
-        keyboard: { #응답은 이렇게 된다.
-          type: "buttons",
-          buttons: ["[직접입력]","--------------------------------------------","[홈으로]"]
-        }
-      }
-	# C. B에서 클라이언트가 직접 입력 버튼을 클릭했으면
-    elsif @msg_from_user == "[직접입력]"
-      @talking_user.update(flag: 1) # 사이트 이름 직접 입력 플래그 
-      @result = {
-        message: @return_msg
-      }
-	# D. 클라이언트가 (사이트) 삭제하기 버튼을 클릭했으면
-    elsif @msg_from_user == "[삭제하기]"
-      @button_list << "[홈으로]"
-      @result = {
-        message: @return_msg,
-        keyboard: { #응답은 이렇게 된다.
-          type: "buttons",
-          buttons: @button_list 
-        }
-      }
-	# E. 
-    elsif @talking_user.flag? && @msg_from_user != "[홈으로]"
-      @result = {
-        message: @return_msg
-      }
-    else
-      @result = {
-        :message => @return_msg,
-        :keyboard => @return_keyboard
-      }
-    end
-    
-    render json: @result #변환된 JSON을 클라이언트로 전송 
-	#결국 result 는 보낼 json? 
+##▲클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▲
+##▼클라이언트에 메세지 전송▼
+	  if @button_list == [] 
+			@result = { #출력할 버튼이 없이 :message만 result에 담겠다는건 문자열 직접 입력만 받겠다는 것
+			:message => @return_text
+			}
+	  else
+			@result = {
+			:message => @return_text,
+			:keyboard => @return_buttons 
+			}
+	  end
+	  render json: @result 
+##▲클라이언트에 메세지 전송▲
   end
 end
-#코딩 템플릿
+#####################################코드 끝
+#코딩 템플릿 
+#	주의할 점: 상태마다 유효한 명령어가 다르다.
 #case @talking_user.flag
 #when 
 #l	[상태번호] : [상태내용]
