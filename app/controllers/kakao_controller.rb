@@ -1,5 +1,12 @@
 class KakaoController < ApplicationController
-
+ def keyboard
+    @keyboard = {
+      type: "buttons",
+      :buttons => ["사이트 리스트"]
+    }
+    
+    render json: @keyboard
+  end
   def message
     if User.find_by(key: params[:user_key])
       p "이미 DB에 존재하는 유저이다."
@@ -9,7 +16,9 @@ class KakaoController < ApplicationController
         p "생성 성공"
       end
     end
-	   
+	  #keyboard 메소드와 message 메소드는 기본적으로 필요하다. 
+
+
     @msg_from_user = params[:content] #사용자의 입력값
     @talking_user = User.find_by(key: params[:user_key]) #Users 테이블에서 User 객체 하나를 찾는다.
     @button_list = [] #클라이언트에게 출력할 버튼들의 리스트
