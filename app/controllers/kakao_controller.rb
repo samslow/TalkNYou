@@ -42,11 +42,11 @@ class KakaoController < ApplicationController
 		if @talking_user
 			p "이미 DB에 존재하는 유저이다."
 			@talking_user.update(flag: HOME_MENU)
-			@talking_user.update(str_1: NULL)
-			@talking_user.update(str_2: NULL)
-			@talking_user.update(str_3: NULL)
-			@talking_user.update(str_4: NULL)
-			@talking_user.update(str_5: NULL)
+			@talking_user.update(str_1: nil)
+			@talking_user.update(str_2: nil)
+			@talking_user.update(str_3: nil)
+			@talking_user.update(str_4: nil)
+			@talking_user.update(str_5: nil)
 
 		else
 			p "DB에 존재하지 않는 유저이므로 생성 시도 중 . . ."
