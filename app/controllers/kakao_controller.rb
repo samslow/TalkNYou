@@ -31,30 +31,11 @@ class KakaoController < ApplicationController
 	IDONTKNOW = 30 	# F30 :  계정 추가 시 에러
 ##############▲ 상수 집합 ▲##############
 ##############▼ 함수 집합 ▼##############
-
-	  #keyboard 메소드와 message 메소드는 필수 메소드. 
-	def keyboard #가장 처음 클라이언트에게 띄워줄 동작 설정 (방 나갔다 들어오든 아니면 아예 처음 들어오든)
+	def keyboard #가장 처음 띄워줄 버튼
 		@keyboard = {
 		type: "buttons",
 		:buttons => [OP_PRINT_SITE_LIST] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
 		}
-		@talking_user = User.find_by(key: params[:user_key]) #Users 테이블에서 User 객체 하나를 찾는다.
-		if @talking_user
-			p "이미 DB에 존재하는 유저이다."
-			@talking_user.update(flag: HOME_MENU)
-			@talking_user.update(str_1: nil)
-			@talking_user.update(str_2: nil)
-			@talking_user.update(str_3: nil)
-			@talking_user.update(str_4: nil)
-			@talking_user.update(str_5: nil)
-
-		else
-			p "DB에 존재하지 않는 유저이므로 생성 시도 중 . . ."
-			@talking_user = User.create(key: params[:user_key])
-			if @talking_user
-				p "생성 성공"
-			end
-		end
 		render json: @keyboard
 	end
 
@@ -79,11 +60,20 @@ class KakaoController < ApplicationController
 	end
 
 	def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
-			push_string(OP_PRINT_SITE_LIST)
-			state_transition(@talking_user.flag, HOME_MENU)
+		@talking_user.update(flag: HOME_MENU)
 	end
 
 	def message #이 메소드가 전부다.
+		if User.find_by(key: params[:user_key])
+			p "이미 DB에 존재하는 유저이다."
+		else
+			p "DB에 존재하지 않는 유저이므로 생성 시도 중 . . ."
+			if User.create(key: params[:user_key])
+				p "생성 성공"
+			end
+		end
+	  #keyboard 메소드와 message 메소드는 기본적으로 필요하다. 
+	  
 		@msg_from_user = params[:content] 
 #msg_from_user 란 클라이언트가 서버에 전달할 메세지 (주로 버튼 혹은 문자열 입력을 통해) 
 		@talking_user = User.find_by(key: params[:user_key]) #Users 테이블에서 User 객체 하나를 찾는다.
@@ -145,14 +135,16 @@ class KakaoController < ApplicationController
 			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
 		
 				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로"
-				to_home
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
 				#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
 # F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
 		when ADD_SITE
 			case @msg_from_user
 			when OP_INPUT_CANCEL
-				to_home
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
 			else
 				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
 					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
@@ -160,7 +152,8 @@ class KakaoController < ApplicationController
 					Site.create(site_name: @msg_from_user, user: @talking_user)
 					@text = @msg_from_user + "추가 완료"
 				end
-			to_home
+			push_string(OP_PRINT_SITE_LIST)
+			state_transition(@talking_user.flag, HOME_MENU)
 			end
 =begin
 # F16 : 사이트 이름 변경
@@ -278,9 +271,11 @@ when DELETE_ACCOUNT
 # UNDEFINED CASE => 무조건 홈으로
 			case @msg_from_user
 			when OP_TO_HOME
-				to_home
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
 			else
-				to_home
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
 			end
 		end
 
