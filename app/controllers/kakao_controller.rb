@@ -1,12 +1,4 @@
 class KakaoController < ApplicationController
-	def keyboard
-		@keyboard = {
-		type: "buttons",
-		:buttons => ["사이트 리스트"]
-		}
-		render json: @keyboard
-	end
-	
 
 ##############▼ 상수 집합 ▼##############
 #상수 선언하는 방법 : 식별자를 대문자로.
@@ -38,6 +30,14 @@ class KakaoController < ApplicationController
 
 	IDONTKNOW = 30 	# F30 :  계정 추가 시 에러
 ##############▲ 상수 집합 ▲##############
+##############▼ 함수 집합 ▼##############
+	def keyboard #가장
+		@keyboard = {
+		type: "buttons",
+		:buttons => ["사이트 리스트"]
+		}
+		render json: @keyboard
+	end
 
 	def push_site_list #button_list 에 사이트 목록을 넣는다.
 		@talking_user.sites.each do |each_site|
@@ -73,22 +73,18 @@ class KakaoController < ApplicationController
 			end
 		end
 	  #keyboard 메소드와 message 메소드는 기본적으로 필요하다. 
-
-
+	  
 		@msg_from_user = params[:content] 
 #msg_from_user 란 클라이언트가 서버에 전달할 메세지 (주로 버튼 혹은 문자열 입력을 통해) 
-
 		@talking_user = User.find_by(key: params[:user_key]) #Users 테이블에서 User 객체 하나를 찾는다.
 #@talking_user.flag 란 대화중인 유저의 상태번호를 나타내는 정수
-
 		@button_list = [] 
 #@button_list 란 클라이언트에게 출력할 버튼들의 리스트
-
 		@text = ""
 #text 란 서버에서 클라이언트로 보낼 텍스트
 
-################################
-##▼상태에 따른 이벤트 처리 방법 기술▼
+
+#######▼상태에 따른 이벤트 처리 방법 기술▼#######
 #코딩 템플릿 
 #주의할 점: 상태마다 유효한 명령어가 다르다.	
 #	case @talking_user.flag
@@ -112,74 +108,73 @@ class KakaoController < ApplicationController
 #	else
 #	end
 
-case @talking_user.flag
+		case @talking_user.flag
 # F00 : 홈 메뉴 => F10 : 사이트 목록 출력
-when HOME_MENU
-	case @msg_from_user
-	when OP_PRINT_SITE_LIST #-> 이 버튼을 클릭했을 때 띄워줘야 할 다음 텍스트와 버튼들은?
-		@text = "사이트 리스트입니다."
-		push_site_list()
-		push_string(OP_ADD_SITE)
-		push_string(OP_TO_HOME)
-		state_transition(@talking_user.flag, PRINT_SITE_LIST)
-	else
-	end
-# F10 : 사이트 목록 출력
-when PRINT_SITE_LIST
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	when OP_ADD_SITE
-		@text = "새 사이트의 이름을 입력해주세요."
-		state_transition(@talking_user.flag, ADD_SITE)
-		#이후 키보드 입력을 기다린다.
-	else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
-	#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
-		
-		@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로"
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-		#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
-	end
-# F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
-when ADD_SITE
-	case @msg_from_user
-	when OP_INPUT_CANCEL
-		push_string(OP_PRINT_SITE_LIST)
-	state_transition(@talking_user.flag, HOME_MENU)
-	else
-	if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
-			@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
+		when HOME_MENU
+			case @msg_from_user
+			when OP_PRINT_SITE_LIST #-> 이 버튼을 클릭했을 때 띄워줘야 할 다음 텍스트와 버튼들은?
+			@text = "사이트 리스트입니다."
+			push_site_list()
+			push_string(OP_ADD_SITE)
+			push_string(OP_TO_HOME)
+			state_transition(@talking_user.flag, PRINT_SITE_LIST)
 		else
-			Site.create(site_name: @user_msg, user: @talking_user)
-			@text = @msg_from_user + "추가 완료!"
 		end
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
+# F10 : 사이트 목록 출력
+		when PRINT_SITE_LIST
+		case @msg_from_user
+		when OP_TO_HOME
+			push_string(OP_PRINT_SITE_LIST)
+			state_transition(@talking_user.flag, HOME_MENU)
+		when OP_ADD_SITE
+			@text = "새 사이트의 이름을 입력해주세요."
+			state_transition(@talking_user.flag, ADD_SITE)
+			#이후 키보드 입력을 기다린다.
+		else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
+		#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
+		
+			@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로"
+			push_string(OP_PRINT_SITE_LIST)
+			state_transition(@talking_user.flag, HOME_MENU)
+			#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
+		end
+# F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
+		when ADD_SITE
+			case @msg_from_user
+			when OP_INPUT_CANCEL
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			else
+				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
+					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
+				else
+					Site.create(site_name: @user_msg, user: @talking_user)
+					@text = @msg_from_user + "추가 완료!"
+				end
+			push_string(OP_PRINT_SITE_LIST)
+			state_transition(@talking_user.flag, HOME_MENU)
+		end
 # F16 : 사이트 이름 변경
-when UPDATE_SITE_NAME
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
-
+		when UPDATE_SITE_NAME
+			case @msg_from_user
+			when OP_TO_HOME
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			else
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			end
+=begin
 # F19 : 삭제 (필요 없을수도 -> 누르자마자 지워버릴 수도 있음. 삭제의 경우 제약조건 없음)
-when DELETE_SITE
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
-
+		when DELETE_SITE
+			case @msg_from_user
+			when OP_TO_HOME
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			else
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			end
 # F20 : 계정 목록 출력
 when PRINT_ACCOUNT_LIST
 	case @msg_from_user
@@ -270,7 +265,6 @@ when DELETE_ACCOUNT
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-
 # F30 :  계정 추가 시 에러
 when IDONTKNOW
 	case @msg_from_user
@@ -282,44 +276,45 @@ when IDONTKNOW
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
 # UNDEFINED CASE => 무조건 홈으로
-else 
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
-end
+=end
+		else 
+			case @msg_from_user
+			when OP_TO_HOME
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			else
+				push_string(OP_PRINT_SITE_LIST)
+				state_transition(@talking_user.flag, HOME_MENU)
+			end
+		end
 
-##▲상태에 따른 이벤트 처리 방법 기술▲
-##▼클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▼
-    @return_text = {
-      :text => @text
-      }
-	 @return_buttons = {
-      type: "buttons",
-      buttons: @button_list
-      }
-	  @button_test = {
-	  type: "buttons",
-	  buttons: ['test button']
-	  }
-##▲클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▲
-##▼클라이언트에 전송할 메뉴 선정▼
-	  if @button_list == []  #출력할 버튼이 없이 :message만 result에 담겠다는건 다음번엔 클라이언트로부터 문자열 직접 입력만 받겠다는 것
+#######▲상태에 따른 이벤트 처리 방법 기술▲#######
+#######▼클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▼#######
+		@return_text = {
+		 :text => @text
+		 }
+		@return_buttons = {
+		 type: "buttons",
+		 buttons: @button_list
+		}
+		@button_test = {
+		 type: "buttons",
+		buttons: ['test button']
+		 }
+#######▲클라이언트에 보낼 메세지 (텍스트/버튼) 초기화▲#######
+#######▼클라이언트에 전송할 메뉴 선정▼#######
+		if @button_list == []  #출력할 버튼이 없이 :message만 result에 담겠다는건 다음번엔 클라이언트로부터 문자열 직접 입력만 받겠다는 것
 			@result = { 
 			:message => @return_text #TEXT
 			}
-	  else
+		else
 			@result = {
 			:message => @return_text, #TEXT
 			:keyboard => @return_buttons #BUTTON
 			}
-	  end
-	  render json: @result 
-##▲클라이언트에 전송할 메뉴 선정▲
-  end
-end
-#####################################코드 끝
+		end
+		render json: @result 
+#######▲클라이언트에 전송할 메뉴 선정▲#######
+	end #method message end
+##############▲ 함수 집합 ▲##############
+end #class end
