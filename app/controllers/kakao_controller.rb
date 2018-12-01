@@ -114,7 +114,8 @@ class KakaoController < ApplicationController
 		when HOME_MENU
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST #-> 이 버튼을 클릭했을 때 띄워줘야 할 다음 텍스트와 버튼들은?
-				@text = "사이트 리스트입니다."
+				@text = "사이트 리스트입니다.\n"
+				@text = @text + "F00 -> F10"
 				push_site_list()
 				push_string(OP_ADD_SITE)
 				push_string(OP_TO_HOME)
@@ -130,14 +131,14 @@ class KakaoController < ApplicationController
 				@text = "F10 -> F00"
 				to_home
 			when OP_ADD_SITE
-				@text = "새 사이트의 이름을 입력해주세요."
+				@text = "새 사이트의 이름을 입력해주세요.\n"
+				@text = @text + "F10 -> F15"
 				state_transition(@talking_user.flag, ADD_SITE)
 				#이후 키보드 입력을 기다린다.
 			else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
 			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
-		
 				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로\n"
-				@text = "F10 -> F00"
+				@text = @text + "F10 -> F00"
 				to_home
 				#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
@@ -148,12 +149,12 @@ class KakaoController < ApplicationController
 				to_home
 			else
 				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
-					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
+					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다.\n"
 				else
 					Site.create(site_name: @msg_from_user, user: @talking_user)
-					@text = @msg_from_user + "추가 완료"
+					@text = @msg_from_user + "추가 완료.\n"
 				end
-				@text = "F15 -> F00"
+				@text = @text + "F15 -> F00"
 				to_home
 			end
 =begin
