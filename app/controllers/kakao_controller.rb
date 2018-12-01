@@ -120,12 +120,14 @@ class KakaoController < ApplicationController
 				push_string(OP_TO_HOME)
 				state_transition(@talking_user.flag, PRINT_SITE_LIST)
 			else
-
+				@text = "F00 -> F00"
+				to_home
 			end
 # F10 : 사이트 목록 출력
 		when PRINT_SITE_LIST
 			case @msg_from_user
 			when OP_TO_HOME
+				@text = "F10 -> F00"
 				to_home
 			when OP_ADD_SITE
 				@text = "새 사이트의 이름을 입력해주세요."
@@ -134,7 +136,8 @@ class KakaoController < ApplicationController
 			else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
 			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
 		
-				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로"
+				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로\n"
+				@text = "F10 -> F00"
 				to_home
 				#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
@@ -150,6 +153,7 @@ class KakaoController < ApplicationController
 					Site.create(site_name: @msg_from_user, user: @talking_user)
 					@text = @msg_from_user + "추가 완료"
 				end
+				@text = "F15 -> F00"
 				to_home
 			end
 =begin
