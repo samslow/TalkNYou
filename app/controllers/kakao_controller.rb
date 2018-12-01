@@ -149,7 +149,7 @@ class KakaoController < ApplicationController
 				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
 					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
 				else
-					Site.create(site_name: @user_msg, user: @talking_user)
+					Site.create(site_name: @msg_from_user, user: @talking_user)
 					@text = @msg_from_user + "추가 완료"
 				end
 			push_string(OP_PRINT_SITE_LIST)
