@@ -60,7 +60,8 @@ class KakaoController < ApplicationController
 	end
 
 	def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
-		@talking_user.update(flag: HOME_MENU)
+			push_string(OP_PRINT_SITE_LIST)
+			state_transition(@talking_user.flag, HOME_MENU)
 	end
 
 	def message #이 메소드가 전부다.
@@ -125,8 +126,7 @@ class KakaoController < ApplicationController
 		when PRINT_SITE_LIST
 			case @msg_from_user
 			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 			when OP_ADD_SITE
 				@text = "새 사이트의 이름을 입력해주세요."
 				state_transition(@talking_user.flag, ADD_SITE)
@@ -135,16 +135,14 @@ class KakaoController < ApplicationController
 			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
 		
 				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로"
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 				#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
 # F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
 		when ADD_SITE
 			case @msg_from_user
 			when OP_INPUT_CANCEL
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 			else
 				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
 					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다."
@@ -152,8 +150,7 @@ class KakaoController < ApplicationController
 					Site.create(site_name: @msg_from_user, user: @talking_user)
 					@text = @msg_from_user + "추가 완료"
 				end
-			push_string(OP_PRINT_SITE_LIST)
-			state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 			end
 =begin
 # F16 : 사이트 이름 변경
@@ -271,11 +268,9 @@ when DELETE_ACCOUNT
 # UNDEFINED CASE => 무조건 홈으로
 			case @msg_from_user
 			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 			else
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				to_home
 			end
 		end
 
