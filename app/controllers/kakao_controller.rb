@@ -12,7 +12,10 @@ class KakaoController < ApplicationController
 	OP_DELETE_SITE = "[사이트 삭제]"
 	OP_INPUT_CANCEL = "-1"
 	OP_TEST_RECURSIVE = "[TEST BUTTON]"
-	
+	OP_UPDATE_ID_NAME = "[ID 변경]"
+	OP_UPDATE_PW = "[PW 변경]"
+	OP_UPDATE_MEMO = "[메모 변경]"
+	OP_DELETE_ACCOUNT = "[계정 삭제]"
 	NOT_FOUND_SITE = -1
 # 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
 # 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
@@ -220,22 +223,10 @@ class KakaoController < ApplicationController
 				to_home
 			end
 			
-=begin
- (필요 없을수도 -> 누르자마자 지워버릴 수도 있음. 삭제의 경우 제약조건 없음)
-		when DELETE_SITE
-			case @msg_from_user
-			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
-			else
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
-			end
-=end
 # F20 : 계정 목록 출력 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 when PRINT_ACCOUNT_LIST
 	case @msg_from_user #타게팅할 계정 ID_name이 입력됨
-	when OP_ADD_ACCOUNT #구현 안됨
+	when OP_ADD_ACCOUNT
 		@text = "추가할 ID는?\n"
 		@text << "F20 -> F23"
 		state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
@@ -245,26 +236,54 @@ when PRINT_ACCOUNT_LIST
 		state_transition(@talking_user.flag, UPDATE_SITE_NAME)
 		#이후 키보드 입력을 기다린다. (버튼 추가 X)
 	when OP_DELETE_SITE
-		# F19 : 사이트 삭제를 바로 구현한 후에 홈으로 간다.
-		@text = "원랜 삭제해야대는데 일단 막아둠\n"
+		# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 실행한 후에 홈으로 간다.
+		Site.where(user: @talking_user, site_name: @talking_user.str_1).last.destroy
+		#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
 		@text << "F20 -> F00"
 		to_home
 	when OP_TO_HOME
 		@text = "F20 -> F00"
 		to_home
-	else #ID_name 입력
+	else #ID_name 입력 ###############✋✋✋✋✋✋✋✋✋###############
 		@text = "원랜 계정 상세한 내용 출력해야하는데 일단 막아둠\n"
-		@text < "F20 -> F00"
-		to_home
+		#ID : asdfasdf
+		#PW : asdfafwer
+		#UD : 32043402-234-23
+		#MEMO: zz ㅗ 
+		#이런거 @text에 담아야한다.
+		@text < "F20 -> F21"
+		push_string(OP_UPDATE_ID_NAME)
+		push_string(OP_UPDATE_PW)
+		push_string(OP_UPDATE_MEMO)
+		push_string(OP_DELETE_ACCOUNT)
+		push_string(OP_TO_HOME)
+		state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 	end
-# F21 : 개별 계정 메뉴 출력
+# F21 : 개별 계정 메뉴 출력 ###############✋✋✋✋✋✋✋✋✋###############
 when PRINT_EACH_ACCOUNT
 	case @msg_from_user
+	when OP_UPDATE_ID_NAME
+		@text = "ID 변경 루틴으로 넘어가야하지만 일단 홈으로"
+		@text << "F21 -> F00"
+		to_home
+	when OP_UPDATE_PW
+		@text = "PW 변경 루틴으로 넘어가야하지만 일단 홈으로"
+		@text << "F21 -> F00"
+		to_home
+	when OP_UPDATE_MEMO
+		@text = "메모 변경 루틴으로 넘어가야하지만 일단 홈으로"
+		@text << "F21 -> F00"
+		to_home
+	when OP_DELETE_ACCOUNT
+		#삭제 작업만 추가하면 됨
+		@text = "계정 삭제 루틴으로 넘어가야하지만 일단 홈으로"
+		@text << "F21 -> F00"
+		to_home
 	when OP_TO_HOME
-		@text < "F21 -> F00"
+		@text << "F21 -> F00"
 		to_home
 	else
-		@text < "F21 -> F00"
+		@text << "F21 -> F00"
 		to_home
 	end
 # F23 : 계정 추가 중 ID 입력	
