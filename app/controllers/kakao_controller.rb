@@ -11,7 +11,9 @@ class KakaoController < ApplicationController
 	OP_UPDATE_SITE_NAME = "[사이트 이름 변경]"
 	OP_DELETE_SITE = "[사이트 삭제]"
 	OP_INPUT_CANCEL = "-1"
-
+	OP_TEST_RECURSIVE = "[TEST BUTTON]"
+	
+	NOT_FOUND_SITE = -1
 # 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
 # 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
 	HOME_MENU=0					# F00 : 홈 메뉴
@@ -36,7 +38,7 @@ class KakaoController < ApplicationController
 	def keyboard #가장 처음 띄워줄 버튼
 		@keyboard = {
 		type: "buttons",
-		:buttons => [OP_PRINT_SITE_LIST] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
+		:buttons => [OP_PRINT_SITE_LIST, OP_TEST_RECURSIVE] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
 		}
 		render json: @keyboard
 	end
@@ -59,6 +61,15 @@ class KakaoController < ApplicationController
 		end
 	end
  
+	def get_site_by_site_name(site_name_argument)
+		temp_site = @talking_user.sites.find_by(site_name: site_name_argument)
+		if temp_site #temp_site.class != NilClass (존재하는 사이트 이름)
+			temp_site
+		else
+			NOT_FOUND_SITE
+		end
+	end
+
 	def push_string(any_string) #button_list 에 아무 문자열이나 넣는다.
 		if(any_string.kind_of?(String))
 			@button_list.push(any_string)
@@ -74,6 +85,7 @@ class KakaoController < ApplicationController
 
 	def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 			push_string(OP_PRINT_SITE_LIST)
+			push_string(OP_TEST_RECURSIVE)
 			@talking_user.update(str_1: nil)
 			@talking_user.update(str_2: nil)
 			@talking_user.update(str_3: nil)
@@ -133,11 +145,16 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST #-> 이 버튼을 클릭했을 때 띄워줘야 할 다음 텍스트와 버튼들은?
 				@text = "사이트 리스트입니다.\n"
-				@text = @text + "F00 -> F10"
+				@text << "F00 -> F10"
 				push_site_list()
 				push_string(OP_ADD_SITE)
 				push_string(OP_TO_HOME)
 				state_transition(@talking_user.flag, PRINT_SITE_LIST)
+			when OP_TEST_RECURSIVE
+				@text = "F00 -> F00 (Test)\n"
+				test1 = get_site_by_site_name("41")
+				@text << test1.to_s
+				to_home
 			else
 				@text = "F00 -> F00"
 				to_home
@@ -156,7 +173,6 @@ class KakaoController < ApplicationController
 			else #들어온 입력이 사이트 이름
 				@text = @text + "F10 -> F20"
 				push_account_list(@msg_from_user)
-				#push_string(1.class.to_s) Object.to_s 는 string으로 캐스팅하는 함수
 				push_string(OP_ADD_ACCOUNT)
 				push_string(OP_UPDATE_SITE_NAME)
 				push_string(OP_DELETE_SITE)
@@ -171,34 +187,36 @@ class KakaoController < ApplicationController
 				@text = "사이트 추가 취소.\n"
 				to_home
 			else
-				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
+				temp_site = get_site_by_site_name(@msg_from_user)
+				if temp_site != NOT_FOUND_SITE #이미 존재하면
 					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다.\n"
 				else
 					Site.create(site_name: @msg_from_user, user: @talking_user)
-					@text = @msg_from_user + "추가 완료.\n"
+					@text = @msg_from_user + " 추가 완료.\n"
 				end
 				@text = @text + "F15 -> F00"
 				to_home
 			end
 
-# F16 : 사이트 이름 변경
+# F16 : 사이트 이름 변경 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 		when UPDATE_SITE_NAME
 			case @msg_from_user #바뀔 사이트 이름이 입력됨
 			when OP_INPUT_CANCEL
 				@text = "사이트 이름 변경 취소.\n"
-				@text = @text + "F16 -> F00"
+				@text << + "F16 -> F00"
 				to_home
 			else
-				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
+				duplicate_check = get_site_by_site_name(@msg_from_user)
+				if duplicate_check != NOT_FOUND_SITE # 입력받은 이름의 사이트가 이미 존재하면
 					@text = "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
-				else
-					site_to_update = @talking_user.sites.find_by(site_name: @talking_user.str_1)
-					before_name = site_to_update.site_name
-					site_to_update.update(site_name: @msg_from_user)
-					after_name = site_to_update.site_name
+				else # str_1에 저장된 이름대로 사이트 이름을 바꿀 수 있다면 
+					updating_site = get_site_by_site_name(@talking_user.str_1)
+					before_name = updating_site.site_name
+					updating_site.update(site_name: @msg_from_user)
+					after_name = updating_site.site_name
 					@text = before_name + "에서 " + after_name + "로 사이트 이름 변경 완료.\n"
 				end
-				@text = @text + "F16 -> F00"
+				@text << + "F16 -> F00"
 				to_home
 			end
 			
@@ -235,18 +253,19 @@ when PRINT_ACCOUNT_LIST
 		@text = "F20 -> F00"
 		to_home
 	else #ID_name 입력
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		@text = "원랜 계정 상세한 내용 출력해야하는데 일단 막아둠\n"
+		@text < "F20 -> F00"
+		to_home
 	end
 # F21 : 개별 계정 메뉴 출력
 when PRINT_EACH_ACCOUNT
 	case @msg_from_user
 	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		@text < "F21 -> F00"
+		to_home
 	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		@text < "F21 -> F00"
+		to_home
 	end
 # F23 : 계정 추가 중 ID 입력	
 when ADD_ACCOUNT_AT_ID	#(str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
