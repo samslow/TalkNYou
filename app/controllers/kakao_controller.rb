@@ -17,6 +17,7 @@ class KakaoController < ApplicationController
 	OP_UPDATE_MEMO = "[메모 변경]"
 	OP_DELETE_ACCOUNT = "[계정 삭제]"
 	NOT_FOUND_SITE = -1
+	NOT_FOUND_ACCOUNT = -2
 # 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
 # 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
 	HOME_MENU=0					# F00 : 홈 메뉴
@@ -64,6 +65,16 @@ class KakaoController < ApplicationController
 		end
 	end
  
+	def get_account_by_site_name_and_ID_name(site_name_argument, id_name_argument) #ID_name_argument는 상수취급
+		temp_site = get_site_by_site_name(site_name_argument)
+		temp_account = temp_site.accounts.find_by(ID_name: id_name_argument) 
+		if temp_account
+			temp_account
+		else
+			NOT_FOUND_ACCOUNT
+		end
+	end
+
 	def get_site_by_site_name(site_name_argument)
 		temp_site = @talking_user.sites.find_by(site_name: site_name_argument)
 		if temp_site #temp_site.class != NilClass (존재하는 사이트 이름)
@@ -155,8 +166,8 @@ class KakaoController < ApplicationController
 				state_transition(@talking_user.flag, PRINT_SITE_LIST)
 			when OP_TEST_RECURSIVE
 				@text = "F00 -> F00 (Test)\n"
-				test1 = get_site_by_site_name("41")
-				@text << test1.to_s
+				temp_account = get_account_by_site_name_and_ID_name("4","asdf")
+				@text << temp_account.to_s
 				to_home
 			else
 				@text = "F00 -> F00"
@@ -244,14 +255,17 @@ when PRINT_ACCOUNT_LIST
 	when OP_TO_HOME
 		@text = "F20 -> F00"
 		to_home
-	else #ID_name 입력 ###############✋✋✋✋✋✋✋✋✋###############
-		@text = "원랜 계정 상세한 내용 출력해야하는데 일단 막아둠\n"
-		#ID : asdfasdf
-		#PW : asdfafwer
-		#UD : 32043402-234-23
-		#MEMO: zz ㅗ 
-		#이런거 @text에 담아야한다.
-		@text < "F20 -> F21"
+	else #ID_name 선택
+		picked_account = get_account_by_site_name_and_ID_name(@talking_user.str_1, @msg_from_user)
+		if picked_account == NOT_FOUND_ACCOUNT
+			@text = "계정을 찾을 수 없음\n"
+		else
+			@text << "ID.\t" << picked_account.ID_name << "\n"
+			@text << "PW.\t" << picked_account.PW << "\n"
+			@text << "메모.\t" << picked_account.memo << "\n"
+			@text << "UD.\t" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M') << "\n"
+		end
+		@text << "F20 -> F21"
 		push_string(OP_UPDATE_ID_NAME)
 		push_string(OP_UPDATE_PW)
 		push_string(OP_UPDATE_MEMO)
