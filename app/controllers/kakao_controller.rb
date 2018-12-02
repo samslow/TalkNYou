@@ -8,6 +8,8 @@ class KakaoController < ApplicationController
 	OP_PRINT_SITE_LIST = "[사이트 리스트 보기]"
 	OP_ADD_SITE = "[사이트 추가]"
 	OP_ADD_ACCOUNT = "[계정 추가]"
+	OP_CHANGE_SITE_NAME = "[사이트 이름 변경]"
+	OP_DELETE_SITE = "[사이트 삭제]"
 	OP_INPUT_CANCEL = "-1"
 
 # 여기서의 플래그 이름은 모두 이벤트가 일어난 이후를 설명한다.
@@ -20,6 +22,7 @@ class KakaoController < ApplicationController
 
 	PRINT_ACCOUNT_LIST = 20				# F20 : 계정 목록 출력
 	PRINT_EACH_ACCOUNT = 21			# F21 : 개별 계정 메뉴 출력
+	ADD_ACCOUNT = 22						# F22 : 계정 추가 시작
 	ADD_ACCOUNT_AT_ID = 23				# F23 : 계정 추가 중 ID 입력
 	ADD_ACCOUNT_AT_PW = 24			# F24 : 계정 추가 중 PW 입력
 	ADD_ACCOUNT_AT_MEMO = 25		# F25 : 계정 추가 중 MEMO 입력
@@ -43,6 +46,17 @@ class KakaoController < ApplicationController
 		@talking_user.sites.each do |each_site|
 		# if not @button_list.include?(each_site.site_name)  #이 코드는 이전 스키마의 한계점인 중복사이트 가능성 때문인 것으로 추정
 			push_string(each_site.site_name)
+		end
+	end
+ 
+	def push_account_list(picked_site_name) #button_list 에 선택된 사이트 이름에 속하는 계정들의 목록을 넣는다.
+		@talking_user.sites.each do |each_site|
+		# if not @button_list.include?(each_site.site_name)  #이 코드는 이전 스키마의 한계점인 중복사이트 가능성 때문인 것으로 추정
+			Account.all.each do |each_account|
+				if each_site.id == each_account.site_id
+					push_string(each_account.ID_name)
+				end
+			end
 		end
 	end
  
@@ -136,11 +150,17 @@ class KakaoController < ApplicationController
 				state_transition(@talking_user.flag, ADD_SITE)
 				#이후 키보드 입력을 기다린다.
 			else #만약 들어온 입력이 이미 존재하는 사이트 이름이면? F20 : 계정 목록 출력으로 전이
-			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 계정목록이나 사이트목록을 클릭했을 경우 -> 맨 뒤의 코딩템플릿 참조)
-				@text = "원래는 이 사이트의 계정들이 나와야하는데 아직 구현안됐습니다. 다시 홈으로\n"
-				@text = @text + "F10 -> F00"
-				to_home
-				#state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
+			#메뉴가 정확히 주어지지 않은 경우 (예를 들어 naver 버튼 클릭)
+				@text = @text + "F10 -> F20"
+				@temp_ac = Account.find_by(id: 1)
+				@now_site = Site.where(user: @talking_user, site_name: @msg_from_user)
+				push_string(1.class.to_s)#디버깅중@@@@@@
+				#push_account_list(@msg_from_user)
+				push_string(OP_ADD_ACCOUNT)
+				push_string(OP_CHANGE_SITE_NAME)
+				push_string(OP_DELETE_SITE)
+				push_string(OP_TO_HOME)
+				state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
 # F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
 		when ADD_SITE
@@ -178,6 +198,7 @@ class KakaoController < ApplicationController
 				push_string(OP_PRINT_SITE_LIST)
 				state_transition(@talking_user.flag, HOME_MENU)
 			end
+=end
 # F20 : 계정 목록 출력
 when PRINT_ACCOUNT_LIST
 	case @msg_from_user
@@ -188,8 +209,19 @@ when PRINT_ACCOUNT_LIST
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
+=begin
 # F21 : 개별 계정 메뉴 출력
 when PRINT_EACH_ACCOUNT
+	case @msg_from_user
+	when OP_TO_HOME
+		push_string(OP_PRINT_SITE_LIST)
+		state_transition(@talking_user.flag, HOME_MENU)
+	else
+		push_string(OP_PRINT_SITE_LIST)
+		state_transition(@talking_user.flag, HOME_MENU)
+	end
+# F22 : 계정 추가 시작
+when ADD_ACCOUNT
 	case @msg_from_user
 	when OP_TO_HOME
 		push_string(OP_PRINT_SITE_LIST)
