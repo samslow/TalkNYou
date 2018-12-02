@@ -218,11 +218,11 @@ class KakaoController < ApplicationController
 # F20 : 계정 목록 출력 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 when PRINT_ACCOUNT_LIST
 	case @msg_from_user #타게팅할 계정 ID_name이 입력됨
-	when OP_ADD_ACCOUNT
-		@text = "원랜 추가메뉴 띄워야대는데 일단 막아둠\n"
-		@text << "F20 -> F00"
-		to_home
-	when OP_UPDATE_SITE_NAME
+	when OP_ADD_ACCOUNT #구현 안됨
+		@text = "추가할 ID는?\n"
+		@text << "F20 -> F23"
+		state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
+	when OP_UPDATE_SITE_NAME 
 		@text = "바꿀 사이트 이름을 입력해주세요.\n"
 		@text << "F20 -> F16"
 		state_transition(@talking_user.flag, UPDATE_SITE_NAME)
@@ -239,7 +239,6 @@ when PRINT_ACCOUNT_LIST
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-=begin
 # F21 : 개별 계정 메뉴 출력
 when PRINT_EACH_ACCOUNT
 	case @msg_from_user
@@ -260,36 +259,57 @@ when ADD_ACCOUNT
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-# F23 : 계정 추가 중 ID 입력
-when ADD_ACCOUNT_AT_ID
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+# F23 : 계정 추가 중 ID 입력	
+when ADD_ACCOUNT_AT_ID	#(str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
+	case @msg_from_user #새 계정의 ID_name이 입력됨
+	when OP_INPUT_CANCEL
+		@text = "계정 추가 취소.\n"
+		@text << "F23 -> F00"
+		to_home
 	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
+		if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
+			@text = "중복된 ID 가 이미 있습니다.\n"
+			@text << "추가할 ID를 다시 입력해주세요.\n"
+			@text << "F23 -> F23"
+			state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
+		else
+			@talking_user.update(str_2: @msg_from_user)
+			@text = "추가할 PW는?\n"
+			@text << "F23 -> F24"
+			state_transition(@talking_user.flag, ADD_ACCOUNT_AT_PW)
+		end
 	end
 # F24 : 계정 추가 중 PW 입력
-when ADD_ACCOUNT_AT_PW
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+when ADD_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 저장하고 있는 상태임)
+	case @msg_from_user	#새 계정의 PW이 입력됨
+	when OP_INPUT_CANCEL
+		@text = "계정 추가 취소.\n"
+		@text << "F24 -> F00"
+		to_home
 	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		@talking_user.update(str_3: @msg_from_user)
+		@text = "추가할 메모는?\n"
+		@text << "F24 -> F25"
+		state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
 	end
 # F25 : 계정 추가 중 MEMO 입력
-when ADD_ACCOUNT_AT_MEMO
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+when ADD_ACCOUNT_AT_MEMO #(str_1 에 입력된 site_name을, str_2 에 ID_name을, str_3 에 PW를 저장하고 있는 상태임)
+	case @msg_from_user	#새 계정의 메모가 입력됨
+	when OP_INPUT_CANCEL
+		@text = "계정 추가 취소.\n"
+		@text << "F25 -> F00"
+		to_home
 	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
+		@talking_user.update(str_4: @msg_from_user)
+		site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
+		Account.create(ID_name: @talking_user.str_2, PW: @talking_user.str_3, memo:@talking_user.str_4, site: site_to_attach_account)
+		@text = "계정 추가 성공.\n"
+		@text << "F25 -> F00"
+		to_home
 	end
+	
+=begin
 # F26 : 계정 변경 중 ID 변경
 when UPDATE_ACCOUNT_AT_ID
 	case @msg_from_user
