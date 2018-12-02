@@ -187,6 +187,7 @@ class KakaoController < ApplicationController
 			case @msg_from_user #바뀔 사이트 이름이 입력됨
 			when OP_INPUT_CANCEL
 				@text = "사이트 이름 변경 취소.\n"
+				@text = @text + "F16 -> F00"
 				to_home
 			else
 				if @talking_user.sites.find_by(site_name: @msg_from_user) #이미 존재하면
@@ -196,14 +197,14 @@ class KakaoController < ApplicationController
 					before_name = site_to_update.site_name
 					site_to_update.update(site_name: @msg_from_user)
 					after_name = site_to_update.site_name
-					@text = before_name + "에서 " + after_name + "로 사이트 변경 완료.\n"
+					@text = before_name + "에서 " + after_name + "로 사이트 이름 변경 완료.\n"
 				end
 				@text = @text + "F16 -> F00"
 				to_home
 			end
 			
 =begin
-# F19 : 삭제 (필요 없을수도 -> 누르자마자 지워버릴 수도 있음. 삭제의 경우 제약조건 없음)
+ (필요 없을수도 -> 누르자마자 지워버릴 수도 있음. 삭제의 경우 제약조건 없음)
 		when DELETE_SITE
 			case @msg_from_user
 			when OP_TO_HOME
@@ -227,6 +228,7 @@ when PRINT_ACCOUNT_LIST
 		state_transition(@talking_user.flag, UPDATE_SITE_NAME)
 		#이후 키보드 입력을 기다린다. (버튼 추가 X)
 	when OP_DELETE_SITE
+		# F19 : 사이트 삭제를 바로 구현한 후에 홈으로 간다.
 		@text = "원랜 삭제해야대는데 일단 막아둠\n"
 		@text << "F20 -> F00"
 		to_home
