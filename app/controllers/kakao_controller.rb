@@ -22,7 +22,6 @@ class KakaoController < ApplicationController
 
 	PRINT_ACCOUNT_LIST = 20				# F20 : 계정 목록 출력
 	PRINT_EACH_ACCOUNT = 21			# F21 : 개별 계정 메뉴 출력
-	ADD_ACCOUNT = 22						# F22 : 계정 추가 시작
 	ADD_ACCOUNT_AT_ID = 23				# F23 : 계정 추가 중 ID 입력
 	ADD_ACCOUNT_AT_PW = 24			# F24 : 계정 추가 중 PW 입력
 	ADD_ACCOUNT_AT_MEMO = 25		# F25 : 계정 추가 중 MEMO 입력
@@ -241,16 +240,6 @@ when PRINT_ACCOUNT_LIST
 	end
 # F21 : 개별 계정 메뉴 출력
 when PRINT_EACH_ACCOUNT
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
-# F22 : 계정 추가 시작
-when ADD_ACCOUNT
 	case @msg_from_user
 	when OP_TO_HOME
 		push_string(OP_PRINT_SITE_LIST)
