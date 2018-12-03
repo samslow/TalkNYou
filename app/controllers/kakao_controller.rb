@@ -452,19 +452,24 @@ class KakaoController < ApplicationController
 				@text = old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
 				to_home
 			end
-		# F28 : 계정 변경 중 MEMO 변경 ###############✋✋✋✋✋✋✋✋✋###############
+		# F28 : 계정 변경 중 MEMO 변경
 		when UPDATE_ACCOUNT_AT_MEMO
-			case @msg_from_user
+			case @msg_from_user	#바뀔 계정의 MEMO 가 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+			when OP_INPUT_CANCEL
+				@text = "계정 MEMO 변경 취소.\n"
+				to_home
 			else
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				site_name = @talking_user.str_1
+				id_name = @talking_user.str_2
+				updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
+				old_memo = updating_account.memo
+				new_memo = @msg_from_user
+				updating_account.update(memo: new_memo)
+				@text = old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
+				to_home
 			end
-			
 		else 
 		# UNDEFINED CASE => 무조건 홈으로
 			case @msg_from_user
