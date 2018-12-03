@@ -47,7 +47,7 @@ class KakaoController < ApplicationController
 	def keyboard #가장 처음 띄워줄 버튼
 		@keyboard = {
 		type: "buttons",
-		:buttons => [OP_PRINT_SITE_LIST, OP_TEST_RECURSIVE] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
+		:buttons => [OP_PRINT_SITE_LIST] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
 		#서비스 출시 시엔 OP_TEST_RECURSIVE 를 반드시 초기 버튼 제공에서 빼야한다.
 		}
 		render json: @keyboard
@@ -125,7 +125,7 @@ class KakaoController < ApplicationController
 		if has_any_site
 			@text << "저장된 사이트 리스트입니다.\n"
 		else
-			@text << "저장된 사이트가 없습니다.\n"
+			@text << "아직 저장된 사이트가 없습니다.\n"
 		end
 	end
 
@@ -157,7 +157,7 @@ class KakaoController < ApplicationController
 		clear_user_strings
 		print_transition(HOME_MENU)
 		push_string(OP_PRINT_SITE_LIST)
-		push_string(OP_TEST_RECURSIVE)
+		#push_string(OP_TEST_RECURSIVE)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
 
@@ -192,30 +192,31 @@ class KakaoController < ApplicationController
 #text 란 서버에서 클라이언트로 보낼 텍스트
 
 
-#######▼상태에 따른 이벤트 처리 방법 기술▼#######
-#코딩 템플릿 
-#주의할 점: 상태마다 유효한 명령어가 다르다.	
-#	case @talking_user.flag
-##F xx : [현재 상태내용] => F yy : [전이될 상태내용]				# 표기법 F xx => F yy 이란?  xx 번 상태에서 yy 번 상태로 전이한다.
-#	when [현재 상태 내용 1(영어)]
-#		├	case @msg_from_user
-#		├	when [OP_명령어 1] #메뉴가 정확히 주어졌을 경우 (예를 들어 사이트 추가나 계정 추가를 클릭했을 경우)
-#		├	┼	(처리)
-#		├	┼	(메세지 생성) [보낼 텍스트 및 버튼 리스트 추가]  (버튼은 push_**** 함수를 통해 추가한다.)
-#		├	┴	(상태전이) state_transition(@talking_user.flag, [전이될 상태 내용(영어)])
-#		├	when [OP_명령어 2] .....(처리, 메세지 생성, 상태전이).......
-#		├	when [OP_명령어 3] .....(처리, 메세지 생성, 상태전이).......
-#		├	when [OP_PRINT_SITE_LIST] .....(처리, 메세지 생성, 상태전이).......
-			# ↑ 이 경우가 반드시 필요한 이유 : 특정 상태에서 방 나갔다 들어오면 무조건 이 버튼을 선택하게 되어있기 때문에.
-#		├	else #메뉴가 정확히 주어지지 않은 경우 (예를 들어 특정 계정이나 특정 사이트를 클릭했을 경우)  .....(처리, 메세지 생성, 상태전이).......
-#		├		.....(처리, 메세지 생성, 상태전이).......
-#		└	end
-#	when [현재 상태 내용 2(영어)] ............
-#	when [현재 상태 내용 3(영어)] ............
-#	when [현재 상태 내용 4(영어)] ............
-#	when [현재 상태 내용 5(영어)] ............
-#	else
-#	end
+####### ▼ 상태에 따른 이벤트 처리 방법 기술 ▼ #######
+
+#주의할 점	: 상태마다, 유효한 명령어가 다르고 @talking_user가 갖는 str들의 의미가 다르다..	
+#주의할 점	: push_string 메소드 등을 통해 버튼을 추가해주지 않으면 버튼이 아닌 문자열 직접 입력을 받는다.
+####### ▼ 코딩 템플릿 ▼ ####### 상태에 따른 이벤트 처리 방법 기술은 이 템플릿대로 작성되었음.
+#case @talking_user.flag
+#├───when 상태 A
+#│	F xx : A 상태에 대해 설명 (str_1 : ~~ , str_2 : ~~, ...) # 현재 상태에서 @talking_user의 str_n 들이 의미하는 것 (없을 수도 있음)
+#├───when 상태 B
+#│     ├───case @msg_from_user ## @msg_from_user의 의미를 적어둘 수 있음.
+#│     ├───when OP_PRINT_SITE_LIST ....## 이 경우가 반드시 필요한 이유 : 어떤 상태에서든 방 나갔다 들어오면 무조건 이 버튼을 선택하게 되어있기 때문에.
+#│     ├───when OP_명령 a #OP_명령 x 는 버튼이 분명히 존재할 경우 ( [계정 추가] 버튼처럼)
+#│     │     ├───(상황에 맞는 처리 루틴)
+#│     │     ├───(전이 메세지) print_transition(flag), push_string(string), @text << "~~" 등등
+#│     │     └───(상태전이) state_transition(flag from, flag to) #대신 to_home 이나 to_print_sites 처럼 메소드를 쓸 수도 있음
+#│     ├───when OP_명령 b ....
+#│     ├───when OP_명령 c ....
+#│     └───else .... #사용자가 만든 사이트 등 버튼이 명확히 주어지지 않은 경우 (예를 들어 특정 계정이나 특정 사이트를 클릭했을 경우)	
+#│			end
+#├───when 상태 C ....
+#├───when 상태 D ....
+#├───when 상태 E ....
+#└───else ....
+#	 end
+####### ▲ 코딩 템플릿 ▲ #######
 
 		case @talking_user.flag
 # F00 : 홈 메뉴 => F10 : 사이트 목록 출력
@@ -240,7 +241,6 @@ class KakaoController < ApplicationController
 				@text = "새 사이트의 이름을 입력해주세요.\n"
 				print_transition(ADD_SITE)
 				state_transition(@talking_user.flag, ADD_SITE)
-				#이후 키보드 입력을 기다린다. (버튼 추가 X)
 			else #들어온 입력이 사이트 이름
 				@talking_user.update(str_1: @msg_from_user)
 
@@ -258,13 +258,13 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "사이트 추가 취소.\n"
+				@text << "사이트 추가 취소.\n"
 				to_home
 			else
 				temp_site = get_site_by_site_name(@msg_from_user)
 				if temp_site != NOT_FOUND_SITE #이미 존재하면
 					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다.\n"
-				else
+				else # 사이트 추가
 					Site.create(site_name: @msg_from_user, user: @talking_user)
 					@text = @msg_from_user + " 추가 완료.\n"
 				end
@@ -277,15 +277,15 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "사이트 이름 변경 취소.\n"
+				@text << "사이트 이름 변경 취소.\n"
 				to_home
 			else
 				old_site_name = @talking_user.str_1
 				new_site_name = @msg_from_user
 				duplicate_check = get_site_by_site_name(new_site_name)
-				if duplicate_check != NOT_FOUND_SITE # 입력받은 이름의 사이트가 이미 존재하면
-					@text = "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
-				else # str_1에 저장된 이름대로 사이트 이름을 바꿀 수 있다면 
+				if duplicate_check != NOT_FOUND_SITE
+					@text << "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
+				else # # 사이트 이름 변경
 					updating_site = get_site_by_site_name(old_site_name)
 					updating_site.update(site_name: new_site_name)
 					@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
@@ -299,14 +299,13 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_ADD_ACCOUNT
-				@text = "추가할 ID는?\n"
+				@text << "추가할 ID는?\n"
 				print_transition(ADD_ACCOUNT_AT_ID)
 				state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
 			when OP_UPDATE_SITE_NAME 
-				@text = "바꿀 사이트 이름을 입력해주세요.\n"
+				@text << "바꿀 사이트 이름을 입력해주세요.\n"
 				print_transition(UPDATE_SITE_NAME)
 				state_transition(@talking_user.flag, UPDATE_SITE_NAME)
-				#이후 키보드 입력을 기다린다. (버튼 추가 X)
 			when OP_DELETE_SITE
 				# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 실행한 후에 홈으로 간다.
 				delete_site(@talking_user.str_1)
@@ -316,7 +315,7 @@ class KakaoController < ApplicationController
 			else #ID_name 선택
 				picked_account = get_account_by_site_name_and_ID_name(@talking_user.str_1, @msg_from_user)
 				if picked_account == NOT_FOUND_ACCOUNT
-					@text = "계정을 찾을 수 없음\n" #있을 수 없는 상황임
+					@text << "계정을 찾을 수 없음\n" #있을 수 없는 상황임
 					to_home
 				else
 					@text << "ID.\t" << picked_account.ID_name << "\n"
@@ -340,15 +339,15 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_UPDATE_ID_NAME
-				@text = "변경할 ID는?\n"
+				@text << "변경할 ID는?\n"
 				print_transition(UPDATE_ACCOUNT_AT_ID)
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_ID)
 			when OP_UPDATE_PW
-				@text = "변경할 PW는?\n"
+				@text << "변경할 PW는?\n"
 				print_transition(UPDATE_ACCOUNT_AT_PW)
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_PW)
 			when OP_UPDATE_MEMO
-				@text = "변경할 메모는?\n"
+				@text << "변경할 메모는?\n"
 				print_transition(UPDATE_ACCOUNT_AT_MEMO)
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_MEMO)
 			when OP_DELETE_ACCOUNT	
@@ -366,12 +365,12 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "계정 추가 취소.\n"
+				@text << "계정 추가 취소.\n"
 				to_home
 			else
 				site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
 				if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
-					@text = "중복된 ID 가 이미 있습니다.\n"
+					@text << "중복된 ID 가 이미 있습니다.\n"
 					@text << "추가할 ID 를 다시 입력해주세요.\n"
 					print_transition(ADD_ACCOUNT_AT_ID)
 					state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
@@ -388,11 +387,11 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "계정 추가 취소.\n"
+				@text << "계정 추가 취소.\n"
 				to_home
 			else
 				@talking_user.update(str_3: @msg_from_user)
-				@text = "추가할 메모는?\n"
+				@text << "추가할 메모는?\n"
 				print_transition(ADD_ACCOUNT_AT_MEMO)
 				state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
 			end
@@ -408,7 +407,7 @@ class KakaoController < ApplicationController
 				@talking_user.update(str_4: @msg_from_user)
 				site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
 				Account.create(ID_name: @talking_user.str_2, PW: @talking_user.str_3, memo:@talking_user.str_4, site: site_to_attach_account)
-				@text = "계정 추가 성공.\n"
+				@text << "계정 추가 성공.\n"
 				to_home
 			end
 			
@@ -418,7 +417,7 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "계정 ID 변경 취소.\n"
+				@text << "계정 ID 변경 취소.\n"
 				to_home
 			else
 				site_name = @talking_user.str_1
@@ -426,11 +425,11 @@ class KakaoController < ApplicationController
 				new_id_name = @msg_from_user
 				duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
 				if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-					@text = "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+					@text << "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
 				else 
 					updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 					updating_account.update(ID_name: new_id_name)
-					@text = old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
+					@text << old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
 				end
 				to_home
 			end
@@ -440,7 +439,7 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "계정 PW 변경 취소.\n"
+				@text << "계정 PW 변경 취소.\n"
 				to_home
 			else
 				site_name = @talking_user.str_1
@@ -449,7 +448,7 @@ class KakaoController < ApplicationController
 				old_pw = updating_account.PW
 				new_pw = @msg_from_user
 				updating_account.update(PW: new_pw)
-				@text = old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
+				@text << old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
 				to_home
 			end
 		# F28 : 계정 변경 중 MEMO 변경
@@ -458,7 +457,7 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text = "계정 MEMO 변경 취소.\n"
+				@text << "계정 MEMO 변경 취소.\n"
 				to_home
 			else
 				site_name = @talking_user.str_1
@@ -467,7 +466,7 @@ class KakaoController < ApplicationController
 				old_memo = updating_account.memo
 				new_memo = @msg_from_user
 				updating_account.update(memo: new_memo)
-				@text = old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
+				@text << old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
 				to_home
 			end
 		else 
