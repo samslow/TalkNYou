@@ -230,7 +230,7 @@ class KakaoController < ApplicationController
 	#주의할 점	: push_string 메소드 등을 통해 버튼을 추가해주지 않으면 버튼이 아닌 문자열 직접 입력을 받는다.
 	####### ▼ 코딩 템플릿 ▼ ####### 상태에 따른 이벤트 처리 방법 기술은 이 템플릿대로 작성되었음.
 	#case @talking_user.flag
-	#├───when 상태 A
+	#├───when 상태 A #=> (전이될 수 있는 상태 나열)
 	#│	F xx : A 상태에 대해 설명 (str_1 : ~~ , str_2 : ~~, ...) # 현재 상태에서 @talking_user의 str_n 들이 의미하는 것 (없을 수도 있음)
 	#├───when 상태 B
 	#│     ├───case @msg_from_user ## @msg_from_user의 의미를 적어둘 수 있음.
@@ -252,25 +252,25 @@ class KakaoController < ApplicationController
 	
 			case @talking_user.flag
 	# F00 : 홈 메뉴 => F10 : 사이트 목록 출력
-			when HOME_MENU
+			when HOME_MENU #=> F00, F10
 				case @msg_from_user
 				when OP_PRINT_SITE_LIST
 					to_print_sites
-				when OP_TEST_RECURSIVE
+				when OP_TEST_RECURSIVE #디버깅때 쓰임
 					@text << has_any_site.to_s
 					to_home
 				else
 					to_home
 				end
 	# F10 : 사이트 목록 출력
-			when PRINT_SITE_LIST
+			when PRINT_SITE_LIST #=> F00, F10
 				case @msg_from_user # 1.명령 / 2.(버튼을 통해 선택된) 사이트 이름
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_TO_HOME
 					to_home
 				when OP_ADD_SITE
-					@text = "추가할 새 사이트의 이름을 입력해주세요.\n"
+					@text = "추가할 새 사이트의 이름을 입력해주세요.\n(취소는 \"-1\")\n"
 					print_transition(ADD_SITE)
 					state_transition(@talking_user.flag, ADD_SITE)
 				else # 2.버튼을 통해 선택된 사이트 이름
@@ -285,10 +285,10 @@ class KakaoController < ApplicationController
 					print_transition(PRINT_ACCOUNT_LIST)
 					state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 				end
-	# F15 : 사이트 추가
-			when ADD_SITE
+	# F15 : 사이트 추가 
+			when ADD_SITE #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
-					to_home
+					to_home 
 				else
 					case @msg_from_user # 1.(직접 입력받은) 추가할 사이트의 이름
 					when OP_PRINT_SITE_LIST
@@ -308,7 +308,7 @@ class KakaoController < ApplicationController
 					end
 				end
 	# F16 : 사이트 이름 변경 (str_1 : 사이트 이름)
-			when UPDATE_SITE_NAME
+			when UPDATE_SITE_NAME #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -334,7 +334,7 @@ class KakaoController < ApplicationController
 				end
 				
 	# F20 : 계정 목록 출력 (str_1 : 사이트 이름)
-			when PRINT_ACCOUNT_LIST
+			when PRINT_ACCOUNT_LIST #=> F00, F10, F16, F21, F23
 				case @msg_from_user # 1.명령 / 2.(버튼을 통해 선택된) 계정의 ID_name
 				when OP_PRINT_SITE_LIST
 					to_print_sites
@@ -374,7 +374,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
-			when PRINT_EACH_ACCOUNT
+			when PRINT_EACH_ACCOUNT #=> F00, F10, F26, F27, F28
 				case @msg_from_user # 1.명령
 				when OP_PRINT_SITE_LIST
 					to_print_sites
@@ -399,7 +399,7 @@ class KakaoController < ApplicationController
 					to_home
 				end
 			# F23 : 계정 추가 중 ID 입력 (str_1 : 사이트 이름)
-			when ADD_ACCOUNT_AT_ID
+			when ADD_ACCOUNT_AT_ID #=> F00, F10, F23, F24
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -409,7 +409,7 @@ class KakaoController < ApplicationController
 					when OP_INPUT_CANCEL
 						@text << "계정 추가 취소.\n"
 						to_home
-					else
+					else #계정 추가까지는 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
 						if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
 							@text << "중복된 ID 가 이미 있습니다.\n"
@@ -425,7 +425,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			# F24 : 계정 추가 중 PW 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name)
-			when ADD_ACCOUNT_AT_PW
+			when ADD_ACCOUNT_AT_PW #=> F00, F10, F25
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -443,7 +443,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
-			when ADD_ACCOUNT_AT_MEMO
+			when ADD_ACCOUNT_AT_MEMO #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -463,7 +463,7 @@ class KakaoController < ApplicationController
 				end
 				
 			# F26 : 계정 변경 중 ID 변경 (str_1 : 사이트 이름, str_2 : ID_name)
-			when UPDATE_ACCOUNT_AT_ID
+			when UPDATE_ACCOUNT_AT_ID #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -489,7 +489,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
-			when UPDATE_ACCOUNT_AT_PW
+			when UPDATE_ACCOUNT_AT_PW #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -511,7 +511,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			# F28 : 계정 변경 중 MEMO 변경 (str_1 : 사이트 이름, str_2 : ID_name)
-			when UPDATE_ACCOUNT_AT_MEMO
+			when UPDATE_ACCOUNT_AT_MEMO #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
@@ -532,8 +532,8 @@ class KakaoController < ApplicationController
 						to_home
 					end
 				end
-			else 
-			# UNDEFINED CASE => 무조건 홈으로
+			else
+			# UNDEFINED CASE #=> F00, F10
 				case @msg_from_user # 1.명령
 				when OP_PRINT_SITE_LIST
 					to_print_sites
