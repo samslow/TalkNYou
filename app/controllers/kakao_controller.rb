@@ -28,20 +28,18 @@ class KakaoController < ApplicationController
 	# 예를 들어, F10 : 사이트 목록 출력은 이미 사이트 목록이 출력된 이후의 상태를 나타낸다.
 		HOME_MENU=0					# F00 : 홈 메뉴
 		PRINT_SITE_LIST=10			# F10 : 사이트 목록 출력
-		ADD_SITE = 15						# F15 : 사이트 추가
+		ADD_SITE = 15				# F15 : 사이트 추가
 		UPDATE_SITE_NAME = 16		# F16 : 사이트 이름 변경
-		DELETE_SITE = 19					# F19 : 삭제 (필요 없을수도 -> 누르자마자 지워버릴 수도 있음. 삭제의 경우 제약조건 없음)
-	
-		PRINT_ACCOUNT_LIST = 20				# F20 : 계정 목록 출력
+
+		PRINT_ACCOUNT_LIST = 20			# F20 : 계정 목록 출력
 		PRINT_EACH_ACCOUNT = 21			# F21 : 개별 계정 메뉴 출력
-		ADD_ACCOUNT_AT_ID = 23				# F23 : 계정 추가 중 ID 입력
+		ADD_ACCOUNT_AT_ID = 23			# F23 : 계정 추가 중 ID 입력
 		ADD_ACCOUNT_AT_PW = 24			# F24 : 계정 추가 중 PW 입력
 		ADD_ACCOUNT_AT_MEMO = 25		# F25 : 계정 추가 중 MEMO 입력
 		UPDATE_ACCOUNT_AT_ID = 26		# F26 : 계정 정보 중 ID 변경
 		UPDATE_ACCOUNT_AT_PW = 27		# F27 : 계정 정보 중 PW 변경
-		UPDATE_ACCOUNT_AT_MEMO = 28	# F28 : 계정 정보 중 MEMO 변경
-	
-		IDONTKNOW = 30 	# F30 :  계정 추가 시 에러
+		UPDATE_ACCOUNT_AT_MEMO = 28		# F28 : 계정 정보 중 MEMO 변경
+	# 12개의 상태를 기반으로
 	##############▲ 상수 집합 ▲##############
 	##############▼ 함수 집합 ▼##############
 		def keyboard #가장 처음 띄워줄 버튼
@@ -252,7 +250,7 @@ class KakaoController < ApplicationController
 	
 			case @talking_user.flag
 	# F00 : 홈 메뉴 => F10 : 사이트 목록 출력
-			when HOME_MENU #=> F00, F10
+			when HOME_MENU #=> F00(R), F10
 				case @msg_from_user
 				when OP_PRINT_SITE_LIST
 					to_print_sites
@@ -263,7 +261,7 @@ class KakaoController < ApplicationController
 					to_home
 				end
 	# F10 : 사이트 목록 출력
-			when PRINT_SITE_LIST #=> F00, F10
+			when PRINT_SITE_LIST #=> F00, F10(R), F15, F20
 				case @msg_from_user # 1.명령 / 2.(버튼을 통해 선택된) 사이트 이름
 				when OP_PRINT_SITE_LIST
 					to_print_sites
@@ -373,7 +371,7 @@ class KakaoController < ApplicationController
 						state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 					end
 				end
-			# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
+	# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
 			when PRINT_EACH_ACCOUNT #=> F00, F10, F26, F27, F28
 				case @msg_from_user # 1.명령
 				when OP_PRINT_SITE_LIST
@@ -398,8 +396,8 @@ class KakaoController < ApplicationController
 				else
 					to_home
 				end
-			# F23 : 계정 추가 중 ID 입력 (str_1 : 사이트 이름)
-			when ADD_ACCOUNT_AT_ID #=> F00, F10, F23, F24
+	# F23 : 계정 추가 중 ID 입력 (str_1 : 사이트 이름)
+			when ADD_ACCOUNT_AT_ID #=> F00, F10, F23(R), F24
 				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
