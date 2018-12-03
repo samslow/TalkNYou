@@ -147,6 +147,13 @@ class KakaoController < ApplicationController
 	def to_print_sites # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 		clear_user_strings
 		print_site_existence
+		now_state = @talking_user.flag
+		now_state_to_string = now_state.to_s
+		# 아래 두 라인은 0을 00으로 바꾸는 루틴
+		if(now_state == 0)
+			now_state_to_string << "0"
+		end
+		@text << "F" << now_state_to_string << " -> F10"
 		push_site_list()
 		push_string(OP_ADD_SITE)
 		push_string(OP_TO_HOME)
@@ -205,7 +212,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F00 -> F10"
 			when OP_TEST_RECURSIVE
 				@text = "F00 -> F00 (Test)\n"
 				@text << has_any_site.to_s
@@ -219,7 +225,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user #타게팅할 사이트 이름이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F10 -> F10"
 			when OP_TO_HOME
 				@text = "F10 -> F00"
 				to_home
@@ -243,7 +248,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user #추가될 사이트 이름이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F15 -> F10"
 			when OP_INPUT_CANCEL
 				@text = "사이트 추가 취소.\n"
 				to_home
@@ -264,7 +268,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user #바뀔 사이트 이름이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F16 -> F10"
 			when OP_INPUT_CANCEL
 				@text = "사이트 이름 변경 취소.\n"
 				@text << + "F16 -> F00"
@@ -289,7 +292,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user #타게팅할 계정 ID_name이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F20 -> F10"
 			when OP_ADD_ACCOUNT
 				@text = "추가할 ID는?\n"
 				@text << "F20 -> F23"
@@ -333,7 +335,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F21 -> F10"
 			when OP_UPDATE_ID_NAME ###############✋✋✋✋✋✋✋✋✋###############
 				@text = "ID 변경 루틴으로 넘어가야하지만 일단 홈으로"
 				@text << "F21 -> F00"
@@ -363,7 +364,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user #새 계정의 ID_name이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F23 -> F10"
 			when OP_INPUT_CANCEL
 				@text = "계정 추가 취소.\n"
 				@text << "F23 -> F00"
@@ -387,7 +387,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user	#새 계정의 PW이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F24 -> F10"
 			when OP_INPUT_CANCEL
 				@text = "계정 추가 취소.\n"
 				@text << "F24 -> F00"
@@ -403,7 +402,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user	#새 계정의 메모가 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F25 -> F10"
 			when OP_INPUT_CANCEL
 				@text = "계정 추가 취소.\n"
 				@text << "F25 -> F00"
@@ -422,7 +420,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F26 -> F10"
 			when OP_TO_HOME
 				push_string(OP_PRINT_SITE_LIST)
 				state_transition(@talking_user.flag, HOME_MENU)
@@ -435,7 +432,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F27 -> F10"
 			when OP_TO_HOME
 				push_string(OP_PRINT_SITE_LIST)
 				state_transition(@talking_user.flag, HOME_MENU)
@@ -448,7 +444,6 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F28 -> F10"
 			when OP_TO_HOME
 				push_string(OP_PRINT_SITE_LIST)
 				state_transition(@talking_user.flag, HOME_MENU)
@@ -462,7 +457,7 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "F?? -> F10"
+				@text << "현재 상태가 정의되지 않았음."
 			when OP_TO_HOME
 				to_home
 			else
