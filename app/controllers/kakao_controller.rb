@@ -114,12 +114,13 @@ class KakaoController < ApplicationController
 			str
 		end
 	
-		def check_operation_invasion(string_argument) #입력받는 문자열이 명령어와 중복되는지 검사한다.
-			result = false
+		def check_operation_invasion(string_argument) #입력받는 문자열이 명령어와 겹치는지 검사한다.
+			result = false	
 			OP_RESTRICTED_ARRAY.each {|operation|
 				if string_argument == operation
-					result = true 
-				end
+					result = true #겹치면 true 반환
+					@text << operation << " 명령어와 겹칩니다.\n"
+				end					
 			}
 			result
 		end
@@ -137,7 +138,7 @@ class KakaoController < ApplicationController
 			if has_any_account(site_name_argument)
 				@text << site_name_argument << "에 저장하신 계정들입니다.\n"
 			else
-				@text << "아직 "<< site_name_argument << "에 저장하신 사이트가 없습니다.\n"
+				@text << "아직 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
 			end
 			@text << "어떤 작업을 수행하시겠습니까?"
 		end	
@@ -185,19 +186,20 @@ class KakaoController < ApplicationController
 	
 		def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 			clear_user_strings
-			print_transition(HOME_MENU)
 			push_string(OP_PRINT_SITE_LIST)
 			#push_string(OP_TEST_RECURSIVE)
+			@text << "홈으로 돌아갑니다.\n"
+			print_transition(HOME_MENU)
 			state_transition(@talking_user.flag, HOME_MENU)
 		end
 	
 		def to_print_sites # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 			clear_user_strings
-			print_site_existence
-			print_transition(PRINT_SITE_LIST)
 			push_site_list()
 			push_string(OP_ADD_SITE)
 			push_string(OP_TO_HOME)
+			print_site_existence
+			print_transition(PRINT_SITE_LIST)
 			state_transition(@talking_user.flag, PRINT_SITE_LIST)
 		end
 	
@@ -285,43 +287,50 @@ class KakaoController < ApplicationController
 				end
 	# F15 : 사이트 추가
 			when ADD_SITE
-				case @msg_from_user # 1.(직접 입력받은) 추가할 사이트의 이름
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "사이트 추가 작업을 취소했습니다.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					temp_site = get_site_by_site_name(@msg_from_user)
-					if temp_site != NOT_FOUND_SITE #이미 존재하면
-						@text = "입력하신건 이미 존재하는 사이트 이름이라서 새로 추가하진 않았습니다.\n"
-					else # 사이트 추가 수행
-						Site.create(site_name: @msg_from_user, user: @talking_user)
-						@text << "사이트" << @msg_from_user + " 추가 완료.\n"
+					case @msg_from_user # 1.(직접 입력받은) 추가할 사이트의 이름
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "사이트 추가 작업을 취소했습니다.\n"
+						to_home
+					else
+						temp_site = get_site_by_site_name(@msg_from_user)
+						if temp_site != NOT_FOUND_SITE #이미 존재하면
+							@text = "입력하신건 이미 존재하는 사이트 이름이라서 새로 추가하진 않았습니다.\n"
+						else # 사이트 추가 수행
+							Site.create(site_name: @msg_from_user, user: @talking_user)
+							@text << "사이트" << @msg_from_user + " 추가 완료.\n"
+						end
+						to_home
 					end
-					to_home
 				end
-	
 	# F16 : 사이트 이름 변경 (str_1 : 사이트 이름)
 			when UPDATE_SITE_NAME
-				case @msg_from_user # 1.(직접 입력받은) 변경할 사이트의 새 이름
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "사이트 이름 변경 작업을 취소했습니다.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					old_site_name = @talking_user.str_1
-					new_site_name = @msg_from_user
-					duplicate_check = get_site_by_site_name(new_site_name)
-					if duplicate_check != NOT_FOUND_SITE
-						@text << "입력하신건 이미 존재하는 사이트 이름이라서 변경하지 않았습니다.\n"
-					else # 사이트 이름 변경 수행
-						updating_site = get_site_by_site_name(old_site_name)
-						updating_site.update(site_name: new_site_name)
-						@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
+					case @msg_from_user # 1.(직접 입력받은) 변경할 사이트의 새 이름
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "사이트 이름 변경 작업을 취소했습니다.\n"
+						to_home
+					else
+						old_site_name = @talking_user.str_1
+						new_site_name = @msg_from_user
+						duplicate_check = get_site_by_site_name(new_site_name)
+						if duplicate_check != NOT_FOUND_SITE
+							@text << "입력하신건 이미 존재하는 사이트 이름이라서 변경하지 않았습니다.\n"
+						else # 사이트 이름 변경 수행
+							updating_site = get_site_by_site_name(old_site_name)
+							updating_site.update(site_name: new_site_name)
+							@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
+						end
+						to_home
 					end
-					to_home
 				end
 				
 	# F20 : 계정 목록 출력 (str_1 : 사이트 이름)
@@ -391,113 +400,137 @@ class KakaoController < ApplicationController
 				end
 			# F23 : 계정 추가 중 ID 입력 (str_1 : 사이트 이름)
 			when ADD_ACCOUNT_AT_ID
-				case @msg_from_user # 1.(직접 입력받은) 추가할 계정의 ID_name
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "계정 추가 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
-					if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
-						@text << "중복된 ID 가 이미 있습니다.\n"
-						@text << "추가할 ID 를 다시 입력해주세요.\n"
-						print_transition(ADD_ACCOUNT_AT_ID)
-						state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
-					else #계정 추가 계속 진행
-						@talking_user.update(str_2: @msg_from_user)
-						@text = "추가할 PW는?\n"
-						print_transition(ADD_ACCOUNT_AT_PW)
-						state_transition(@talking_user.flag, ADD_ACCOUNT_AT_PW)
+					case @msg_from_user # 1.(직접 입력받은) 추가할 계정의 ID_name
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "계정 추가 취소.\n"
+						to_home
+					else
+						site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
+						if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
+							@text << "중복된 ID 가 이미 있습니다.\n"
+							@text << "추가할 ID 를 다시 입력해주세요.\n"
+							print_transition(ADD_ACCOUNT_AT_ID)
+							state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
+						else #계정 추가 계속 진행
+							@talking_user.update(str_2: @msg_from_user)
+							@text = "추가할 PW는?\n"
+							print_transition(ADD_ACCOUNT_AT_PW)
+							state_transition(@talking_user.flag, ADD_ACCOUNT_AT_PW)
+						end
 					end
 				end
 			# F24 : 계정 추가 중 PW 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name)
 			when ADD_ACCOUNT_AT_PW
-				case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 PW
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "계정 추가 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
-				else #PW와 memo 입력은 중복체크가 필요없다.
-					@talking_user.update(str_3: @msg_from_user)
-					@text << "추가할 메모는?\n"
-					print_transition(ADD_ACCOUNT_AT_MEMO)
-					state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
+				else
+					case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 PW
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "계정 추가 취소.\n"
+						to_home
+					else #PW와 memo 입력은 중복체크가 필요없다.
+						@talking_user.update(str_3: @msg_from_user)
+						@text << "추가할 메모는?\n"
+						print_transition(ADD_ACCOUNT_AT_MEMO)
+						state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
+					end
 				end
 			# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
 			when ADD_ACCOUNT_AT_MEMO
-				case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 memo
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text = "계정 추가 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
-				else #메모까지 전부 입력받았을 때야 비로소 @talking_user 의 문자열들을 조합하여 새로운 계정을 만든다.
-					@talking_user.update(str_4: @msg_from_user)
-					site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
-					Account.create(ID_name: @talking_user.str_2, PW: @talking_user.str_3, memo:@talking_user.str_4, site: site_to_attach_account)
-					@text << "계정 추가 성공.\n"
-					to_home
+				else
+					case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 memo
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text = "계정 추가 취소.\n"
+						to_home
+					else #메모까지 전부 입력받았을 때야 비로소 @talking_user 의 문자열들을 조합하여 새로운 계정을 만든다.
+						@talking_user.update(str_4: @msg_from_user)
+						site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
+						Account.create(ID_name: @talking_user.str_2, PW: @talking_user.str_3, memo:@talking_user.str_4, site: site_to_attach_account)
+						@text << "계정 추가 성공.\n"
+						to_home
+					end
 				end
 				
 			# F26 : 계정 변경 중 ID 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_ID
-				case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 ID_name
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "계정 ID 변경 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					site_name = @talking_user.str_1
-					old_id_name = @talking_user.str_2
-					new_id_name = @msg_from_user
-					duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
-					if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-						@text << "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
-					else 
-						updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
-						updating_account.update(ID_name: new_id_name)
-						@text << old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
+					case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 ID_name
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "계정 ID 변경 취소.\n"
+						to_home
+					else
+						site_name = @talking_user.str_1
+						old_id_name = @talking_user.str_2
+						new_id_name = @msg_from_user
+						duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
+						if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
+							@text << "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+						else 
+							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
+							updating_account.update(ID_name: new_id_name)
+							@text << old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
+						end
+						to_home
 					end
-					to_home
 				end
 			# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_PW
-				case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 PW
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "계정 PW 변경 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					site_name = @talking_user.str_1
-					id_name = @talking_user.str_2
-					updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
-					old_pw = updating_account.PW
-					new_pw = @msg_from_user
-					updating_account.update(PW: new_pw)
-					@text << old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
-					to_home
+					case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 PW
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "계정 PW 변경 취소.\n"
+						to_home
+					else
+						site_name = @talking_user.str_1
+						id_name = @talking_user.str_2
+						updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
+						old_pw = updating_account.PW
+						new_pw = @msg_from_user
+						updating_account.update(PW: new_pw)
+						@text << old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
+						to_home
+					end
 				end
 			# F28 : 계정 변경 중 MEMO 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_MEMO
-				case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 memo
-				when OP_PRINT_SITE_LIST
-					to_print_sites
-				when OP_INPUT_CANCEL
-					@text << "계정 memo 변경 취소.\n"
+				if check_operation_invasion(@msg_from_user) 
 					to_home
 				else
-					site_name = @talking_user.str_1
-					id_name = @talking_user.str_2
-					updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
-					old_memo = updating_account.memo
-					new_memo = @msg_from_user
-					updating_account.update(memo: new_memo)
-					@text << old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
-					to_home
+					case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 memo
+					when OP_PRINT_SITE_LIST
+						to_print_sites
+					when OP_INPUT_CANCEL
+						@text << "계정 memo 변경 취소.\n"
+						to_home
+					else
+						site_name = @talking_user.str_1
+						id_name = @talking_user.str_2
+						updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
+						old_memo = updating_account.memo
+						new_memo = @msg_from_user
+						updating_account.update(memo: new_memo)
+						@text << old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
+						to_home
+					end
 				end
 			else 
 			# UNDEFINED CASE => 무조건 홈으로
@@ -505,8 +538,6 @@ class KakaoController < ApplicationController
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 					@text << "현재 상태가 정의되지 않았음." #여기가 실행될 리는 없음
-				when OP_TO_HOME
-					to_home
 				else
 					to_home
 				end
