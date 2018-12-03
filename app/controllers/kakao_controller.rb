@@ -104,6 +104,18 @@ class KakaoController < ApplicationController
 		@talking_user.update(str_4: nil)
 		@talking_user.update(str_5: nil)
 	end
+
+	def delete_account(site_name_argument, id_name_argument)
+		temp_site = get_site_by_site_name(site_name_argument)
+		Account.where(site: temp_site, ID_name: id_name_argument).last.destroy
+	end
+	
+	def delete_site(site_name_argument)
+		temp_site = get_site_by_site_name(site_name_argument)
+		Account.where(site: temp_site).destroy_all
+		Site.where(user: @talking_user, site_name: @talking_user.str_1).last.destroy
+	end
+
 	def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
 		clear_user_strings
 		push_string(OP_PRINT_SITE_LIST)
@@ -271,8 +283,7 @@ when PRINT_ACCOUNT_LIST
 		#이후 키보드 입력을 기다린다. (버튼 추가 X)
 	when OP_DELETE_SITE
 		# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 실행한 후에 홈으로 간다.
-		Site.where(user: @talking_user, site_name: @talking_user.str_1).last.destroy
-		#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
+		delete_site(@talking_user.str_1)
 		@text << "F20 -> F00"
 		to_home
 	when OP_TO_HOME
@@ -306,21 +317,20 @@ when PRINT_EACH_ACCOUNT	#(str_1 에 입력된 사이트 이름, str_2 에는 입
 		@text = "저장된 사이트 리스트입니다.\n"
 		@text << "F21 -> F10"
 		to_print_sites
-	when OP_UPDATE_ID_NAME
+	when OP_UPDATE_ID_NAME ###############✋✋✋✋✋✋✋✋✋###############
 		@text = "ID 변경 루틴으로 넘어가야하지만 일단 홈으로"
 		@text << "F21 -> F00"
 		to_home
-	when OP_UPDATE_PW
+	when OP_UPDATE_PW ###############✋✋✋✋✋✋✋✋✋###############
 		@text = "PW 변경 루틴으로 넘어가야하지만 일단 홈으로"
 		@text << "F21 -> F00"
 		to_home
-	when OP_UPDATE_MEMO
+	when OP_UPDATE_MEMO ###############✋✋✋✋✋✋✋✋✋###############
 		@text = "메모 변경 루틴으로 넘어가야하지만 일단 홈으로"
 		@text << "F21 -> F00"
 		to_home
-	when OP_DELETE_ACCOUNT	###############✋✋✋✋✋✋✋✋✋###############
-		temp_site = get_site_by_site_name(@talking_user.str_1)
-		Account.where(site: temp_site, ID_name: @talking_user.str_2).last.destroy
+	when OP_DELETE_ACCOUNT	
+		delete_account(@talking_user.str_1, @talking_user.str_2)
 		#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
 		@text << "F20 -> F00"
 		to_home
