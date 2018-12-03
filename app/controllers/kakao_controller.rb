@@ -4,17 +4,17 @@ class KakaoController < ApplicationController
 #상수 선언하는 방법 : 식별자를 대문자로.
 #버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합
 
-	OP_TO_HOME = "[홈으로]"
-	OP_PRINT_SITE_LIST = "[사이트 리스트 보기]"
-	OP_ADD_SITE = "[사이트 추가]"
-	OP_ADD_ACCOUNT = "[계정 추가]"
-	OP_UPDATE_SITE_NAME = "[사이트 이름 변경]"
-	OP_DELETE_SITE = "[사이트 삭제]"
-	OP_TEST_RECURSIVE = "[TEST BUTTON]"
-	OP_UPDATE_ID_NAME = "[ID 변경]"
-	OP_UPDATE_PW = "[PW 변경]"
-	OP_UPDATE_MEMO = "[메모 변경]"
-	OP_DELETE_ACCOUNT = "[계정 삭제]"
+	OP_TO_HOME = "◎p.홈으로"
+	OP_PRINT_SITE_LIST = "◎p.사이트 리스트 보기"
+	OP_ADD_SITE = "◎p.사이트 추가"
+	OP_ADD_ACCOUNT = "◎p.계정 추가"
+	OP_UPDATE_SITE_NAME = "◎p.사이트 이름 변경"
+	OP_DELETE_SITE = "◎p.사이트 삭제"
+	OP_TEST_RECURSIVE = "◎p.TEST BUTTON"
+	OP_UPDATE_ID_NAME = "◎p.ID 변경"
+	OP_UPDATE_PW = "◎p.PW 변경"
+	OP_UPDATE_MEMO = "◎p.메모 변경"
+	OP_DELETE_ACCOUNT = "◎p.계정 삭제"
 	OP_INPUT_CANCEL = "-1"
 
 	OP_RESTRICTED_ARRAY = [OP_TO_HOME, OP_PRINT_SITE_LIST, OP_ADD_SITE, 
@@ -98,13 +98,6 @@ class KakaoController < ApplicationController
 		end
 	end
 
-	def has_any_site
-		if Site.where(user: @talking_user).last
-			true
-		else
-			false
-		end
-	end
 
 	def print_transition(to_be_state)
 		@text << state_to_string(@talking_user.flag)
@@ -121,11 +114,28 @@ class KakaoController < ApplicationController
 		str
 	end
 
+	def check_operation_invasion(string_argument) #입력받는 문자열이 명령어와 중복되는지 검사한다.
+		result = false
+		OP_RESTRICTED_ARRAY.each {|operation|
+			if string_argument == operation
+				result = true 
+		}
+		result
+	end
+
+	def has_any_site
+		if Site.where(user: @talking_user).last
+			true
+		else
+			false
+		end
+	end
+	
 	def print_site_existence
 		if has_any_site
-			@text << "저장된 사이트 리스트입니다.\n"
+			@text << "저장하신 사이트들입니다.\n"
 		else
-			@text << "아직 저장된 사이트가 없습니다.\n"
+			@text << "아직 저장하신 사이트가 없습니다.\n"
 		end
 	end
 
@@ -238,7 +248,7 @@ class KakaoController < ApplicationController
 			when OP_TO_HOME
 				to_home
 			when OP_ADD_SITE
-				@text = "새 사이트의 이름을 입력해주세요.\n"
+				@text = "추가할 새 사이트의 이름을 입력해주세요.\n"
 				print_transition(ADD_SITE)
 				state_transition(@talking_user.flag, ADD_SITE)
 			else # 2.버튼을 통해 선택된 사이트 이름
@@ -258,15 +268,15 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text << "사이트 추가 취소.\n"
+				@text << "사이트 추가 작업을 취소했습니다.\n"
 				to_home
 			else
 				temp_site = get_site_by_site_name(@msg_from_user)
 				if temp_site != NOT_FOUND_SITE #이미 존재하면
-					@text = "이미 존재하는 사이트라서 새로 추가하진 않았습니다.\n"
-				else # 사이트 추가
+					@text = "입력하신건 이미 존재하는 사이트 이름이라서 새로 추가하진 않았습니다.\n"
+				else # 사이트 추가 수행
 					Site.create(site_name: @msg_from_user, user: @talking_user)
-					@text = @msg_from_user + " 추가 완료.\n"
+					@text << "사이트" << @msg_from_user + " 추가 완료.\n"
 				end
 				to_home
 			end
@@ -277,14 +287,14 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text << "사이트 이름 변경 취소.\n"
+				@text << "사이트 이름 변경 작업을 취소했습니다.\n"
 				to_home
 			else
 				old_site_name = @talking_user.str_1
 				new_site_name = @msg_from_user
 				duplicate_check = get_site_by_site_name(new_site_name)
 				if duplicate_check != NOT_FOUND_SITE
-					@text << "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
+					@text << "입력하신건 이미 존재하는 사이트 이름이라서 변경하지 않았습니다.\n"
 				else # 사이트 이름 변경 수행
 					updating_site = get_site_by_site_name(old_site_name)
 					updating_site.update(site_name: new_site_name)
@@ -303,7 +313,7 @@ class KakaoController < ApplicationController
 				print_transition(ADD_ACCOUNT_AT_ID)
 				state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
 			when OP_UPDATE_SITE_NAME 
-				@text << "바꿀 사이트 이름을 입력해주세요.\n"
+				@text << "새로운 사이트 이름을 입력해주세요.\n"
 				print_transition(UPDATE_SITE_NAME)
 				state_transition(@talking_user.flag, UPDATE_SITE_NAME)
 			when OP_DELETE_SITE
@@ -318,10 +328,10 @@ class KakaoController < ApplicationController
 					@text << "계정을 찾을 수 없음\n" #있을 수 없는 상황임
 					to_home
 				else
-					@text << "ID.\t" << picked_account.ID_name << "\n"
-					@text << "PW.\t" << picked_account.PW << "\n"
-					@text << "메모.\t" << picked_account.memo << "\n"
-					@text << "UD.\t" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M') << "\n"
+					@text << "ID.  " << picked_account.ID_name << "\n"
+					@text << "PW.  " << picked_account.PW << "\n"
+					@text << "메모.  " << picked_account.memo << "\n"
+					@text << "최종 업데이트 시각.\n" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M') << "\n"
 					@talking_user.update(str_2: @msg_from_user)
 
 					push_string(OP_UPDATE_ID_NAME)
