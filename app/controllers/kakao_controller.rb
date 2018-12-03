@@ -136,7 +136,7 @@ class KakaoController < ApplicationController
 			if has_any_account(site_name_argument)
 				@text << site_name_argument << "에 저장하신 계정들입니다.\n"
 			else
-				@text << "아직 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
+				@text << "아직 사이트 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
 			end
 			@text << "어떤 작업을 수행하시겠습니까?"
 		end	
