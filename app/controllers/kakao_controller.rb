@@ -232,7 +232,7 @@ class KakaoController < ApplicationController
 			end
 # F10 : 사이트 목록 출력
 		when PRINT_SITE_LIST
-			case @msg_from_user #타게팅할 사이트 이름이 입력됨
+			case @msg_from_user # 1.명령 / 2.(버튼을 통해 선택된) 사이트 이름
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_TO_HOME
@@ -241,7 +241,7 @@ class KakaoController < ApplicationController
 				@text = "새 사이트의 이름을 입력해주세요.\n"
 				print_transition(ADD_SITE)
 				state_transition(@talking_user.flag, ADD_SITE)
-			else #들어온 입력이 사이트 이름
+			else # 2.버튼을 통해 선택된 사이트 이름
 				@talking_user.update(str_1: @msg_from_user)
 
 				push_account_list(@msg_from_user)
@@ -252,9 +252,9 @@ class KakaoController < ApplicationController
 				print_transition(PRINT_ACCOUNT_LIST)
 				state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
 			end
-# F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
+# F15 : 사이트 추가
 		when ADD_SITE
-			case @msg_from_user #추가될 사이트 이름이 입력됨
+			case @msg_from_user # 1.(직접 입력받은) 추가할 사이트의 이름
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
@@ -271,9 +271,9 @@ class KakaoController < ApplicationController
 				to_home
 			end
 
-# F16 : 사이트 이름 변경 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
+# F16 : 사이트 이름 변경 (str_1 : 사이트 이름)
 		when UPDATE_SITE_NAME
-			case @msg_from_user #바뀔 사이트 이름이 입력됨
+			case @msg_from_user # 1.(직접 입력받은) 변경할 사이트의 새 이름
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
@@ -285,7 +285,7 @@ class KakaoController < ApplicationController
 				duplicate_check = get_site_by_site_name(new_site_name)
 				if duplicate_check != NOT_FOUND_SITE
 					@text << "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
-				else # # 사이트 이름 변경
+				else # 사이트 이름 변경 수행
 					updating_site = get_site_by_site_name(old_site_name)
 					updating_site.update(site_name: new_site_name)
 					@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
@@ -293,9 +293,9 @@ class KakaoController < ApplicationController
 				to_home
 			end
 			
-# F20 : 계정 목록 출력 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
+# F20 : 계정 목록 출력 (str_1 : 사이트 이름)
 		when PRINT_ACCOUNT_LIST
-			case @msg_from_user #타게팅할 계정 ID_name이 입력됨
+			case @msg_from_user # 1.명령 / 2.(버튼을 통해 선택된) 계정의 ID_name
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_ADD_ACCOUNT
@@ -307,7 +307,7 @@ class KakaoController < ApplicationController
 				print_transition(UPDATE_SITE_NAME)
 				state_transition(@talking_user.flag, UPDATE_SITE_NAME)
 			when OP_DELETE_SITE
-				# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 실행한 후에 홈으로 간다.
+				# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 삭제를 실행한 후에 홈으로 간다.
 				delete_site(@talking_user.str_1)
 				to_home
 			when OP_TO_HOME
@@ -333,9 +333,9 @@ class KakaoController < ApplicationController
 					state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 				end
 			end
-		# F21 : 개별 계정 메뉴 출력
-		when PRINT_EACH_ACCOUNT	#(str_1 에 입력된 사이트 이름, str_2 에는 입력된 계정 ID_name 을 저장하고 있는 상태임)
-			case @msg_from_user
+		# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
+		when PRINT_EACH_ACCOUNT
+			case @msg_from_user # 1.명령
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_UPDATE_ID_NAME
@@ -352,16 +352,15 @@ class KakaoController < ApplicationController
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_MEMO)
 			when OP_DELETE_ACCOUNT	
 				delete_account(@talking_user.str_1, @talking_user.str_2)
-				#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
 				to_home
 			when OP_TO_HOME
 				to_home
 			else
 				to_home
 			end
-		# F23 : 계정 추가 중 ID 입력	
-		when ADD_ACCOUNT_AT_ID	#(str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
-			case @msg_from_user #새 계정의 ID_name이 입력됨
+		# F23 : 계정 추가 중 ID 입력 (str_1 : 사이트 이름)
+		when ADD_ACCOUNT_AT_ID
+			case @msg_from_user # 1.(직접 입력받은) 추가할 계정의 ID_name
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
@@ -374,36 +373,36 @@ class KakaoController < ApplicationController
 					@text << "추가할 ID 를 다시 입력해주세요.\n"
 					print_transition(ADD_ACCOUNT_AT_ID)
 					state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
-				else
+				else #계정 추가 계속 진행
 					@talking_user.update(str_2: @msg_from_user)
 					@text = "추가할 PW는?\n"
 					print_transition(ADD_ACCOUNT_AT_PW)
 					state_transition(@talking_user.flag, ADD_ACCOUNT_AT_PW)
 				end
 			end
-		# F24 : 계정 추가 중 PW 입력
-		when ADD_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 저장하고 있는 상태임)
-			case @msg_from_user	#새 계정의 PW이 입력됨
+		# F24 : 계정 추가 중 PW 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name)
+		when ADD_ACCOUNT_AT_PW
+			case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 PW
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
 				@text << "계정 추가 취소.\n"
 				to_home
-			else
+			else #PW와 memo 입력은 중복체크가 필요없다.
 				@talking_user.update(str_3: @msg_from_user)
 				@text << "추가할 메모는?\n"
 				print_transition(ADD_ACCOUNT_AT_MEMO)
 				state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
 			end
-		# F25 : 계정 추가 중 MEMO 입력
-		when ADD_ACCOUNT_AT_MEMO #(str_1 에 입력된 site_name을, str_2 에 ID_name을, str_3 에 PW를 저장하고 있는 상태임)
-			case @msg_from_user	#새 계정의 메모가 입력됨
+		# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
+		when ADD_ACCOUNT_AT_MEMO
+			case @msg_from_user	# 1.(직접 입력받은) 추가할 계정의 memo
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
 				@text = "계정 추가 취소.\n"
 				to_home
-			else
+			else #메모까지 전부 입력받았을 때야 비로소 @talking_user 의 문자열들을 조합하여 새로운 계정을 만든다.
 				@talking_user.update(str_4: @msg_from_user)
 				site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
 				Account.create(ID_name: @talking_user.str_2, PW: @talking_user.str_3, memo:@talking_user.str_4, site: site_to_attach_account)
@@ -411,9 +410,9 @@ class KakaoController < ApplicationController
 				to_home
 			end
 			
-		# F26 : 계정 변경 중 ID 변경
-		when UPDATE_ACCOUNT_AT_ID #(str_1 에 입력된 site_name을, str_2 에 기존의 ID_name을 저장하고 있는 상태임)
-			case @msg_from_user	#바뀔 계정의 ID_name 이 입력됨
+		# F26 : 계정 변경 중 ID 변경 (str_1 : 사이트 이름, str_2 : ID_name)
+		when UPDATE_ACCOUNT_AT_ID
+			case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 ID_name
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
@@ -433,9 +432,9 @@ class KakaoController < ApplicationController
 				end
 				to_home
 			end
-		# F27 : 계정 변경 중 PW 변경
-		when UPDATE_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 저장하고 있는 상태임)
-			case @msg_from_user	#바뀔 계정의 PW 가 입력됨
+		# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
+		when UPDATE_ACCOUNT_AT_PW
+			case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 PW
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
@@ -451,13 +450,13 @@ class KakaoController < ApplicationController
 				@text << old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
 				to_home
 			end
-		# F28 : 계정 변경 중 MEMO 변경
+		# F28 : 계정 변경 중 MEMO 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 		when UPDATE_ACCOUNT_AT_MEMO
-			case @msg_from_user	#바뀔 계정의 MEMO 가 입력됨
+			case @msg_from_user	# 1.(직접 입력받은) 변경할 계정의 새 memo
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_INPUT_CANCEL
-				@text << "계정 MEMO 변경 취소.\n"
+				@text << "계정 memo 변경 취소.\n"
 				to_home
 			else
 				site_name = @talking_user.str_1
@@ -471,10 +470,10 @@ class KakaoController < ApplicationController
 			end
 		else 
 		# UNDEFINED CASE => 무조건 홈으로
-			case @msg_from_user
+			case @msg_from_user # 1.명령
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-				@text << "현재 상태가 정의되지 않았음."
+				@text << "현재 상태가 정의되지 않았음." #여기가 실행될 리는 없음
 			when OP_TO_HOME
 				to_home
 			else
