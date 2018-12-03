@@ -339,16 +339,18 @@ class KakaoController < ApplicationController
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-			when OP_UPDATE_ID_NAME ###############✋✋✋✋✋✋✋✋✋###############
+			when OP_UPDATE_ID_NAME
 				@text = "변경할 ID는?\n"
 				print_transition(UPDATE_ACCOUNT_AT_ID)
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_ID)
-			when OP_UPDATE_PW ###############✋✋✋✋✋✋✋✋✋###############
-				@text = "PW 변경 루틴으로 넘어가야하지만 일단 홈으로"
-				to_home
-			when OP_UPDATE_MEMO ###############✋✋✋✋✋✋✋✋✋###############
-				@text = "메모 변경 루틴으로 넘어가야하지만 일단 홈으로"
-				to_home
+			when OP_UPDATE_PW
+				@text = "변경할 PW는?\n"
+				print_transition(UPDATE_ACCOUNT_AT_PW)
+				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_PW)
+			when OP_UPDATE_MEMO
+				@text = "변경할 메모는?\n"
+				print_transition(UPDATE_ACCOUNT_AT_MEMO)
+				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_MEMO)
 			when OP_DELETE_ACCOUNT	
 				delete_account(@talking_user.str_1, @talking_user.str_2)
 				#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
@@ -410,7 +412,7 @@ class KakaoController < ApplicationController
 				to_home
 			end
 			
-		# F26 : 계정 변경 중 ID 변경 ###############✋✋✋✋✋✋✋✋✋###############
+		# F26 : 계정 변경 중 ID 변경
 		when UPDATE_ACCOUNT_AT_ID #(str_1 에 입력된 site_name을, str_2 에 기존의 ID_name을 저장하고 있는 상태임)
 			case @msg_from_user	#바뀔 계정의 ID_name 이 입력됨
 			when OP_PRINT_SITE_LIST
@@ -432,17 +434,23 @@ class KakaoController < ApplicationController
 				end
 				to_home
 			end
-		# F27 : 계정 변경 중 PW 변경 ###############✋✋✋✋✋✋✋✋✋###############
-		when UPDATE_ACCOUNT_AT_PW
-			case @msg_from_user
+		# F27 : 계정 변경 중 PW 변경
+		when UPDATE_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 저장하고 있는 상태임)
+			case @msg_from_user	#바뀔 계정의 PW 가 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+			when OP_INPUT_CANCEL
+				@text = "계정 PW 변경 취소.\n"
+				to_home
 			else
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				site_name = @talking_user.str_1
+				id_name = @talking_user.str_2
+				updating_account = get_account_by_site_name_and_ID_name(site_name, id_name)
+				old_pw = updating_account.PW
+				new_pw = @msg_from_user
+				updating_account.update(PW: new_pw)
+				@text = old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
+				to_home
 			end
 		# F28 : 계정 변경 중 MEMO 변경 ###############✋✋✋✋✋✋✋✋✋###############
 		when UPDATE_ACCOUNT_AT_MEMO
