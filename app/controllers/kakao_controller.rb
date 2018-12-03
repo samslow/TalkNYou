@@ -97,15 +97,26 @@ class KakaoController < ApplicationController
 		@talking_user.update(flag: to_be_state)
 	end
 
+	def clear_user_strings
+		@talking_user.update(str_1: nil)
+		@talking_user.update(str_2: nil)
+		@talking_user.update(str_3: nil)
+		@talking_user.update(str_4: nil)
+		@talking_user.update(str_5: nil)
+	end
 	def to_home # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
-			push_string(OP_PRINT_SITE_LIST)
-			push_string(OP_TEST_RECURSIVE)
-			@talking_user.update(str_1: nil)
-			@talking_user.update(str_2: nil)
-			@talking_user.update(str_3: nil)
-			@talking_user.update(str_4: nil)
-			@talking_user.update(str_5: nil)
-			state_transition(@talking_user.flag, HOME_MENU)
+		clear_user_strings
+		push_string(OP_PRINT_SITE_LIST)
+		push_string(OP_TEST_RECURSIVE)
+		state_transition(@talking_user.flag, HOME_MENU)
+	end
+
+	def to_print_sites # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
+		clear_user_strings
+		push_site_list()
+		push_string(OP_ADD_SITE)
+		push_string(OP_TO_HOME)
+		state_transition(@talking_user.flag, PRINT_SITE_LIST)
 	end
 
 	def message #이 메소드가 전부다.
@@ -142,7 +153,8 @@ class KakaoController < ApplicationController
 #		├	┴	(상태전이) state_transition(@talking_user.flag, [전이될 상태 내용(영어)])
 #		├	when [OP_명령어 2] .....(처리, 메세지 생성, 상태전이).......
 #		├	when [OP_명령어 3] .....(처리, 메세지 생성, 상태전이).......
-#		├	when [OP_명령어 4] .....(처리, 메세지 생성, 상태전이).......
+#		├	when [OP_PRINT_SITE_LIST] .....(처리, 메세지 생성, 상태전이).......
+			# ↑ 이 경우가 반드시 필요한 이유 : 특정 상태에서 방 나갔다 들어오면 무조건 이 버튼을 선택하게 되어있기 때문에.
 #		├	else #메뉴가 정확히 주어지지 않은 경우 (예를 들어 특정 계정이나 특정 사이트를 클릭했을 경우)  .....(처리, 메세지 생성, 상태전이).......
 #		├		.....(처리, 메세지 생성, 상태전이).......
 #		└	end
@@ -157,17 +169,12 @@ class KakaoController < ApplicationController
 # F00 : 홈 메뉴 => F10 : 사이트 목록 출력
 		when HOME_MENU
 			case @msg_from_user
-			when OP_PRINT_SITE_LIST #-> 이 버튼을 클릭했을 때 띄워줘야 할 다음 텍스트와 버튼들은?
-				@text = "사이트 리스트입니다.\n"
+			when OP_PRINT_SITE_LIST
+				@text = "저장된 사이트 리스트입니다.\n"
 				@text << "F00 -> F10"
-				push_site_list()
-				push_string(OP_ADD_SITE)
-				push_string(OP_TO_HOME)
-				state_transition(@talking_user.flag, PRINT_SITE_LIST)
+				to_print_sites
 			when OP_TEST_RECURSIVE
 				@text = "F00 -> F00 (Test)\n"
-				temp_account = get_account_by_site_name_and_ID_name("4","asdf")
-				@text << temp_account.to_s
 				to_home
 			else
 				@text = "F00 -> F00"
@@ -176,6 +183,10 @@ class KakaoController < ApplicationController
 # F10 : 사이트 목록 출력
 		when PRINT_SITE_LIST
 			case @msg_from_user #타게팅할 사이트 이름이 입력됨
+			when OP_PRINT_SITE_LIST
+				@text = "저장된 사이트 리스트입니다.\n"
+				@text << "F10 -> F10"
+				to_print_sites
 			when OP_TO_HOME
 				@text = "F10 -> F00"
 				to_home
@@ -197,6 +208,10 @@ class KakaoController < ApplicationController
 # F15 : 사이트 추가 (버튼이 아닌 텍스트로 입력받는다.)
 		when ADD_SITE
 			case @msg_from_user #추가될 사이트 이름이 입력됨
+			when OP_PRINT_SITE_LIST
+				@text = "저장된 사이트 리스트입니다.\n"
+				@text << "F15 -> F10"
+				to_print_sites
 			when OP_INPUT_CANCEL
 				@text = "사이트 추가 취소.\n"
 				to_home
@@ -215,6 +230,10 @@ class KakaoController < ApplicationController
 # F16 : 사이트 이름 변경 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 		when UPDATE_SITE_NAME
 			case @msg_from_user #바뀔 사이트 이름이 입력됨
+			when OP_PRINT_SITE_LIST
+				@text = "저장된 사이트 리스트입니다.\n"
+				@text << "F16 -> F10"
+				to_print_sites
 			when OP_INPUT_CANCEL
 				@text = "사이트 이름 변경 취소.\n"
 				@text << + "F16 -> F00"
@@ -237,6 +256,10 @@ class KakaoController < ApplicationController
 # F20 : 계정 목록 출력 (str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 when PRINT_ACCOUNT_LIST
 	case @msg_from_user #타게팅할 계정 ID_name이 입력됨
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F20 -> F10"
+		to_print_sites
 	when OP_ADD_ACCOUNT
 		@text = "추가할 ID는?\n"
 		@text << "F20 -> F23"
@@ -276,6 +299,10 @@ when PRINT_ACCOUNT_LIST
 # F21 : 개별 계정 메뉴 출력 ###############✋✋✋✋✋✋✋✋✋###############
 when PRINT_EACH_ACCOUNT
 	case @msg_from_user
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F21 -> F10"
+		to_print_sites
 	when OP_UPDATE_ID_NAME
 		@text = "ID 변경 루틴으로 넘어가야하지만 일단 홈으로"
 		@text << "F21 -> F00"
@@ -303,6 +330,10 @@ when PRINT_EACH_ACCOUNT
 # F23 : 계정 추가 중 ID 입력	
 when ADD_ACCOUNT_AT_ID	#(str_1 에 입력된 사이트 이름을 저장하고 있는 상태임)
 	case @msg_from_user #새 계정의 ID_name이 입력됨
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F23 -> F10"
+		to_print_sites
 	when OP_INPUT_CANCEL
 		@text = "계정 추가 취소.\n"
 		@text << "F23 -> F00"
@@ -324,6 +355,10 @@ when ADD_ACCOUNT_AT_ID	#(str_1 에 입력된 사이트 이름을 저장하고 �
 # F24 : 계정 추가 중 PW 입력
 when ADD_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 저장하고 있는 상태임)
 	case @msg_from_user	#새 계정의 PW이 입력됨
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F24 -> F10"
+		to_print_sites
 	when OP_INPUT_CANCEL
 		@text = "계정 추가 취소.\n"
 		@text << "F24 -> F00"
@@ -337,6 +372,10 @@ when ADD_ACCOUNT_AT_PW #(str_1 에 입력된 site_name을, str_2 에 ID_name을 
 # F25 : 계정 추가 중 MEMO 입력
 when ADD_ACCOUNT_AT_MEMO #(str_1 에 입력된 site_name을, str_2 에 ID_name을, str_3 에 PW를 저장하고 있는 상태임)
 	case @msg_from_user	#새 계정의 메모가 입력됨
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F25 -> F10"
+		to_print_sites
 	when OP_INPUT_CANCEL
 		@text = "계정 추가 취소.\n"
 		@text << "F25 -> F00"
@@ -354,6 +393,10 @@ when ADD_ACCOUNT_AT_MEMO #(str_1 에 입력된 site_name을, str_2 에 ID_name�
 # F26 : 계정 변경 중 ID 변경
 when UPDATE_ACCOUNT_AT_ID
 	case @msg_from_user
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F26 -> F10"
+		to_print_sites
 	when OP_TO_HOME
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
@@ -361,9 +404,13 @@ when UPDATE_ACCOUNT_AT_ID
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-# F26 : 계정 변경 중 PW 변경
+# F27 : 계정 변경 중 PW 변경
 when UPDATE_ACCOUNT_AT_PW
 	case @msg_from_user
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F27 -> F10"
+		to_print_sites
 	when OP_TO_HOME
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
@@ -371,9 +418,13 @@ when UPDATE_ACCOUNT_AT_PW
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-# F26 : 계정 변경 중 MEMO 변경
+# F28 : 계정 변경 중 MEMO 변경
 when UPDATE_ACCOUNT_AT_MEMO
 	case @msg_from_user
+	when OP_PRINT_SITE_LIST
+		@text = "저장된 사이트 리스트입니다.\n"
+		@text << "F28 -> F10"
+		to_print_sites
 	when OP_TO_HOME
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
