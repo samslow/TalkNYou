@@ -48,6 +48,7 @@ class KakaoController < ApplicationController
 		@keyboard = {
 		type: "buttons",
 		:buttons => [OP_PRINT_SITE_LIST, OP_TEST_RECURSIVE] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
+		#서비스 출시 시엔 OP_TEST_RECURSIVE 를 반드시 초기 버튼 제공에서 빼야한다.
 		}
 		render json: @keyboard
 	end
@@ -223,8 +224,8 @@ class KakaoController < ApplicationController
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_TEST_RECURSIVE
-				to_home
 				@text << has_any_site.to_s
+				to_home
 			else
 				to_home
 			end
@@ -279,15 +280,15 @@ class KakaoController < ApplicationController
 				@text = "사이트 이름 변경 취소.\n"
 				to_home
 			else
-				duplicate_check = get_site_by_site_name(@msg_from_user)
+				old_site_name = @talking_user.str_1
+				new_site_name = @msg_from_user
+				duplicate_check = get_site_by_site_name(new_site_name)
 				if duplicate_check != NOT_FOUND_SITE # 입력받은 이름의 사이트가 이미 존재하면
 					@text = "이미 존재하는 사이트 이름이므로 변경하지 않았습니다.\n"
 				else # str_1에 저장된 이름대로 사이트 이름을 바꿀 수 있다면 
-					updating_site = get_site_by_site_name(@talking_user.str_1)
-					before_name = updating_site.site_name
-					updating_site.update(site_name: @msg_from_user)
-					after_name = updating_site.site_name
-					@text = before_name + "에서 " + after_name + "로 사이트 이름 변경 완료.\n"
+					updating_site = get_site_by_site_name(old_site_name)
+					updating_site.update(site_name: new_site_name)
+					@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
 				end
 				to_home
 			end
@@ -333,13 +334,13 @@ class KakaoController < ApplicationController
 					state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 				end
 			end
-		# F21 : 개별 계정 메뉴 출력 ###############✋✋✋✋✋✋✋✋✋###############
+		# F21 : 개별 계정 메뉴 출력
 		when PRINT_EACH_ACCOUNT	#(str_1 에 입력된 사이트 이름, str_2 에는 입력된 계정 ID_name 을 저장하고 있는 상태임)
 			case @msg_from_user
 			when OP_PRINT_SITE_LIST
 				to_print_sites
 			when OP_UPDATE_ID_NAME ###############✋✋✋✋✋✋✋✋✋###############
-				@text = "ID 변경 루틴으로 넘어가야하지만 일단 홈으로"
+				@text = "변경할 ID는?\n"
 				print_transition(UPDATE_ACCOUNT_AT_ID)
 				state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_ID)
 			when OP_UPDATE_PW ###############✋✋✋✋✋✋✋✋✋###############
@@ -410,16 +411,26 @@ class KakaoController < ApplicationController
 			end
 			
 		# F26 : 계정 변경 중 ID 변경 ###############✋✋✋✋✋✋✋✋✋###############
-		when UPDATE_ACCOUNT_AT_ID
-			case @msg_from_user
+		when UPDATE_ACCOUNT_AT_ID #(str_1 에 입력된 site_name을, str_2 에 기존의 ID_name을 저장하고 있는 상태임)
+			case @msg_from_user	#바뀔 계정의 ID_name 이 입력됨
 			when OP_PRINT_SITE_LIST
 				to_print_sites
-			when OP_TO_HOME
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+			when OP_INPUT_CANCEL
+				@text = "계정 ID 변경 취소.\n"
+				to_home
 			else
-				push_string(OP_PRINT_SITE_LIST)
-				state_transition(@talking_user.flag, HOME_MENU)
+				site_name = @talking_user.str_1
+				old_id_name = @talking_user.str_2
+				new_id_name = @msg_from_user
+				duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
+				if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
+					@text = "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+				else 
+					updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
+					updating_account.update(ID_name: new_id_name)
+					@text = old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
+				end
+				to_home
 			end
 		# F27 : 계정 변경 중 PW 변경 ###############✋✋✋✋✋✋✋✋✋###############
 		when UPDATE_ACCOUNT_AT_PW
