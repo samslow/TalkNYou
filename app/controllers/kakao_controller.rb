@@ -34,7 +34,6 @@ class KakaoController < ApplicationController
 	UPDATE_ACCOUNT_AT_ID = 26		# F26 : 계정 정보 중 ID 변경
 	UPDATE_ACCOUNT_AT_PW = 27		# F27 : 계정 정보 중 PW 변경
 	UPDATE_ACCOUNT_AT_MEMO = 28	# F28 : 계정 정보 중 MEMO 변경
-	DELETE_ACCOUNT = 29					# F29 : 계정 삭제
 
 	IDONTKNOW = 30 	# F30 :  계정 추가 시 에러
 ##############▲ 상수 집합 ▲##############
@@ -446,16 +445,7 @@ when UPDATE_ACCOUNT_AT_MEMO
 		push_string(OP_PRINT_SITE_LIST)
 		state_transition(@talking_user.flag, HOME_MENU)
 	end
-# F29 : 계정 삭제
-when DELETE_ACCOUNT
-	case @msg_from_user
-	when OP_TO_HOME
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	else
-		push_string(OP_PRINT_SITE_LIST)
-		state_transition(@talking_user.flag, HOME_MENU)
-	end
+	
 =end
 		else 
 # UNDEFINED CASE => 무조건 홈으로
