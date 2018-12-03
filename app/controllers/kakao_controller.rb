@@ -282,22 +282,25 @@ when PRINT_ACCOUNT_LIST
 		picked_account = get_account_by_site_name_and_ID_name(@talking_user.str_1, @msg_from_user)
 		if picked_account == NOT_FOUND_ACCOUNT
 			@text = "계정을 찾을 수 없음\n"
+			@text << "F20 -> F00"
+			to_home
 		else
 			@text << "ID.\t" << picked_account.ID_name << "\n"
 			@text << "PW.\t" << picked_account.PW << "\n"
 			@text << "메모.\t" << picked_account.memo << "\n"
 			@text << "UD.\t" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M') << "\n"
+			@text << "F20 -> F21"
+			@talking_user.update(str_2: @msg_from_user)
+			push_string(OP_UPDATE_ID_NAME)
+			push_string(OP_UPDATE_PW)
+			push_string(OP_UPDATE_MEMO)
+			push_string(OP_DELETE_ACCOUNT)
+			push_string(OP_TO_HOME)
+			state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 		end
-		@text << "F20 -> F21"
-		push_string(OP_UPDATE_ID_NAME)
-		push_string(OP_UPDATE_PW)
-		push_string(OP_UPDATE_MEMO)
-		push_string(OP_DELETE_ACCOUNT)
-		push_string(OP_TO_HOME)
-		state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
 	end
 # F21 : 개별 계정 메뉴 출력 ###############✋✋✋✋✋✋✋✋✋###############
-when PRINT_EACH_ACCOUNT
+when PRINT_EACH_ACCOUNT	#(str_1 에 입력된 사이트 이름, str_2 에는 입력된 계정 ID_name 을 저장하고 있는 상태임)
 	case @msg_from_user
 	when OP_PRINT_SITE_LIST
 		@text = "저장된 사이트 리스트입니다.\n"
@@ -315,10 +318,11 @@ when PRINT_EACH_ACCOUNT
 		@text = "메모 변경 루틴으로 넘어가야하지만 일단 홈으로"
 		@text << "F21 -> F00"
 		to_home
-	when OP_DELETE_ACCOUNT
-		#삭제 작업만 추가하면 됨
-		@text = "계정 삭제 루틴으로 넘어가야하지만 일단 홈으로"
-		@text << "F21 -> F00"
+	when OP_DELETE_ACCOUNT	###############✋✋✋✋✋✋✋✋✋###############
+		temp_site = get_site_by_site_name(@talking_user.str_1)
+		Account.where(site: temp_site, ID_name: @talking_user.str_2).last.destroy
+		#사이트에 딸린 계정이 연속적으로 삭제되지는 않으나 site의 id 가 유니크하기때문에 크게 문제 안될듯
+		@text << "F20 -> F00"
 		to_home
 	when OP_TO_HOME
 		@text << "F21 -> F00"
