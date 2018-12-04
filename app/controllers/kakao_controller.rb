@@ -529,7 +529,7 @@ class KakaoController < ApplicationController
 						old_memo = updating_account.memo
 						new_memo = @msg_from_user
 						updating_account.update(memo: new_memo)
-						@text << "\"" << old_memo + "\"에서 \"" + new_memo + "\"(으/)로 PW 변경 완료.\n"
+						@text << "\"" << old_memo + "\"에서 \"" + new_memo + "\"(으/)로 메모 변경 완료.\n"
 						to_home
 					end
 				end
