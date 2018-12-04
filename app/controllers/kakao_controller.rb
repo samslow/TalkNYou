@@ -192,7 +192,7 @@ class KakaoController < ApplicationController
 			clear_user_strings
 			push_string(OP_PRINT_SITE_LIST)
 			#push_string(OP_TEST_RECURSIVE)
-			@text << "홈으로 돌아갑니다."
+			@text << "홈으로 복귀."
 			state_transition(HOME_MENU)
 		end
 	
@@ -327,7 +327,7 @@ class KakaoController < ApplicationController
 						else # 사이트 이름 변경 수행
 							updating_site = get_site_by_site_name(old_site_name)
 							updating_site.update(site_name: new_site_name)
-							@text = "\"" << old_site_name + "\"에서 \"" + new_site_name + "\"로 사이트 이름 변경 완료.\n"
+							@text = "\"" << old_site_name + "\"에서 \"" + new_site_name + "\"(으/)로 사이트 이름 변경 완료.\n"
 						end
 						to_home
 					end
@@ -484,7 +484,7 @@ class KakaoController < ApplicationController
 						else 
 							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 							updating_account.update(ID_name: new_id_name)
-							@text << "\"" << old_id_name + "\"에서 \"" + new_id_name + "\"로 ID 변경 완료.\n"
+							@text << "\"" << old_id_name + "\"에서 \"" + new_id_name + "\"(으/)로 ID 변경 완료.\n"
 						end
 						to_home
 					end
@@ -507,7 +507,7 @@ class KakaoController < ApplicationController
 						old_pw = updating_account.PW
 						new_pw = @msg_from_user
 						updating_account.update(PW: new_pw)
-						@text << "\"" << old_pw + "\"에서 \"" + new_pw + "\"로 PW 변경 완료.\n"
+						@text << "\"" << old_pw + "\"에서 \"" + new_pw + "\"(으/)로 PW 변경 완료.\n"
 						to_home
 					end
 				end
@@ -529,7 +529,7 @@ class KakaoController < ApplicationController
 						old_memo = updating_account.memo
 						new_memo = @msg_from_user
 						updating_account.update(memo: new_memo)
-						@text << "\"" << old_memo + "\"에서 \"" + new_memo + "\"로 PW 변경 완료.\n"
+						@text << "\"" << old_memo + "\"에서 \"" + new_memo + "\"(으/)로 PW 변경 완료.\n"
 						to_home
 					end
 				end
