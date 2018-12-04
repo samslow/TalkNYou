@@ -348,14 +348,15 @@ class KakaoController < ApplicationController
 				else #ID_name 선택
 					picked_account = get_account_by_site_name_and_ID_name(@talking_user.str_1, @msg_from_user)
 					if picked_account == NOT_FOUND_ACCOUNT
-						@text << "계정을 찾을 수 없음\n" #있을 수 없는 상황임
+						@text << "처음부터 다시 시도해주세요.\n" #있을 수 없는 상황임
 						to_home
 					else
 						@text << "사이트 " << @talking_user.str_1 << "\n"
 						@text << "ID :  " << picked_account.ID_name << "\n"
 						@text << "PW :  " << picked_account.PW << "\n"
 						@text << "메모 :  " << picked_account.memo << "\n"
-						@text << "최종 업데이트 시각 : \n" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M')
+						@text << "최종 업데이트 시각 : \n" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M')<< "\n"
+						@text << "이 계정에 대해 어떤 작업을 하시겠습니까?\n"
 						@talking_user.update(str_2: @msg_from_user)
 	
 						push_string(OP_UPDATE_ID_NAME)
@@ -372,13 +373,13 @@ class KakaoController < ApplicationController
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_UPDATE_ID_NAME
-					@text << "변경할 ID는?"
+					@text << "변경할 새로운 ID는?"
 					state_transition(UPDATE_ACCOUNT_AT_ID)
 				when OP_UPDATE_PW
-					@text << "변경할 PW는?"
+					@text << "변경할 새로운 PW는?"
 					state_transition(UPDATE_ACCOUNT_AT_PW)
 				when OP_UPDATE_MEMO
-					@text << "변경할 메모는?"
+					@text << "변경할 새로운 메모는?"
 					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
@@ -412,7 +413,7 @@ class KakaoController < ApplicationController
 						end
 					end
 				end
-			# F24 : 계정 추가 중 PW 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name)
+	# F24 : 계정 추가 중 PW 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name)
 			when ADD_ACCOUNT_AT_PW #=> F00, F10, F25
 				if check_operation_invasion(@msg_from_user) 
 					to_home
@@ -429,7 +430,7 @@ class KakaoController < ApplicationController
 						state_transition(ADD_ACCOUNT_AT_MEMO)
 					end
 				end
-			# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
+	# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
 			when ADD_ACCOUNT_AT_MEMO #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
@@ -449,7 +450,7 @@ class KakaoController < ApplicationController
 					end
 				end
 				
-			# F26 : 계정 변경 중 ID 변경 (str_1 : 사이트 이름, str_2 : ID_name)
+	# F26 : 계정 변경 중 ID 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_ID #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
@@ -464,9 +465,10 @@ class KakaoController < ApplicationController
 						site_name = @talking_user.str_1
 						old_id_name = @talking_user.str_2
 						new_id_name = @msg_from_user
+						# 앞선 계정 추가 때처럼 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
 						if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-							@text << "이미 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+							@text << "이미 사이트 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
 						else 
 							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 							updating_account.update(ID_name: new_id_name)
@@ -475,7 +477,7 @@ class KakaoController < ApplicationController
 						to_home
 					end
 				end
-			# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
+	# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_PW #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
@@ -497,7 +499,7 @@ class KakaoController < ApplicationController
 						to_home
 					end
 				end
-			# F28 : 계정 변경 중 MEMO 변경 (str_1 : 사이트 이름, str_2 : ID_name)
+	# F28 : 계정 변경 중 MEMO 변경 (str_1 : 사이트 이름, str_2 : ID_name)
 			when UPDATE_ACCOUNT_AT_MEMO #=> F00, F10
 				if check_operation_invasion(@msg_from_user) 
 					to_home
@@ -520,7 +522,7 @@ class KakaoController < ApplicationController
 					end
 				end
 			else
-			# UNDEFINED CASE #=> F00, F10
+	# UNDEFINED CASE #=> F00, F10
 				case @msg_from_user # 1.명령
 				when OP_PRINT_SITE_LIST
 					to_print_sites
