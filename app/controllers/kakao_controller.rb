@@ -4,17 +4,20 @@ class KakaoController < ApplicationController
 	#상수 선언하는 방법 : 식별자를 대문자로.
 	#버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합
 	
-		OP_TO_HOME = "◎p.🏠.홈으로"
-		OP_PRINT_SITE_LIST = "◎p.사이트 리스트 보기"
-		OP_ADD_SITE = "◎p.사이트 추가"
-		OP_ADD_ACCOUNT = "◎p.계정 추가"
-		OP_UPDATE_SITE_NAME = "◎p.사이트 이름 변경"
-		OP_DELETE_SITE = "◎p.사이트 삭제"
-		OP_TEST_RECURSIVE = "◎p.TEST BUTTON"
-		OP_UPDATE_ID_NAME = "◎p.ID 변경"
-		OP_UPDATE_PW = "◎p.PW 변경"
-		OP_UPDATE_MEMO = "◎p.메모 변경"
-		OP_DELETE_ACCOUNT = "◎p.계정 삭제"
+		OP_TO_HOME = "◎p.🏠. 홈으로"
+		
+		OP_PRINT_SITE_LIST = "◎p. 사이트 리스트 보기"
+		OP_ADD_SITE = "◎p. 사이트 추가"
+		OP_UPDATE_SITE_NAME = "◎p. 사이트 이름 변경"
+		OP_DELETE_SITE = "◎p. 사이트 삭제"
+
+		OP_ADD_ACCOUNT = "◎p. 계정 추가"
+		OP_DELETE_ACCOUNT = "◎p. 계정 삭제"
+		OP_UPDATE_ID_NAME = "◎p. 계정 ID 변경"
+		OP_UPDATE_PW = "◎p. 계정 PW 변경"
+		OP_UPDATE_MEMO = "◎p. 계정 메모 변경"
+
+		OP_TEST_RECURSIVE = "◎p. TEST BUTTON"
 		OP_INPUT_CANCEL = "-1"
 	
 		OP_RESTRICTED_ARRAY = [OP_TO_HOME, OP_PRINT_SITE_LIST, OP_ADD_SITE, 
@@ -373,13 +376,13 @@ class KakaoController < ApplicationController
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_UPDATE_ID_NAME
-					@text << "변경할 새로운 ID는?"
+					@text << "ID를 뭘로 바꿀까요?"
 					state_transition(UPDATE_ACCOUNT_AT_ID)
 				when OP_UPDATE_PW
-					@text << "변경할 새로운 PW는?"
+					@text << "PW를 뭘로 바꿀까요?"
 					state_transition(UPDATE_ACCOUNT_AT_PW)
 				when OP_UPDATE_MEMO
-					@text << "변경할 새로운 메모는?"
+					@text << "메모를 뭘로 바꿀까요?"
 					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
