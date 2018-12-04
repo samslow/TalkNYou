@@ -136,10 +136,10 @@ class KakaoController < ApplicationController
 		
 		def print_account_existence(site_name_argument)
 			if has_any_account(site_name_argument)
-				@text << "사이트 " << site_name_argument << "에 저장하신 계정들입니다.\n"
+				@text << "사이트 \"" << site_name_argument << "\" 에 저장하신 계정들입니다.\n"
 				@text << "계정을 눌러 자세한 내용을 확인하거나 ◎p.명령을 내려주세요."
 			else
-				@text << "아직 사이트 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
+				@text << "아직 사이트 \""<< site_name_argument << "\" 에 저장하신 계정이 없습니다.\n"
 				@text << "어떤 작업을 원하십니까?"
 			end
 		end	
@@ -302,7 +302,7 @@ class KakaoController < ApplicationController
 							@text = "입력하신건 이미 존재하는 사이트 이름이라서 새로 추가하진 않았습니다.\n"
 						else # 사이트 추가 수행
 							Site.create(site_name: @msg_from_user, user: @talking_user)
-							@text << "사이트 " << @msg_from_user + " 추가 완료.\n"
+							@text << "사이트 \"" << @msg_from_user + "\" 추가 완료.\n"
 						end
 						to_home
 					end
@@ -327,7 +327,7 @@ class KakaoController < ApplicationController
 						else # 사이트 이름 변경 수행
 							updating_site = get_site_by_site_name(old_site_name)
 							updating_site.update(site_name: new_site_name)
-							@text = old_site_name + "에서 " + new_site_name + "로 사이트 이름 변경 완료.\n"
+							@text = "\"" << old_site_name + "\"에서 \"" + new_site_name + "\"로 사이트 이름 변경 완료.\n"
 						end
 						to_home
 					end
@@ -342,11 +342,13 @@ class KakaoController < ApplicationController
 					@text << "추가할 ID는?"
 					state_transition(ADD_ACCOUNT_AT_ID)
 				when OP_UPDATE_SITE_NAME 
-					@text << "새로운 사이트 이름을 입력해주세요."
+					@text << "새로운 사이트 이름을 입력해주세요.\n"
+					@text << "(기존 \"" << @talking_user.str_1 << "\")"
 					state_transition(UPDATE_SITE_NAME)
 				when OP_DELETE_SITE
 					# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 삭제를 실행한 후에 홈으로 간다.
 					delete_site(@talking_user.str_1)
+					@text << "사이트 \"" << @talking_user.str_1 << "\" 삭제 완료."
 					to_home
 				when OP_TO_HOME
 					to_home
@@ -356,7 +358,7 @@ class KakaoController < ApplicationController
 						@text << "처음부터 다시 시도해주세요.\n" #있을 수 없는 상황임
 						to_home
 					else
-						@text << "사이트 " << @talking_user.str_1 << " 내 계정\n"
+						@text << "사이트 \"" << @talking_user.str_1 << "\" 내 계정\n"
 						@text << "ID :  " << picked_account.ID_name << "\n"
 						@text << "PW :  " << picked_account.PW << "\n"
 						@text << "메모 :  " << picked_account.memo << "\n"
@@ -374,20 +376,25 @@ class KakaoController < ApplicationController
 				end
 	# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
 			when PRINT_EACH_ACCOUNT #=> F00, F10, F26, F27, F28
+				temp_account = get_account_by_site_name_and_ID_name(@talking_user.str_1, @talking_user.str_2)
 				case @msg_from_user # 1.명령
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_UPDATE_ID_NAME
-					@text << "ID를 뭘로 바꿀까요?"
+					@text << "ID를 뭘로 바꿀까요?\n"
+					@text << "(기존 \"" << temp_account.ID_name << "\")"
 					state_transition(UPDATE_ACCOUNT_AT_ID)
 				when OP_UPDATE_PW
-					@text << "PW를 뭘로 바꿀까요?"
+					@text << "PW를 뭘로 바꿀까요?\n"
+					@text << "(기존 \"" << temp_account.PW << "\")"
 					state_transition(UPDATE_ACCOUNT_AT_PW)
 				when OP_UPDATE_MEMO
-					@text << "메모를 뭘로 바꿀까요?"
+					@text << "메모를 뭘로 바꿀까요?\n"
+					@text << "(기존 \"" << temp_account.memo << "\")"
 					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
+					@text << "계정 \"" << @talking_user.str_2 << "\" 삭제 완료."
 					to_home
 				when OP_TO_HOME
 					to_home
@@ -473,11 +480,11 @@ class KakaoController < ApplicationController
 						# 앞선 계정 추가 때처럼 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
 						if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-							@text << "이미 사이트 " + site_name + " 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+							@text << "이미 사이트 \"" + site_name + "\" 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
 						else 
 							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 							updating_account.update(ID_name: new_id_name)
-							@text << old_id_name + "에서 " + new_id_name + "로 ID 변경 완료.\n"
+							@text << "\"" << old_id_name + "\"에서 \"" + new_id_name + "\"로 ID 변경 완료.\n"
 						end
 						to_home
 					end
@@ -500,7 +507,7 @@ class KakaoController < ApplicationController
 						old_pw = updating_account.PW
 						new_pw = @msg_from_user
 						updating_account.update(PW: new_pw)
-						@text << old_pw + "에서 " + new_pw + "로 PW 변경 완료.\n"
+						@text << "\"" << old_pw + "\"에서 \"" + new_pw + "\"로 PW 변경 완료.\n"
 						to_home
 					end
 				end
@@ -522,7 +529,7 @@ class KakaoController < ApplicationController
 						old_memo = updating_account.memo
 						new_memo = @msg_from_user
 						updating_account.update(memo: new_memo)
-						@text << old_memo + "에서 " + new_memo + "로 PW 변경 완료.\n"
+						@text << "\"" << old_memo + "\"에서 \"" + new_memo + "\"로 PW 변경 완료.\n"
 						to_home
 					end
 				end
