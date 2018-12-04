@@ -2,10 +2,10 @@ class KakaoController < ApplicationController
 
 	##############▼ 상수 집합 ▼##############
 	#상수 선언하는 방법 : 식별자를 대문자로.
-	#버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합
-	
+
+	#버튼을 통해 클라이언트에서 서버로 입력되는 명령 문자열 집합	
 		OP_TO_HOME = "◎p.🏠. 홈으로"
-		
+
 		OP_PRINT_SITE_LIST = "◎p. 사이트 리스트 보기"
 		OP_ADD_SITE = "◎p. 사이트 추가"
 		OP_UPDATE_SITE_NAME = "◎p. 사이트 이름 변경"
@@ -137,10 +137,11 @@ class KakaoController < ApplicationController
 		def print_account_existence(site_name_argument)
 			if has_any_account(site_name_argument)
 				@text << "사이트 " << site_name_argument << "에 저장하신 계정들입니다.\n"
+				@text << "계정을 눌러 자세한 내용을 확인하거나 ◎p.명령을 내려주세요."
 			else
 				@text << "아직 사이트 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
+				@text << "어떤 작업을 원하십니까?"
 			end
-			@text << "어떤 작업을 수행하시겠습니까?"
 		end	
 
 		def has_any_site
@@ -154,10 +155,11 @@ class KakaoController < ApplicationController
 		def print_site_existence
 			if has_any_site
 				@text << "저장하신 사이트들입니다.\n"
+				@text << "사이트를 눌러 자세한 내용을 확인하거나 ◎p.명령을 내려주세요."
 			else
 				@text << "아직 저장하신 사이트가 없습니다.\n"
+				@text << "어떤 작업을 원하십니까?"
 			end
-			@text << "어떤 작업을 수행하시겠습니까?"
 		end
 	
 		def state_transition(to_be_state) #현재 상태와 전이될 상태를 체크하고 적절하면 전이 수행, 부적절하면 에러 띄우고 홈메뉴로.
@@ -300,7 +302,7 @@ class KakaoController < ApplicationController
 							@text = "입력하신건 이미 존재하는 사이트 이름이라서 새로 추가하진 않았습니다.\n"
 						else # 사이트 추가 수행
 							Site.create(site_name: @msg_from_user, user: @talking_user)
-							@text << "사이트" << @msg_from_user + " 추가 완료.\n"
+							@text << "사이트 " << @msg_from_user + " 추가 완료.\n"
 						end
 						to_home
 					end
@@ -354,7 +356,7 @@ class KakaoController < ApplicationController
 						@text << "처음부터 다시 시도해주세요.\n" #있을 수 없는 상황임
 						to_home
 					else
-						@text << "사이트 " << @talking_user.str_1 << "\n"
+						@text << "사이트 " << @talking_user.str_1 << " 내 계정\n"
 						@text << "ID :  " << picked_account.ID_name << "\n"
 						@text << "PW :  " << picked_account.PW << "\n"
 						@text << "메모 :  " << picked_account.memo << "\n"
