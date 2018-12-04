@@ -97,9 +97,9 @@ class KakaoController < ApplicationController
 		end
 	
 		def print_transition(to_be_state)
-			@text << state_to_string(@talking_user.flag)
-			@text << " -> "
-			@text << state_to_string(to_be_state)
+			#@text << state_to_string(@talking_user.flag)
+			#@text << " -> "
+			#@text << state_to_string(to_be_state)
 		end
 	
 		def state_to_string(state)
@@ -137,7 +137,7 @@ class KakaoController < ApplicationController
 			else
 				@text << "아직 사이트 "<< site_name_argument << "에 저장하신 계정이 없습니다.\n"
 			end
-			@text << "어떤 작업을 수행하시겠습니까?"
+			@text << "어떤 작업을 수행하시겠습니까?\n"
 		end	
 
 		def has_any_site
@@ -157,8 +157,9 @@ class KakaoController < ApplicationController
 			@text << "어떤 작업을 수행하시겠습니까?"
 		end
 	
-		def state_transition(now_state, to_be_state) #현재 상태와 전이될 상태를 체크하고 적절하면 전이 수행, 부적절하면 에러 띄우고 홈메뉴로.
+		def state_transition(to_be_state) #현재 상태와 전이될 상태를 체크하고 적절하면 전이 수행, 부적절하면 에러 띄우고 홈메뉴로.
 			#근데 우선 일단은 바로 전이만 되게 한다.
+			now_state = @talking_user.flag
 			print_transition(to_be_state)
 			@talking_user.update(flag: to_be_state)
 		end
@@ -186,8 +187,8 @@ class KakaoController < ApplicationController
 			clear_user_strings
 			push_string(OP_PRINT_SITE_LIST)
 			#push_string(OP_TEST_RECURSIVE)
-			@text << "홈으로 돌아갑니다.\n"
-			state_transition(@talking_user.flag, HOME_MENU)
+			@text << "홈으로 돌아갑니다."
+			state_transition(HOME_MENU)
 		end
 	
 		def to_print_sites # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
@@ -196,7 +197,7 @@ class KakaoController < ApplicationController
 			push_string(OP_ADD_SITE)
 			push_string(OP_TO_HOME)
 			print_site_existence
-			state_transition(@talking_user.flag, PRINT_SITE_LIST)
+			state_transition(PRINT_SITE_LIST)
 		end
 	
 		def message #이 메소드가 전부다.
@@ -266,8 +267,8 @@ class KakaoController < ApplicationController
 				when OP_TO_HOME
 					to_home
 				when OP_ADD_SITE
-					@text = "추가할 새 사이트의 이름을 입력해주세요.\n(취소는 \"-1\")\n"
-					state_transition(@talking_user.flag, ADD_SITE)
+					@text = "추가할 새 사이트의 이름을 입력해주세요.\n(취소는 \"-1\")"
+					state_transition(ADD_SITE)
 				else # 2.버튼을 통해 선택된 사이트 이름
 					@talking_user.update(str_1: @msg_from_user)
 	
@@ -277,7 +278,7 @@ class KakaoController < ApplicationController
 					push_string(OP_DELETE_SITE)
 					push_string(OP_TO_HOME)
 					print_account_existence(@msg_from_user)
-					state_transition(@talking_user.flag, PRINT_ACCOUNT_LIST)
+					state_transition(PRINT_ACCOUNT_LIST)
 				end
 	# F15 : 사이트 추가 
 			when ADD_SITE #=> F00, F10
@@ -334,10 +335,10 @@ class KakaoController < ApplicationController
 					to_print_sites
 				when OP_ADD_ACCOUNT
 					@text << "추가할 ID는?\n"
-					state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
+					state_transition(ADD_ACCOUNT_AT_ID)
 				when OP_UPDATE_SITE_NAME 
 					@text << "새로운 사이트 이름을 입력해주세요.\n"
-					state_transition(@talking_user.flag, UPDATE_SITE_NAME)
+					state_transition(UPDATE_SITE_NAME)
 				when OP_DELETE_SITE
 					# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 삭제를 실행한 후에 홈으로 간다.
 					delete_site(@talking_user.str_1)
@@ -361,7 +362,7 @@ class KakaoController < ApplicationController
 						push_string(OP_UPDATE_MEMO)
 						push_string(OP_DELETE_ACCOUNT)
 						push_string(OP_TO_HOME)
-						state_transition(@talking_user.flag, PRINT_EACH_ACCOUNT)
+						state_transition(PRINT_EACH_ACCOUNT)
 					end
 				end
 	# F21 : 개별 계정 메뉴 출력 (str_1 : 사이트 이름, str_2 : ID_name)
@@ -371,13 +372,13 @@ class KakaoController < ApplicationController
 					to_print_sites
 				when OP_UPDATE_ID_NAME
 					@text << "변경할 ID는?\n"
-					state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_ID)
+					state_transition(UPDATE_ACCOUNT_AT_ID)
 				when OP_UPDATE_PW
 					@text << "변경할 PW는?\n"
-					state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_PW)
+					state_transition(UPDATE_ACCOUNT_AT_PW)
 				when OP_UPDATE_MEMO
 					@text << "변경할 메모는?\n"
-					state_transition(@talking_user.flag, UPDATE_ACCOUNT_AT_MEMO)
+					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
 					to_home
@@ -402,11 +403,11 @@ class KakaoController < ApplicationController
 						if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
 							@text << "중복된 ID 가 이미 있습니다.\n"
 							@text << "추가할 ID 를 다시 입력해주세요.\n"
-							state_transition(@talking_user.flag, ADD_ACCOUNT_AT_ID)
+							state_transition(ADD_ACCOUNT_AT_ID)
 						else #계정 추가 계속 진행
 							@talking_user.update(str_2: @msg_from_user)
 							@text = "추가할 PW는?\n"
-							state_transition(@talking_user.flag, ADD_ACCOUNT_AT_PW)
+							state_transition(ADD_ACCOUNT_AT_PW)
 						end
 					end
 				end
@@ -424,7 +425,7 @@ class KakaoController < ApplicationController
 					else #PW와 memo 입력은 중복체크가 필요없다.
 						@talking_user.update(str_3: @msg_from_user)
 						@text << "추가할 메모는?\n"
-						state_transition(@talking_user.flag, ADD_ACCOUNT_AT_MEMO)
+						state_transition(ADD_ACCOUNT_AT_MEMO)
 					end
 				end
 			# F25 : 계정 추가 중 memo 입력 (str_1 : 사이트 이름, str_2 : 새 ID_name, str_3 : 새 PW)
