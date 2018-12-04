@@ -348,7 +348,7 @@ class KakaoController < ApplicationController
 				when OP_DELETE_SITE
 					# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 삭제를 실행한 후에 홈으로 간다.
 					delete_site(@talking_user.str_1)
-					@text << "사이트 \"" << @talking_user.str_1 << "\" 삭제 완료."
+					@text << "사이트 \"" << @talking_user.str_1 << "\" 삭제 완료.\n"
 					to_home
 				when OP_TO_HOME
 					to_home
@@ -363,7 +363,7 @@ class KakaoController < ApplicationController
 						@text << "PW :  " << picked_account.PW << "\n"
 						@text << "메모 :  " << picked_account.memo << "\n"
 						@text << "최종 업데이트 시각 : \n" << picked_account.updated_at.strftime('%Y년 %m월 %d일 %H:%M')<< "\n"
-						@text << "이 계정에 대해 어떤 작업을 하시겠습니까?\n"
+						@text << "이 계정에 대해 어떤 작업을 하시겠습니까?"
 						@talking_user.update(str_2: @msg_from_user)
 	
 						push_string(OP_UPDATE_ID_NAME)
@@ -394,7 +394,7 @@ class KakaoController < ApplicationController
 					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
-					@text << "계정 \"" << @talking_user.str_2 << "\" 삭제 완료."
+					@text << "계정 \"" << @talking_user.str_2 << "\" 삭제 완료.\n"
 					to_home
 				when OP_TO_HOME
 					to_home
