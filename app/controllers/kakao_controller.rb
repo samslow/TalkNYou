@@ -339,11 +339,11 @@ class KakaoController < ApplicationController
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_ADD_ACCOUNT
-					@text << "추가할 ID는?"
+					@text << "추가할 ID는?"<< "\n(취소는 \"-1\")"
 					state_transition(ADD_ACCOUNT_AT_ID)
 				when OP_UPDATE_SITE_NAME 
-					@text << "새로운 사이트 이름을 입력해주세요.\n"
-					@text << "(기존 \"" << @talking_user.str_1 << "\")"
+					@text << "사이트 "<<@talking_user.str_1<<" 의 새 이름을 입력해주세요.\n"
+					@text << "(취소는 \"-1\")"
 					state_transition(UPDATE_SITE_NAME)
 				when OP_DELETE_SITE
 					# 사이트 삭제의 경우엔 별도의 상태를 두지 않고 바로 삭제를 실행한 후에 홈으로 간다.
@@ -381,16 +381,16 @@ class KakaoController < ApplicationController
 				when OP_PRINT_SITE_LIST
 					to_print_sites
 				when OP_UPDATE_ID_NAME
-					@text << "ID를 뭘로 바꿀까요?\n"
-					@text << "(기존 \"" << temp_account.ID_name << "\")"
+					@text << "ID를 " << temp_account.ID_name << " 에서 뭘로 바꿀까요?\n"
+					@text << "(취소는 \"-1\")"
 					state_transition(UPDATE_ACCOUNT_AT_ID)
 				when OP_UPDATE_PW
-					@text << "PW를 뭘로 바꿀까요?\n"
-					@text << "(기존 \"" << temp_account.PW << "\")"
+					@text << "PW를 " << temp_account.PW << " 에서 뭘로 바꿀까요?\n"
+					@text << "(취소는 \"-1\")"
 					state_transition(UPDATE_ACCOUNT_AT_PW)
 				when OP_UPDATE_MEMO
-					@text << "메모를 뭘로 바꿀까요?\n"
-					@text << "(기존 \"" << temp_account.memo << "\")"
+					@text << "메모를 " << temp_account.memo << " 에서 뭘로 바꿀까요?\n"
+					@text << "(취소는 \"-1\")"
 					state_transition(UPDATE_ACCOUNT_AT_MEMO)
 				when OP_DELETE_ACCOUNT	
 					delete_account(@talking_user.str_1, @talking_user.str_2)
@@ -415,12 +415,11 @@ class KakaoController < ApplicationController
 					else #계정 추가까지는 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						site_to_attach_account = @talking_user.sites.find_by(site_name: @talking_user.str_1)
 						if (site_to_attach_account.accounts.find_by(ID_name: @msg_from_user))
-							@text << "중복된 ID 가 이미 있습니다."
-							@text << "추가할 ID 를 다시 입력해주세요."
+							@text << "중복된 ID 가 이미 있습니다.다시 입력해주세요.\n"<< "(취소는 \"-1\")"
 							state_transition(ADD_ACCOUNT_AT_ID)
 						else #계정 추가 계속 진행
 							@talking_user.update(str_2: @msg_from_user)
-							@text = "추가할 PW는?"
+							@text << "추가할 PW는?"<< "\n(취소는 \"-1\")"
 							state_transition(ADD_ACCOUNT_AT_PW)
 						end
 					end
@@ -438,7 +437,7 @@ class KakaoController < ApplicationController
 						to_home
 					else #PW와 memo 입력은 중복체크가 필요없다.
 						@talking_user.update(str_3: @msg_from_user)
-						@text << "추가할 메모는?"
+						@text << "추가할 메모는?\n"<< "(취소는 \"-1\")"
 						state_transition(ADD_ACCOUNT_AT_MEMO)
 					end
 				end
@@ -480,7 +479,9 @@ class KakaoController < ApplicationController
 						# 앞선 계정 추가 때처럼 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
 						if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-							@text << "이미 사이트 \"" + site_name + "\" 내에 동일한 ID 가 존재하므로 변경하지 않았습니다.\n"
+							@text << "이미 사이트 \"" + site_name + "\" 내에 동일한 ID 가 있습니다.\n"
+							@text << "새로운 ID 를 다시 입력해주세요.\n"<< "(취소는 \"-1\")"
+							state_transition(ADD_ACCOUNT_AT_ID)
 						else 
 							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 							updating_account.update(ID_name: new_id_name)
