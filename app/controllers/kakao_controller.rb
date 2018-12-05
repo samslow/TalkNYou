@@ -479,15 +479,14 @@ class KakaoController < ApplicationController
 						# 앞선 계정 추가 때처럼 Depth 가 깊으므로 홈으로 돌아가지 않고 다시 시도하도록 한다.
 						duplicate_check = get_account_by_site_name_and_ID_name(site_name, new_id_name)
 						if duplicate_check != NOT_FOUND_ACCOUNT # 입력받은 ID 가 이미 존재하면
-							@text << "이미 사이트 \"" + site_name + "\" 내에 동일한 ID 가 있습니다.\n"
-							@text << "새로운 ID 를 다시 입력해주세요.\n"<< "(취소는 \"-1\")"
-							state_transition(ADD_ACCOUNT_AT_ID)
+							@text << "이미 사이트 \"" + site_name + "\" 내에 동일한 ID 가 있습니다. 다시 입력해주세요.\n"<< "(취소는 \"-1\")"
+							state_transition(UPDATE_ACCOUNT_AT_ID)
 						else 
 							updating_account = get_account_by_site_name_and_ID_name(site_name, old_id_name)
 							updating_account.update(ID_name: new_id_name)
 							@text << "\"" << old_id_name + "\"에서 \"" + new_id_name + "\"(으/)로 ID 변경 완료.\n"
+							to_home
 						end
-						to_home
 					end
 				end
 	# F27 : 계정 변경 중 PW 변경 (str_1 : 사이트 이름, str_2 : ID_name)
