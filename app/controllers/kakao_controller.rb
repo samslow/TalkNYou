@@ -54,11 +54,16 @@ class KakaoController < ApplicationController
 			render json: @keyboard
 		end
 	
+		def sort_button_list #button_list 정렬 (사이트 이름 정렬할 때 사용. ID는 굳이 정렬할 필요없음)
+			@button_list.sort!
+		end
+		
 		def push_site_list #button_list 에 사이트 목록을 넣는다.
 			@talking_user.sites.each do |each_site|
 			# if not @button_list.include?(each_site.site_name)  #이 코드는 이전 스키마의 한계점인 중복사이트 가능성 때문인 것으로 추정
 				push_string(each_site.site_name)
 			end
+			sort_button_list
 		end
 	 
 		def push_account_list(picked_site_name) #button_list 에 선택된 사이트 이름에 속하는 계정들의 목록을 넣는다.
@@ -90,7 +95,7 @@ class KakaoController < ApplicationController
 				NOT_FOUND_SITE
 			end
 		end
-	
+
 		def push_string(any_string) #button_list 에 아무 문자열이나 넣는다.
 			if(any_string.kind_of?(String))
 				@button_list.push(any_string)
@@ -195,8 +200,8 @@ class KakaoController < ApplicationController
 			@text << "홈으로 복귀."
 			state_transition(HOME_MENU)
 		end
-	
-		def to_print_sites # F0 : 홈 메뉴로 돌아간다. 다만 호출 전에 진행 중인 작업을 정상적으로 종료할 것
+
+		def to_print_sites # F 10 : 사이트 리스트 출력으로 돌아간다. 예외 상황 시의 기본 귀환 상태가 이 F 10이다.
 			clear_user_strings
 			push_site_list()
 			push_string(OP_ADD_SITE)
