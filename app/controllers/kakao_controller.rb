@@ -53,7 +53,26 @@ class KakaoController < ApplicationController
 			}
 			render json: @keyboard
 		end
-	
+
+		def friend 
+			if User.find_by(key: params[:user_key])
+				p "이미 DB에 존재하는 유저이다."
+			else
+				p "DB에 존재하지 않는 유저이므로 생성 시도 중 . . ."
+				if User.create(key: params[:user_key])
+					p "생성 성공"
+				end
+			end
+			@talking_user = User.find_by(key: params[:user_key]) #Users 테이블에서 User 객체 하나를 찾는다.
+			@talking_user.update(flag: HOME_MENU)
+			@keyboard = {
+			type: "buttons",
+			:buttons => [OP_PRINT_SITE_LIST] #HOME_MENU 에서 처음 띄워줘야 할 버튼과 같다.
+			#서비스 출시 시엔 OP_TEST_RECURSIVE 를 반드시 초기 버튼 제공에서 빼야한다.
+			}
+			render json: @keyboard
+		end
+
 		def sort_button_list #button_list 정렬 (사이트 이름 정렬할 때 사용. ID는 굳이 정렬할 필요없음)
 			@button_list.sort!
 		end
